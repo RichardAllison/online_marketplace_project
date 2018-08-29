@@ -13,10 +13,19 @@ public class UserTest {
 	@Test
 	public void test_thatUserHasUsername() {
 		User user = new User();
-		user.setUsername("username");
-		String expected = "username";
+		String username = "username";
+		user.setUsername(username);
 		String actual = user.getUsername();
-		assertEquals(expected, actual);
+		assertEquals(username, actual);
+	}
+	
+	@Test
+	public void test_thatUserHasEmailAddress() {
+		User user = new User();
+		String email = "email@address.com";
+		user.setEmailAddress(email);
+		String actual = user.getEmailAddress();
+		assertEquals(email, actual);	
 	}
 
 }
