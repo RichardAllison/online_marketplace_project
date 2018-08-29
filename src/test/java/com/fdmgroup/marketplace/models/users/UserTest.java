@@ -2,11 +2,7 @@ package com.fdmgroup.marketplace.models.users;
 
 import static org.junit.Assert.assertEquals;
 
-import java.math.BigDecimal;
-
 import org.junit.Test;
-
-import com.fdmgroup.marketplace.models.items.Item;
 
 public class UserTest {
 	
