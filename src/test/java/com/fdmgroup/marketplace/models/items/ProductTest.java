@@ -17,6 +17,14 @@ public class ProductTest {
 	}
 	
 	@Test
+	public void test_thatProductHasProductId() {
+		product.setProductId(1l);
+		long expected = 1l;
+		long actual = product.getProductId();
+		assertEquals(expected, actual);
+	}
+	
+	@Test
 	public void test_thatProductHasPrice() {
 		product.setPrice(BigDecimal.valueOf(10));
 		BigDecimal expected = BigDecimal.valueOf(10);
