@@ -1,14 +1,15 @@
 package com.fdmgroup.marketplace.models.transactions;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.util.List;
 
 import com.fdmgroup.marketplace.models.users.User;
 
-public class Order {
+public class Order extends Basket{
 	
 	private long orderId;
 	private User buyer;
-	private Date time;
+	private List<OrderItem> orderItems;
 
 	public long getOrderId() {
 		return orderId;
@@ -26,12 +27,18 @@ public class Order {
 		this.buyer = buyer;
 	}
 
-	public Date getTime() {
-		return time;
+	public List<OrderItem> getOrderItems() {
+		return orderItems;
 	}
 
-	public void setTime(Date time) {
-		this.time = time;
+	public void setOrderItems(List<OrderItem> orderItems) {
+		this.orderItems = orderItems;
+	}
+
+	@Override
+	public BigDecimal calculateTotalCost() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

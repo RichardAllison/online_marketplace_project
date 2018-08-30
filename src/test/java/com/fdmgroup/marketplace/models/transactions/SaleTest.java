@@ -39,5 +39,10 @@ public class SaleTest {
 		User actual = sale.getSeller();
 		assertEquals(seller, actual);
 	}
+	
+	@Test
+	public void test_thatSaleHasTotalCost() {
+		
+	}
 
 }
