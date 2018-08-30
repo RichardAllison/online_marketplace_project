@@ -29,4 +29,10 @@ public class OrderItemTest {
 		orderItem.setProduct(product);
 		assertEquals(product, orderItem.getProduct());
 	}
+	
+	@Test
+	public void test_thatOrderItemHasQuantity() {
+		orderItem.setQuantity(2);
+		assertEquals(2, orderItem.getQuantity());
+	}
 }

@@ -1,11 +1,8 @@
 package com.fdmgroup.marketplace.models.items;
 
-import java.math.BigDecimal;
-
 public class Product {
 
 	private long productId;
-	private BigDecimal price;
 	private int quantity;
 	private int quantityReserved;
 
@@ -16,14 +13,6 @@ public class Product {
 
 	public void setProductId(long productId) {
 		this.productId = productId;
-	}
-
-	public BigDecimal getPrice() {
-		return price;
-	}
-
-	public void setPrice(BigDecimal price) {
-		this.price = price;
 	}
 
 	public int getQuantity() {

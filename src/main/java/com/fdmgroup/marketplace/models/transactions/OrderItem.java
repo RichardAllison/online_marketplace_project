@@ -6,6 +6,7 @@ public class OrderItem {
 
 	private long orderItemId;
 	private Product product;
+	private int quantity;
 
 	public long getOrderItemId() {
 		return orderItemId;
@@ -21,6 +22,14 @@ public class OrderItem {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	
 }
