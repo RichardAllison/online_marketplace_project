@@ -31,5 +31,48 @@ public class ProductTest {
 		int actual = product.getQuantity();
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void test_thatProductQuantityCanBeZero(){
+		product.setQuantity(0);
+		int expected = 0;
+		int actual = product.getQuantity();
+		assertEquals(expected, actual);		
+	}
+	
+	@Test
+	public void test_thatProductQuantityCannotBeNegative() {
+		product.setQuantity(-1);
+		int expected = 0;
+		int actual = product.getQuantity();
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void test_thatProductCanHaveReservedQuantity() {
+		product.setQuantity(1);
+		product.setQuantityReserved(1);
+		int expected = 1;
+		int actual = product.getQuantityReserved();
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void test_thatReservedQuantityCannotBeGreaterThanQuantity() {
+		product.setQuantity(1);
+		product.setQuantityReserved(2);
+		int expected = 1;
+		int actual = product.getQuantityReserved();
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void test_thatReservingProductsReducesQuantityAvailable() {
+		product.setQuantity(1);
+		product.setQuantityReserved(1);
+		int expected = 0;
+		int actual = product.getQuantityAvailable();
+		assertEquals(expected, actual);
+	}
 
 }

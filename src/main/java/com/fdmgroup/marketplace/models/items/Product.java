@@ -6,6 +6,8 @@ public class Product {
 
 	private BigDecimal price;
 	private int quantity;
+	private int quantityReserved;
+
 
 	public BigDecimal getPrice() {
 		return price;
@@ -20,7 +22,24 @@ public class Product {
 	}
 
 	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+		if (quantity >= 0) {
+			this.quantity = quantity;
+		}
 	}
 
+	public int getQuantityReserved() {
+		return quantityReserved;
+	}
+	
+	public void setQuantityReserved(int quantityToReserve) {
+		if (quantityToReserve <= this.quantity) {
+			this.quantityReserved = quantityToReserve;
+		} else {
+			this.quantityReserved = this.quantity;
+		}
+	}
+
+	public int getQuantityAvailable() {
+		return this.quantity - this.quantityReserved;
+	}
 }
