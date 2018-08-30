@@ -1,7 +1,13 @@
 package com.fdmgroup.marketplace.models.users;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class User {
 	
+	@Id
+	private long user_id;
 	private String username;
 	private String emailAddress;
 

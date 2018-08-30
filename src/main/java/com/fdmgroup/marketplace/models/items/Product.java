@@ -2,7 +2,7 @@ package com.fdmgroup.marketplace.models.items;
 
 import java.math.BigDecimal;
 
-public class Item {
+public class Product {
 
 	private BigDecimal price;
 

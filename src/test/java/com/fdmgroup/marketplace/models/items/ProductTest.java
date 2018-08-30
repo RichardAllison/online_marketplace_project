@@ -6,14 +6,14 @@ import java.math.BigDecimal;
 
 import org.junit.Test;
 
-public class ItemTest {
+public class ProductTest {
 	
 	@Test
-	public void test_thatItemHasPrice() {
-		Item item = new Item();
-		item.setPrice(BigDecimal.valueOf(10));
+	public void test_thatProductHasPrice() {
+		Product product = new Product();
+		product.setPrice(BigDecimal.valueOf(10));
 		BigDecimal expected = BigDecimal.valueOf(10);
-		BigDecimal actual = item.getPrice();
+		BigDecimal actual = product.getPrice();
 		assertEquals(expected, actual);
 	}
 
