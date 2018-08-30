@@ -5,7 +5,7 @@ public class Product {
 	private long productId;
 	private int quantity;
 	private int quantityReserved;
-
+	private Item item;
 
 	public long getProductId() {
 		return productId;
@@ -13,6 +13,14 @@ public class Product {
 
 	public void setProductId(long productId) {
 		this.productId = productId;
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	public int getQuantity() {

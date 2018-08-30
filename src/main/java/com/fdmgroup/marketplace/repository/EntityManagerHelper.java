@@ -10,7 +10,7 @@ public class EntityManagerHelper {
 	private static final ThreadLocal<EntityManager> threadLocal;
 	
 	static {
-		entityManagerFactory = Persistence.createEntityManagerFactory("JPABookshop"); 
+		entityManagerFactory = Persistence.createEntityManagerFactory("OnlineMarketplaceProject"); 
 		threadLocal = new ThreadLocal<EntityManager>();
 	}
 	

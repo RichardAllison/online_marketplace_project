@@ -23,6 +23,13 @@ public class ProductTest {
 	}
 	
 	@Test
+	public void test_thatProductHasItem() {
+		Item item = new Item();
+		product.setItem(item);
+		assertEquals(item, product.getItem());
+	}
+	
+	@Test
 	public void test_thatProductHasQuantity() {
 		product.setQuantity(2);
 		int expected = 2;

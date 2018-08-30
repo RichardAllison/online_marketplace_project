@@ -23,4 +23,18 @@ public class ItemTest {
 		BigDecimal actual = item.getPrice();
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void test_thatItemHasName() {
+		String name = "item"; 
+		item.setName(name);
+		assertEquals(name, item.getName());
+	}
+	
+	@Test
+	public void test_thatItemHasDescription() {
+		String description = "description";
+		item.setDescription(description);
+		assertEquals(description, item.getDescription());
+	}
 }
