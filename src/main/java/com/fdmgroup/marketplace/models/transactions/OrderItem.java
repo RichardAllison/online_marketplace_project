@@ -1,11 +1,11 @@
 package com.fdmgroup.marketplace.models.transactions;
 
-import com.fdmgroup.marketplace.models.items.Product;
+import com.fdmgroup.marketplace.models.items.Item;
 
 public class OrderItem {
 
 	private long orderItemId;
-	private Product product;
+	private Item item;
 	private int quantity;
 
 	public long getOrderItemId() {
@@ -16,12 +16,12 @@ public class OrderItem {
 		this.orderItemId = orderItemId;
 	}
 
-	public Product getProduct() {
-		return product;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	public int getQuantity() {

@@ -5,17 +5,17 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.marketplace.models.items.Product;
+import com.fdmgroup.marketplace.models.items.Item;
 
 public class OrderItemTest {
 
 	private OrderItem orderItem;
-	private Product product;
+	private Item item;
 	
 	@Before
 	public void before() {
 		orderItem = new OrderItem();
-		product = new Product();
+		item = new Item();
 	}
 	
 	@Test
@@ -26,8 +26,8 @@ public class OrderItemTest {
 	
 	@Test
 	public void test_thatOrderItemHasProduct() {
-		orderItem.setProduct(product);
-		assertEquals(product, orderItem.getProduct());
+		orderItem.setItem(item);
+		assertEquals(item, orderItem.getItem());
 	}
 	
 	@Test
