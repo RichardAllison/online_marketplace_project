@@ -37,8 +37,8 @@ public class Order extends Basket{
 
 	@Override
 	public BigDecimal calculateTotalCost() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.orderItems.stream().map(orderItem -> orderItem.getItem().getPrice())
+				.reduce(BigDecimal.ZERO, (price1, price2) -> price1.add(price2));	
 	}
 
 }

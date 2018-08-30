@@ -2,6 +2,8 @@ package com.fdmgroup.marketplace.models.transactions;
 
 import static org.junit.Assert.assertEquals;
 
+import java.math.BigDecimal;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,8 +29,10 @@ public class SaleItemTest {
 	
 	@Test
 	public void test_thatSaleItemHasProduct() {
+		item.setPrice(BigDecimal.valueOf(5));
 		saleItem.setItem(item);
-		assertEquals(item, saleItem.getItem());
+//		assertEquals(item, saleItem.getItem());
+		assertEquals(BigDecimal.valueOf(5), saleItem.getItem().getPrice());
 	}
 	
 	@Test

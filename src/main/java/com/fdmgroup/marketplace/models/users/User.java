@@ -7,9 +7,18 @@ import javax.persistence.Id;
 public class User {
 	
 	@Id
-	private long user_id;
+	private long userId;
 	private String username;
 	private String emailAddress;
+	private String password;
+	
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
 
 	public String getUsername() {
 		return this.username;
@@ -25,6 +34,14 @@ public class User {
 	
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

@@ -2,9 +2,23 @@ package com.fdmgroup.marketplace.models.users;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class UserTest {
+	
+	User user;
+	
+	@Before
+	public void before() {
+		user = new User();
+	}
+	
+	@Test
+	public void test_thatUserHasUserId() {
+		user.setUserId(1l);
+		assertEquals(1l, user.getUserId());
+	}
 	
 	@Test
 	public void test_thatUserHasUsername() {
@@ -23,5 +37,12 @@ public class UserTest {
 		String actual = user.getEmailAddress();
 		assertEquals(email, actual);	
 	}
-
+	
+	@Test
+	public void test_thatUserHasPassword() {
+		String password = "password";
+		user.setPassword("password");
+		
+	}
+	
 }

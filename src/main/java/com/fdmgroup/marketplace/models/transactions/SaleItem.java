@@ -1,5 +1,7 @@
 package com.fdmgroup.marketplace.models.transactions;
 
+//import java.math.BigDecimal;
+
 import com.fdmgroup.marketplace.models.items.Item;
 
 public class SaleItem {
@@ -7,6 +9,7 @@ public class SaleItem {
 	private long saleItemId;
 	private Item item;
 	private int quantity;
+//	private BigDecimal price;
 
 	public long getSaleItemId() {
 		return saleItemId;
@@ -22,6 +25,7 @@ public class SaleItem {
 
 	public void setItem(Item item) {
 		this.item = item;
+//		this.price = item.getPrice();
 	}
 
 	public int getQuantity() {
