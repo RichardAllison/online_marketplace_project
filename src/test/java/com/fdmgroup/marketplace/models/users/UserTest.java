@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.fdmgroup.marketplace.models.items.Product;
+
 public class UserTest {
 	
 	User user;
@@ -42,7 +44,14 @@ public class UserTest {
 	public void test_thatUserHasPassword() {
 		String password = "password";
 		user.setPassword("password");
-		
+	}
+	
+	@Test
+	public void test_thatUserCanAddProducts() {
+		Product product = new Product();
+		user.addProduct(product);
+		assertEquals(product, user.getProducts().get(0));
+		assertEquals(1, user.getProducts().size());
 	}
 	
 }
