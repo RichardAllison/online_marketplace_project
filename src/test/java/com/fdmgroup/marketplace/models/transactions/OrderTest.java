@@ -2,26 +2,23 @@ package com.fdmgroup.marketplace.models.transactions;
 
 import static org.junit.Assert.assertEquals;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.fdmgroup.marketplace.models.items.Item;
-import com.fdmgroup.marketplace.models.users.User;
+import com.fdmgroup.marketplace.models.users.UserAccount;
 
 public class OrderTest {
 	
 	private Order order;
-	private User buyer;
+	private UserAccount buyer;
 	
 	@Before
 	public void before() {
 		order = new Order();
-		buyer = new User();
+		buyer = new UserAccount();
 	}
 	
 	@Test
@@ -40,30 +37,34 @@ public class OrderTest {
 	@Test
 	public void test_thatOrderHasBuyer() {
 		order.setBuyer(buyer);
-		User actual = order.getBuyer();
+		UserAccount actual = order.getBuyer();
 		assertEquals(buyer, actual);
 	}
 	
 	@Test
-	public void test_thatOrderCalculatesTotalCost() {
-		List<OrderItem> orderItems = new ArrayList<>();
-		
-		Item item1 = new Item();
-		Item item2 = new Item();		
-		item1.setPrice(BigDecimal.valueOf(5));
-		item2.setPrice(BigDecimal.valueOf(2.75));
-		
-		OrderItem orderItem1 = new OrderItem();
-		OrderItem orderItem2 = new OrderItem();
-		orderItem1.setItem(item1);
-		orderItem2.setItem(item2);
-		orderItems.add(orderItem1);
-		orderItems.add(orderItem2);
-		
-		order.setOrderItems(orderItems);
-		BigDecimal expected = BigDecimal.valueOf(7.75);
-		BigDecimal actual = order.calculateTotalCost();
-		assertEquals(expected, actual);
+	public void test_thatAddToOrderAddsItemToOrderBasket() {
+		Item item = new Item();
+		OrderItem orderItem = new OrderItem();
+		orderItem.setItem(item);
+		orderItem.setQuantity(1);
+		order.addToOrder(orderItem);
+		assertEquals(orderItem, order.getOrderItems().get(0));
+	}
+	
+	@Test
+	public void test_thatAddToOrderDoesNotAddOrderItemToOrderIfOrderItemDoesNotContainAnItem() {
+		OrderItem orderItem = new OrderItem();
+		order.addToOrder(orderItem);
+		assertEquals(0, order.getOrderItems().size());
+	}
+	
+	@Test
+	public void test_thatAddToOrderDoesNotAddOrderItemToOrderIfOrderItemQuantityIsZero() {
+		Item item = new Item();
+		OrderItem orderItem = new OrderItem();
+		orderItem.setItem(item);
+		order.addToOrder(orderItem);
+		assertEquals(0, order.getOrderItems().size());
 	}
 
 }

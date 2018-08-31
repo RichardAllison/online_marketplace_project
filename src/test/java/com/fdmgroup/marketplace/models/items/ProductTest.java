@@ -80,4 +80,36 @@ public class ProductTest {
 		assertEquals(expected, actual);
 	}
 
+	@Test
+	public void test_thatIncrementQuantityIncreasesQuantityByOne() {
+		product.incrementQuantity();
+		assertEquals(1, product.getQuantity());
+	}
+	
+	@Test
+	public void test_thatDecrementQuantityReducesQuantityByOne() {
+		product.setQuantity(1);
+		product.decrementQuantity();
+		assertEquals(0, product.getQuantity());
+	}
+	
+	@Test
+	public void test_thatDecrementQuantityDoesNotReduceQuantityBelowZero() {
+		product.decrementQuantity();
+		assertEquals(0, product.getQuantity());
+	}
+	
+	@Test
+	public void test_thatIncrementQuantityReservedIncreasesQuantityReservedByOne() {
+		product.setQuantity(1);
+		product.incrementQuantityReserved();
+		assertEquals(1, product.getQuantityReserved());
+	}
+	
+	@Test
+	public void test_thatIncrementQuantityReservedDoesNotIncreaseQuantityReservedBeyondQuantity() {
+		product.incrementQuantityReserved();
+		assertEquals(0, product.getQuantityReserved());
+	}
+
 }

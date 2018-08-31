@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.marketplace.models.users.User;
+import com.fdmgroup.marketplace.models.users.UserAccount;
 
 public class ItemTest {
 	
@@ -42,7 +42,7 @@ public class ItemTest {
 	
 	@Test
 	public void test_thatItemHasSeller() {
-		User seller = new User();
+		UserAccount seller = new UserAccount();
 		item.setSeller(seller);
 		assertEquals(seller, item.getSeller());
 	}

@@ -48,4 +48,26 @@ public class Product {
 	public int getQuantityAvailable() {
 		return this.quantity - this.quantityReserved;
 	}
+	
+	public void incrementQuantity() {
+		this.quantity++;
+	}
+	
+	public void decrementQuantity() {
+		if (this.quantity > 0) {
+			this.quantity--;
+		}
+	}
+	
+	public void incrementQuantityReserved() {
+		if (this.quantityReserved < this.quantity) {
+			this.quantityReserved++;
+		}
+	}
+	
+	public void decrementQuantityReserved() {
+		if (this.quantityReserved > 0) {
+			this.quantityReserved--;
+		}
+	}
 }

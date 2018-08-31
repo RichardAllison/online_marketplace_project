@@ -1,15 +1,22 @@
 package com.fdmgroup.marketplace.models.transactions;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import com.fdmgroup.marketplace.models.users.User;
+import com.fdmgroup.marketplace.models.users.UserAccount;
 
-public class Order extends Basket{
+public class Order {
 	
 	private long orderId;
-	private User buyer;
+	private UserAccount buyer;
+	private Date time;
 	private List<OrderItem> orderItems;
+	
+	public Order() {
+		this.orderItems = new ArrayList<>();
+	}
 
 	public long getOrderId() {
 		return orderId;
@@ -19,11 +26,19 @@ public class Order extends Basket{
 		this.orderId = orderId;
 	}
 	
-	public User getBuyer() {
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+	
+	public UserAccount getBuyer() {
 		return buyer;
 	}
 
-	public void setBuyer(User buyer) {
+	public void setBuyer(UserAccount buyer) {
 		this.buyer = buyer;
 	}
 
@@ -34,11 +49,11 @@ public class Order extends Basket{
 	public void setOrderItems(List<OrderItem> orderItems) {
 		this.orderItems = orderItems;
 	}
-
-	@Override
-	public BigDecimal calculateTotalCost() {
-		return this.orderItems.stream().map(orderItem -> orderItem.getItem().getPrice())
-				.reduce(BigDecimal.ZERO, (price1, price2) -> price1.add(price2));	
+	
+	public void addToOrder(OrderItem orderItem) {
+		if (orderItem.getItem() != null && orderItem.getQuantity() > 0) {
+			this.orderItems.add(orderItem);
+		}
 	}
 
 }

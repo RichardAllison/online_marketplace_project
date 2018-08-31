@@ -9,25 +9,25 @@ import javax.persistence.Id;
 import com.fdmgroup.marketplace.models.items.Product;
 
 @Entity
-public class User {
+public class UserAccount {
 	
 	@Id
-	private long userId;
+	private long userAccountId;
 	private String username;
 	private String emailAddress;
 	private String password;
 	private List<Product> products;
 	
-	public User() {
+	public UserAccount() {
 		this.products = new ArrayList<Product>();
 	}
 	
-	public long getUserId() {
-		return userId;
+	public long getUserAccountId() {
+		return userAccountId;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setUserAccountId(long userAccountId) {
+		this.userAccountId = userAccountId;
 	}
 
 	public String getUsername() {
