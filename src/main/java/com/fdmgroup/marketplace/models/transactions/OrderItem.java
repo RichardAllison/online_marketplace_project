@@ -6,17 +6,18 @@ import com.fdmgroup.marketplace.models.items.Item;
 
 public class OrderItem {
 
-	private long orderItemId;
+	private long id;
 	private Item item;
 	private int quantity;
+//	private AccountUser seller;
 //	private BigDecimal price;
 
-	public long getOrderItemId() {
-		return orderItemId;
+	public long getId() {
+		return id;
 	}
 
-	public void setOrderItemId(long orderItemId) {
-		this.orderItemId = orderItemId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public Item getItem() {

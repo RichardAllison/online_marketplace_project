@@ -20,8 +20,8 @@ public class OrderItemTest {
 	
 	@Test
 	public void test_thatOrderItemHasId() {
-		orderItem.setOrderItemId(1l);
-		assertEquals(1l, orderItem.getOrderItemId());
+		orderItem.setId(1l);
+		assertEquals(1l, orderItem.getId());
 	}
 	
 	@Test

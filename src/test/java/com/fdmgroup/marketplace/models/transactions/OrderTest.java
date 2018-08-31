@@ -23,8 +23,8 @@ public class OrderTest {
 	
 	@Test
 	public void test_thatOrderHasOrderId() {
-		order.setOrderId(1l);
-		assertEquals(1l, order.getOrderId());
+		order.setId(1l);
+		assertEquals(1l, order.getId());
 	}
 	
 	@Test

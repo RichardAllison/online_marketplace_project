@@ -30,4 +30,20 @@ public class EntityManagerHelper {
 			threadLocal.set(null);
 		}
 	}
+	
+	public static void closeEntityManagerFactory() {
+		entityManagerFactory.close();
+	}
+	
+	public static void beginTransaction() {
+		getEntityManager().getTransaction().begin();
+	}
+	
+	public static void rollback(){
+		getEntityManager().getTransaction().begin();
+	}
+	
+	public static void commit() {
+		getEntityManager().getTransaction().commit();
+	}
 }

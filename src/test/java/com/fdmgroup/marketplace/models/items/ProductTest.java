@@ -5,6 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.fdmgroup.marketplace.models.transactions.Order;
+import com.fdmgroup.marketplace.models.transactions.OrderItem;
+
 public class ProductTest {
 	
 	private Product product;
@@ -16,9 +19,9 @@ public class ProductTest {
 	
 	@Test
 	public void test_thatProductHasProductId() {
-		product.setProductId(1l);
+		product.setId(1l);
 		long expected = 1l;
-		long actual = product.getProductId();
+		long actual = product.getId();
 		assertEquals(expected, actual);
 	}
 	

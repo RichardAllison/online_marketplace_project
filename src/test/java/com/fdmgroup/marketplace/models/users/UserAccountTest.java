@@ -6,8 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.fdmgroup.marketplace.models.items.Product;
+import com.fdmgroup.marketplace.models.transactions.Order;
 
-public class UserTest {
+public class UserAccountTest {
 	
 	UserAccount user;
 	
@@ -18,8 +19,8 @@ public class UserTest {
 	
 	@Test
 	public void test_thatUserAccountHasUserId() {
-		user.setUserAccountId(1l);
-		assertEquals(1l, user.getUserAccountId());
+		user.setId(1l);
+		assertEquals(1l, user.getId());
 	}
 	
 	@Test
@@ -48,11 +49,32 @@ public class UserTest {
 	}
 	
 	@Test
-	public void test_thatUserAccountCanAddProducts() {
+	public void test_thatUserAccountCanAddProduct() {
 		Product product = new Product();
 		user.addProduct(product);
 //		assertEquals(product, user.getProducts().get(0));
 		assertEquals(1, user.getProducts().size());
 	}
 	
+	@Test
+	public void test_thatUserAccountCanRemoveProduct() {
+		Product product = new Product();
+		user.addProduct(product);
+		user.removeProduct(product);
+		assertEquals(0, user.getProducts().size());
+	}
+	
+	@Test
+	public void test_thatOrdersCanBeAddedToUserAccountPurchases() {
+		Order purchase = new Order();
+		user.addToPurchases(purchase);
+		assertEquals(1, user.getPurchases().size());
+	}
+	
+	@Test
+	public void test_thatOrdersCanBeAddedToUserAccountSales() {
+		Order sale = new Order();
+		user.addToSales(sale);
+		assertEquals(1, user.getSales().size());
+	}
 }

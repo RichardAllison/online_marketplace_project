@@ -1,15 +1,19 @@
 package com.fdmgroup.marketplace.models.transactions;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import com.fdmgroup.marketplace.models.users.UserAccount;
 
+@Entity
 public class Order {
 	
-	private long orderId;
+	@Id
+	private long id;
 	private UserAccount buyer;
 	private Date time;
 	private List<OrderItem> orderItems;
@@ -18,12 +22,12 @@ public class Order {
 		this.orderItems = new ArrayList<>();
 	}
 
-	public long getOrderId() {
-		return orderId;
+	public long getId() {
+		return id;
 	}
 	
-	public void setOrderId(long orderId) {
-		this.orderId = orderId;
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 	public Date getTime() {
@@ -53,6 +57,7 @@ public class Order {
 	public void addToOrder(OrderItem orderItem) {
 		if (orderItem.getItem() != null && orderItem.getQuantity() > 0) {
 			this.orderItems.add(orderItem);
+			// increment quantity reserved in product
 		}
 	}
 

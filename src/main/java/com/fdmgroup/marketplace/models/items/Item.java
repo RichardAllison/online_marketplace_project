@@ -2,15 +2,29 @@ package com.fdmgroup.marketplace.models.items;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import com.fdmgroup.marketplace.models.users.UserAccount;
 
+@Entity
 public class Item {
 
+	@Id
+	private long id;
 	private String name;
 	private String description;
 	private BigDecimal price;
 	private UserAccount seller;
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -42,4 +56,5 @@ public class Item {
 	public void setSeller(UserAccount seller) {
 		this.seller = seller;
 	}
+	
 }

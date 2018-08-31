@@ -6,15 +6,22 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.fdmgroup.marketplace.models.items.Item;
+import com.fdmgroup.marketplace.models.users.UserAccount;
 
 public class CheckoutTest {
-
-	@Test
-	public void test_thatCalculateTotalCostCalculatesSumOfPricesOfItemsInOrder() {
-		Order order = new Order();
+	
+	Order order;
+	UserAccount userAccount;
+	
+	@Before
+	public void before() {
+		order = new Order();
+		userAccount = new UserAccount();
 		List<OrderItem> orderItems = new ArrayList<>();
 		
 		Item item1 = new Item();
@@ -30,9 +37,27 @@ public class CheckoutTest {
 		orderItems.add(orderItem2);
 		
 		order.setOrderItems(orderItems);
+		order.setBuyer(userAccount);
+	}
+
+	@Test
+	public void test_thatCalculateTotalCostCalculatesSumOfPricesOfItemsInOrder() {
 		BigDecimal expected = BigDecimal.valueOf(7.75);
 		BigDecimal actual = Checkout.calculateTotalCost(order);
 		assertEquals(expected, actual);
+	}
+	
+	@Test
+	@Ignore
+	public void test_thatSubmitOrderAddsToCustomerPurchases() {
+		Checkout.submitOrder(order);
+		assertEquals(1, userAccount.getPurchases().size());
+	}
+	
+	@Test
+	@Ignore
+	public void test_thatSubmitOrderCreatesNewOrdersForSellers() {
+		
 	}
 	
 }

@@ -1,18 +1,28 @@
 package com.fdmgroup.marketplace.models.items;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Product {
 
-	private long productId;
+	@Id
+	private long id;
+	@Column
 	private int quantity;
+	@Column
 	private int quantityReserved;
+	@OneToOne
 	private Item item;
 
-	public long getProductId() {
-		return productId;
+	public long getId() {
+		return id;
 	}
 
-	public void setProductId(long productId) {
-		this.productId = productId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public Item getItem() {
@@ -36,7 +46,7 @@ public class Product {
 	public int getQuantityReserved() {
 		return quantityReserved;
 	}
-	
+
 	public void setQuantityReserved(int quantityToReserve) {
 		if (quantityToReserve <= this.quantity) {
 			this.quantityReserved = quantityToReserve;

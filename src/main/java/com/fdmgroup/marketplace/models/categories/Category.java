@@ -2,14 +2,14 @@ package com.fdmgroup.marketplace.models.categories;
 
 public class Category {
 	
-	private long categoryId;
+	private long id;
 	private String name;
 	
 	public long getId() {
-		return categoryId;
+		return id;
 	}
-	public void setId(long categoryId) {
-		this.categoryId = categoryId;
+	public void setId(long id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;
