@@ -4,8 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 
 import com.fdmgroup.marketplace.models.users.UserAccount;
 
@@ -13,9 +19,15 @@ import com.fdmgroup.marketplace.models.users.UserAccount;
 public class Order {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="order_generator" ) 
+	@SequenceGenerator(name="order_generator", sequenceName="ORDER_ID_SEQ", initialValue=1, allocationSize=1) 
 	private long id;
+	@Column
 	private UserAccount buyer;
+	@Column
 	private Date time;
+	@ManyToMany
+	@JoinColumn(name = "id")
 	private List<OrderItem> orderItems;
 	
 	public Order() {

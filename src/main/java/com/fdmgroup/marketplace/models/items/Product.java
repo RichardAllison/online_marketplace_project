@@ -2,13 +2,18 @@ package com.fdmgroup.marketplace.models.items;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Product {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="product_generator" ) 
+	@SequenceGenerator(name="product_generator", sequenceName="PRODUCT_ID_SEQ", initialValue=1, allocationSize=1) 
 	private long id;
 	@Column
 	private int quantity;
