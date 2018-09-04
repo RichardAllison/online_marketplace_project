@@ -9,5 +9,7 @@
 <body>
 	<h2>Account Home</h2>
 	Hello ${username}
+	<br>
+	<a href="Logout">Logout</a>
 </body>
 </html>

@@ -8,15 +8,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Login")
-public class LoginController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@WebServlet("/AccountHome")
+public class AccountHome extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getSession().getAttribute("user") != null) {
-			response.sendRedirect("AccountHome");
+			request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			response.sendRedirect("Login");
 		}
 	}
+
 }
