@@ -7,19 +7,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet("/Logout")
-public class Logout extends HttpServlet {
+@WebServlet("/NewAccount")
+public class NewAccount extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/home.jsp").include(request, response);  
-
-		HttpSession session = request.getSession();  
-		session.invalidate();
-		response.sendRedirect("/OnlineMarketplaceProject/Home");
+		if (request.getSession().getAttribute("user") != null) {
+			response.sendRedirect("Home");
+		} else {
+			request.getRequestDispatcher("NewAccount.jsp").forward(request, response);
+		}
 	}
-
 }

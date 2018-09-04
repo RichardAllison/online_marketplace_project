@@ -49,20 +49,24 @@ public class UserAccount {
 	@JoinColumn(name = "id")
 	private List<Transaction> purchases;
 	
-	public UserAccount(String username, String password) {
-		this.username = username;
-		this.password = password;
-		this.products = new ArrayList<Product>();
-		this.sales = new ArrayList<Transaction>();
-		this.purchases = new ArrayList<Transaction>();
-	}
-
 	public UserAccount() {
 		this.products = new ArrayList<Product>();
 		this.sales = new ArrayList<Transaction>();
 		this.purchases = new ArrayList<Transaction>();
 	}
 	
+	public UserAccount(String username, String password) {
+		this();
+		this.username = username;
+		this.password = password;
+	}
+	
+	public UserAccount(String username, String password, String email) {
+		this(username, password);
+		this.emailAddress = email;
+		
+	}
+
 	public long getId() {
 		return id;
 	}
