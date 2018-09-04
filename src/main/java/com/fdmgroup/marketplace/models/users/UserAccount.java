@@ -6,12 +6,16 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Fetch;
 
 import com.fdmgroup.marketplace.models.items.Product;
 import com.fdmgroup.marketplace.models.transactions.Transaction;
@@ -23,22 +27,25 @@ public class UserAccount {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_account_generator" ) 
 	@SequenceGenerator(name="user_account_generator", sequenceName="USER_ACCOUNT_SEQ", initialValue=1, allocationSize=1) 
 	private long id;
-	@Column(nullable=false, length=80)
+	@Column(nullable=false, length=80, unique=true)
 	private String username;
 	@Column(length=80)
 	private String emailAddress;
 	@Column(nullable=false, length=80)
 	private String password;
 
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "id")
 	private List<Product> products;
 
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "id")
 	private List<Transaction> sales;
 
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "id")
 	private List<Transaction> purchases;
 	
