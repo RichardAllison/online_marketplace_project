@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.fdmgroup.marketplace.models.items.Product;
-import com.fdmgroup.marketplace.models.transactions.Order;
+import com.fdmgroup.marketplace.models.transactions.Transaction;
 
 public class UserAccountTest {
 	
@@ -66,14 +66,14 @@ public class UserAccountTest {
 	
 	@Test
 	public void test_thatOrdersCanBeAddedToUserAccountPurchases() {
-		Order purchase = new Order();
+		Transaction purchase = new Transaction();
 		user.addToPurchases(purchase);
 		assertEquals(1, user.getPurchases().size());
 	}
 	
 	@Test
 	public void test_thatOrdersCanBeAddedToUserAccountSales() {
-		Order sale = new Order();
+		Transaction sale = new Transaction();
 		user.addToSales(sale);
 		assertEquals(1, user.getSales().size());
 	}

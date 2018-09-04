@@ -2,38 +2,42 @@ package com.fdmgroup.marketplace.repository;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import com.fdmgroup.marketplace.models.items.Item;
 
 public class ItemDAO implements CRUD<Item> {
 
+	private EntityManager entityManager;
+
+	public ItemDAO(EntityManager entityManager){
+		this.entityManager = entityManager;
+	}
+	
 	@Override
-	public void create(Item e) {
-		// TODO Auto-generated method stub
-		
+	public void create(Item item) {
+		entityManager.persist(item);
 	}
 
 	@Override
 	public Item retrieveOne(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.find(Item.class, id);
 	}
 
 	@Override
 	public List<Item> retrieveAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.createQuery(
+				"select a from Item a", Item.class).getResultList();
 	}
 
 	@Override
-	public void update(long id, Item e) {
-		// TODO Auto-generated method stub
-		
+	public void update(long id, Item item) {
+		entityManager.merge(item);
 	}
 
 	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
-		
+		Item item = entityManager.find(Item.class, id);
+		entityManager.remove(item);
 	}
-
 }

@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.fdmgroup.marketplace.models.items.Product;
-import com.fdmgroup.marketplace.models.transactions.Order;
+import com.fdmgroup.marketplace.models.transactions.Transaction;
 
 @Entity
 public class UserAccount {
@@ -24,30 +24,37 @@ public class UserAccount {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_account_generator" ) 
 	@SequenceGenerator(name="user_account_generator", sequenceName="USER_ACCOUNT_SEQ", initialValue=1, allocationSize=1) 
 	private long id;
-	@Column
+	@Column(nullable=false, length=80)
 	private String username;
-	@Column
+	@Column(length=80)
 	private String emailAddress;
-	@Column
+	@Column(nullable=false, length=80)
 	private String password;
-	@Column
-	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+
+	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "id")
 	private List<Product> products;
 
-	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "id")
-	private List<Order> sales;
+	private List<Transaction> sales;
 
-	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "id")
-	private List<Order> purchases;
+	private List<Transaction> purchases;
 	
+	public UserAccount(String username, String password) {
+		this.username = username;
+		this.password = password;
+		this.products = new ArrayList<Product>();
+		this.sales = new ArrayList<Transaction>();
+		this.purchases = new ArrayList<Transaction>();
+	}
 
 	public UserAccount() {
 		this.products = new ArrayList<Product>();
-		this.sales = new ArrayList<Order>();
-		this.purchases = new ArrayList<Order>();
+		this.sales = new ArrayList<Transaction>();
+		this.purchases = new ArrayList<Transaction>();
 	}
 	
 	public long getId() {
@@ -90,19 +97,19 @@ public class UserAccount {
 		this.products = products;
 	}
 	
-	public List<Order> getSales() {
+	public List<Transaction> getSales() {
 		return sales;
 	}
 
-	public void setSales(List<Order> sales) {
+	public void setSales(List<Transaction> sales) {
 		this.sales = sales;
 	}
 
-	public List<Order> getPurchases() {
+	public List<Transaction> getPurchases() {
 		return purchases;
 	}
 
-	public void setPurchases(List<Order> purchases) {
+	public void setPurchases(List<Transaction> purchases) {
 		this.purchases = purchases;
 	}
 	
@@ -114,11 +121,11 @@ public class UserAccount {
 		this.products.remove(product);
 	}
 	
-	public void addToSales(Order sale) {
+	public void addToSales(Transaction sale) {
 		this.sales.add(sale);
 	}
 	
-	public void addToPurchases(Order purchase) {
+	public void addToPurchases(Transaction purchase) {
 		this.purchases.add(purchase);
 	}
 

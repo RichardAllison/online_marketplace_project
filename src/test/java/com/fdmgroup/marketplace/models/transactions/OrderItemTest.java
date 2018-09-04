@@ -9,12 +9,12 @@ import com.fdmgroup.marketplace.models.items.Item;
 
 public class OrderItemTest {
 
-	private OrderItem orderItem;
+	private TransactionItem orderItem;
 	private Item item;
 	
 	@Before
 	public void before() {
-		orderItem = new OrderItem();
+		orderItem = new TransactionItem();
 		item = new Item();
 	}
 	

@@ -7,8 +7,21 @@ import javax.persistence.EntityManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.fdmgroup.marketplace.models.categories.Category;
+import com.fdmgroup.marketplace.models.items.Item;
+import com.fdmgroup.marketplace.models.items.Product;
+import com.fdmgroup.marketplace.models.transactions.Checkout;
+import com.fdmgroup.marketplace.models.transactions.Transaction;
+import com.fdmgroup.marketplace.models.transactions.TransactionItem;
 import com.fdmgroup.marketplace.models.users.UserAccount;
 import com.fdmgroup.marketplace.repository.CRUD;
+import com.fdmgroup.marketplace.repository.CategoryDAO;
+import com.fdmgroup.marketplace.repository.EntityManagerHelper;
+import com.fdmgroup.marketplace.repository.ItemDAO;
+import com.fdmgroup.marketplace.repository.OrderDAO;
+import com.fdmgroup.marketplace.repository.OrderItemDAO;
+import com.fdmgroup.marketplace.repository.ProductDAO;
+import com.fdmgroup.marketplace.repository.UserAccountDAO;
 
 
 /**
@@ -16,104 +29,41 @@ import com.fdmgroup.marketplace.repository.CRUD;
  * and the two books created below to be present.
  */
 public class DatabaseSetup {
-//
-//	private static EntityManager entityManager;
-//	private static CRUD<UserAccount> userAccountCrud;
-//	private static CRUD<Author> authorCrud;
-//	private static CRUD<Publisher> publisherCrud;
-//	private static final Logger LOGGER = LogManager.getLogger(Demo.class);
-//	
-//	public static void main(String[] args) {
-//		entityManager = EntityManagerUtil.getEntityManager();
-//		bookCrud = new BookDAO(entityManager);
-//		authorCrud = new AuthorDAO(entityManager);
-//		publisherCrud = new PublisherDAO(entityManager);
-//
-//		createSpringInActionBook();
-//		createDesignPatternsBook();
-//		createUsers();
-//		
-//		demoBookDAO();
-//
-//		// Clean-up before exit
-//		EntityManagerUtil.closeEntityManager();
-//		EntityManagerUtil.closeEntityManagerFactory();
-//		LOGGER.info("Exiting application");
-//	}
-//
-//	/**
-//	 * One book with one Author & Publisher,
-//	 * created in separate commits.
-//	 */
-//	private static void createSpringInActionBook(){
-//		Author springInActionAuthor = new Author("Craig", "Walls", "Craig's biography");
-//		EntityManagerUtil.beginTransaction();
-//		authorCrud.create(springInActionAuthor);
-//		EntityManagerUtil.commit();
-//	
-//		Publisher manningPublisher = new Publisher("Manning Publications", "Shelter Island, NY 11964");
-//		EntityManagerUtil.beginTransaction();
-//		publisherCrud.create(manningPublisher);
-//		EntityManagerUtil.commit();
-//	
-//		List<Author> siaAuthors = new ArrayList<>();
-//		siaAuthors.add(springInActionAuthor);
-//		Book springInActionBook = new Book("Spring in Action", "161729120X", 624, siaAuthors, manningPublisher, PublicationType.PAPERBACK); 
-//		EntityManagerUtil.beginTransaction();
-//		bookCrud.create(springInActionBook);
-//		EntityManagerUtil.commit();
-//	}
-//
-//	/**
-//	 * One book with three Authors & a Publisher,
-//	 * persisted in one commit.
-//	 */
-//	private static void createDesignPatternsBook(){
-//		Author rHelm = new Author("Richard", "Helm", "Richard's biography");
-//		Author rJohnson = new Author("Ralph", "Johnson", "Ralph's biography");
-//		Author jVlissides = new Author("John", "Vlissides", "John's biography");
-//	
-//		Publisher addisonPublisher = new Publisher("Addison Wesley", "330 Hudson, New York City, New York");
-//		
-//		List<Author> gofAuthors = new ArrayList<>();
-//		gofAuthors.add(rHelm);
-//		gofAuthors.add(rJohnson);
-//		gofAuthors.add(jVlissides);
-//		Book gofBook = new Book("Design patterns : elements of reusable object-oriented software", "0201633612", 416, gofAuthors, addisonPublisher, PublicationType.HARDBACK); 
-//	
-//		EntityManagerUtil.beginTransaction();
-//		bookCrud.create(gofBook);
-//		EntityManagerUtil.commit();
-//	}
-//
-//	/**
-//	 * Test Book DAO methods.
-//	 */
-//	private static void demoBookDAO() {
-//		Book springBook = bookCrud.retrieveOne(1);
-//		LOGGER.debug("BookDAO.retrieveOne() = " + springBook.getTitle());
-//		
-//		LOGGER.debug("BookDAO.retrieveAll() number of books = " + bookCrud.retrieveAll().size());
-//
-//		springBook.setIsbn("987654321");
-//		bookCrud.update(springBook.getId(), springBook);
-//		springBook = bookCrud.retrieveOne(1);
-//		LOGGER.debug("BookDAO.update() isbn now = " + springBook.getIsbn());
-//
-//		List<Book> allBooks = new BookDAO(entityManager).byAuthorId(1L);
-//		LOGGER.debug("BookDAO.allBooksByAuthorId() number of books = " + allBooks.size());
-//
-//		bookCrud.delete(1L);
-//		LOGGER.debug("After BookDAO.delete(), total number of books = " + bookCrud.retrieveAll().size());
-//	}
-//	
-//	private static void createUsers(){
-//		WebUser user1 = new WebUser("user", "password");
-//		WebUser user2 = new WebUser("david", "password");
-//		WebUserDAO webUserDao = new WebUserDAO(entityManager);
-//		EntityManagerUtil.beginTransaction();
-//		webUserDao.create(user1);
-//		webUserDao.create(user2);
-//		EntityManagerUtil.commit();
-//	}
+
+	private static EntityManager entityManager;
+	private static CRUD<UserAccount> userAccountCrud;
+	private static CRUD<Category> categoryCrud;
+	private static CRUD<Item> itemCrud;
+	private static CRUD<Product> productCrud;
+	private static CRUD<Transaction> orderCrud;
+	private static CRUD<TransactionItem> orderItemCrud;
+	private static final Logger LOGGER = LogManager.getLogger(DatabaseSetup.class);
+	
+	public static void main(String[] args) {
+		entityManager = EntityManagerHelper.getEntityManager();
+		userAccountCrud = new UserAccountDAO(entityManager);
+		categoryCrud = new CategoryDAO(entityManager);
+		itemCrud = new ItemDAO(entityManager);
+		productCrud = new ProductDAO(entityManager);
+		orderCrud = new OrderDAO(entityManager);
+		orderItemCrud = new OrderItemDAO(entityManager);
+		
+		createUsers();
+		
+		// Clean-up before exit
+		EntityManagerHelper.closeEntityManager();
+		EntityManagerHelper.closeEntityManagerFactory();
+		LOGGER.info("Exiting application");
+	}
+	
+	private static void createUsers(){
+		UserAccount user1 = new UserAccount("user", "password");
+		System.out.println(user1.getUsername());
+		UserAccount user2 = new UserAccount("david", "password");
+		UserAccountDAO UserAccountDao = new UserAccountDAO(entityManager);
+		EntityManagerHelper.beginTransaction();
+		UserAccountDao.create(user1);
+		UserAccountDao.create(user2);
+		EntityManagerHelper.commit();
+	}
 }

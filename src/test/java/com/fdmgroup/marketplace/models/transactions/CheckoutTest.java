@@ -15,22 +15,22 @@ import com.fdmgroup.marketplace.models.users.UserAccount;
 
 public class CheckoutTest {
 	
-	Order order;
+	Transaction order;
 	UserAccount userAccount;
 	
 	@Before
 	public void before() {
-		order = new Order();
+		order = new Transaction();
 		userAccount = new UserAccount();
-		List<OrderItem> orderItems = new ArrayList<>();
+		List<TransactionItem> orderItems = new ArrayList<>();
 		
 		Item item1 = new Item();
 		Item item2 = new Item();		
 		item1.setPrice(BigDecimal.valueOf(5));
 		item2.setPrice(BigDecimal.valueOf(2.75));
 		
-		OrderItem orderItem1 = new OrderItem();
-		OrderItem orderItem2 = new OrderItem();
+		TransactionItem orderItem1 = new TransactionItem();
+		TransactionItem orderItem2 = new TransactionItem();
 		orderItem1.setItem(item1);
 		orderItem2.setItem(item2);
 		orderItems.add(orderItem1);

@@ -6,8 +6,8 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>com.fdmgroup.marketplace.models.users.UserAccount</class>
 		<class>com.fdmgroup.marketplace.models.items.Product</class>
-		<class>com.fdmgroup.marketplace.models.transactions.Order</class>
-		<class>com.fdmgroup.marketplace.models.transactions.OrderItem</class>
+		<class>com.fdmgroup.marketplace.models.transactions.Transaction</class>
+		<class>com.fdmgroup.marketplace.models.transactions.TransactionItem</class>
 		<class>com.fdmgroup.marketplace.models.items.Item</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>

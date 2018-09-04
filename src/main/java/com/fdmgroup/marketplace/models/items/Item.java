@@ -28,7 +28,6 @@ public class Item {
 	@Column
 	private BigDecimal price;
 	@ManyToOne
-	@JoinColumn(name = "id")
 	private UserAccount seller;
 	
 	public long getId() {

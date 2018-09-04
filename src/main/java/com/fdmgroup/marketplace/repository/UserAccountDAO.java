@@ -15,10 +15,6 @@ public class UserAccountDAO implements CRUD<UserAccount> {
 		this.entityManager = entityManager;
 	}
 	
-	public void create(UserAccount userAccount) {
-		entityManager.persist(userAccount);
-	}
-	
 	public UserAccount getByUsernameAndPassword(String username, String password) throws NoResultException {
 		return entityManager.createQuery(
 			"select u from WebUser u where u.username = :username and u.password = :password", UserAccount.class)
@@ -28,27 +24,31 @@ public class UserAccountDAO implements CRUD<UserAccount> {
 	}
 
 	@Override
+	public void create(UserAccount userAccount) {
+		entityManager.persist(userAccount);
+	}
+
+	@Override
 	public UserAccount retrieveOne(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.find(UserAccount.class, id);
 	}
 
 	@Override
 	public List<UserAccount> retrieveAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.createQuery(
+				"select a from UserAccount a", UserAccount.class).getResultList();
 	}
 
 	@Override
-	public void update(long id, UserAccount e) {
-		// TODO Auto-generated method stub
-		
+	public void update(long id, UserAccount userAccount) {
+		entityManager.merge(userAccount);
 	}
 
 	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
-		
+		UserAccount userAccount = entityManager.find(UserAccount.class, id);
+		entityManager.remove(userAccount);
 	}
+
 
 }

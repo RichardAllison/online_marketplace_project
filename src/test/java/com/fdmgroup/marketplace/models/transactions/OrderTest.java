@@ -12,12 +12,12 @@ import com.fdmgroup.marketplace.models.users.UserAccount;
 
 public class OrderTest {
 	
-	private Order order;
+	private Transaction order;
 	private UserAccount buyer;
 	
 	@Before
 	public void before() {
-		order = new Order();
+		order = new Transaction();
 		buyer = new UserAccount();
 	}
 	
@@ -44,7 +44,7 @@ public class OrderTest {
 	@Test
 	public void test_thatAddToOrderAddsItemToOrderBasket() {
 		Item item = new Item();
-		OrderItem orderItem = new OrderItem();
+		TransactionItem orderItem = new TransactionItem();
 		orderItem.setItem(item);
 		orderItem.setQuantity(1);
 		order.addToOrder(orderItem);
@@ -53,7 +53,7 @@ public class OrderTest {
 	
 	@Test
 	public void test_thatAddToOrderDoesNotAddOrderItemToOrderIfOrderItemDoesNotContainAnItem() {
-		OrderItem orderItem = new OrderItem();
+		TransactionItem orderItem = new TransactionItem();
 		order.addToOrder(orderItem);
 		assertEquals(0, order.getOrderItems().size());
 	}
@@ -61,7 +61,7 @@ public class OrderTest {
 	@Test
 	public void test_thatAddToOrderDoesNotAddOrderItemToOrderIfOrderItemQuantityIsZero() {
 		Item item = new Item();
-		OrderItem orderItem = new OrderItem();
+		TransactionItem orderItem = new TransactionItem();
 		orderItem.setItem(item);
 		order.addToOrder(orderItem);
 		assertEquals(0, order.getOrderItems().size());

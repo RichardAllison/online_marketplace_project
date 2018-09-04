@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.marketplace.models.transactions.Order;
-import com.fdmgroup.marketplace.models.transactions.OrderItem;
+import com.fdmgroup.marketplace.models.transactions.Transaction;
+import com.fdmgroup.marketplace.models.transactions.TransactionItem;
 
 public class ProductTest {
 	

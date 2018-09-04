@@ -2,38 +2,43 @@ package com.fdmgroup.marketplace.repository;
 
 import java.util.List;
 
-import com.fdmgroup.marketplace.models.transactions.Order;
+import javax.persistence.EntityManager;
 
-public class OrderDAO implements CRUD<Order> {
+import com.fdmgroup.marketplace.models.transactions.Transaction;
 
-	@Override
-	public void create(Order e) {
-		// TODO Auto-generated method stub
-		
+public class OrderDAO implements CRUD<Transaction> {
+	
+	private EntityManager entityManager;
+
+	public OrderDAO(EntityManager entityManager){
+		this.entityManager = entityManager;
 	}
 
 	@Override
-	public Order retrieveOne(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void create(Transaction order) {
+		entityManager.persist(order);
 	}
 
 	@Override
-	public List<Order> retrieveAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public Transaction retrieveOne(long id) {
+		return entityManager.find(Transaction.class, id);
 	}
 
 	@Override
-	public void update(long id, Order e) {
-		// TODO Auto-generated method stub
-		
+	public List<Transaction> retrieveAll() {
+		return entityManager.createQuery(
+				"select a from Order a", Transaction.class).getResultList();
+	}
+
+	@Override
+	public void update(long id, Transaction order) {
+		entityManager.merge(order);
 	}
 
 	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
-		
+		Transaction order = entityManager.find(Transaction.class, id);
+		entityManager.remove(order);
 	}
 
 }

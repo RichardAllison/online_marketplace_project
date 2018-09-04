@@ -11,26 +11,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import com.fdmgroup.marketplace.models.users.UserAccount;
 
 @Entity
-public class Order {
+public class Transaction {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="order_generator" ) 
 	@SequenceGenerator(name="order_generator", sequenceName="ORDER_ID_SEQ", initialValue=1, allocationSize=1) 
 	private long id;
-	@Column
+	@ManyToOne
 	private UserAccount buyer;
 	@Column
 	private Date time;
 	@ManyToMany
 	@JoinColumn(name = "id")
-	private List<OrderItem> orderItems;
+	private List<TransactionItem> orderItems;
 	
-	public Order() {
+	public Transaction() {
 		this.orderItems = new ArrayList<>();
 	}
 
@@ -58,15 +59,15 @@ public class Order {
 		this.buyer = buyer;
 	}
 
-	public List<OrderItem> getOrderItems() {
+	public List<TransactionItem> getOrderItems() {
 		return orderItems;
 	}
 
-	public void setOrderItems(List<OrderItem> orderItems) {
+	public void setOrderItems(List<TransactionItem> orderItems) {
 		this.orderItems = orderItems;
 	}
 	
-	public void addToOrder(OrderItem orderItem) {
+	public void addToOrder(TransactionItem orderItem) {
 		if (orderItem.getItem() != null && orderItem.getQuantity() > 0) {
 			this.orderItems.add(orderItem);
 			// increment quantity reserved in product

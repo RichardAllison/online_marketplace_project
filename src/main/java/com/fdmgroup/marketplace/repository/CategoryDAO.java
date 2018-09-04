@@ -2,38 +2,43 @@ package com.fdmgroup.marketplace.repository;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import com.fdmgroup.marketplace.models.categories.Category;
 
 public class CategoryDAO implements CRUD<Category> {
+	
+	private EntityManager entityManager;
 
+	public CategoryDAO(EntityManager entityManager){
+		this.entityManager = entityManager;
+	}
+	
 	@Override
-	public void create(Category e) {
-		// TODO Auto-generated method stub
-		
+	public void create(Category category) {
+		entityManager.persist(category);
 	}
 
 	@Override
 	public Category retrieveOne(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.find(Category.class, id);
 	}
 
 	@Override
 	public List<Category> retrieveAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.createQuery(
+				"select a from Category a", Category.class).getResultList();
 	}
 
 	@Override
-	public void update(long id, Category e) {
-		// TODO Auto-generated method stub
-		
+	public void update(long id, Category category) {
+		entityManager.merge(category);
 	}
 
 	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
-		
+		Category category = entityManager.find(Category.class, id);
+		entityManager.remove(category);
 	}
 
 }
