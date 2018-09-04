@@ -14,14 +14,6 @@ public class UserAccountDAO implements CRUD<UserAccount> {
 	public UserAccountDAO(EntityManager entityManager){
 		this.entityManager = entityManager;
 	}
-	
-	public UserAccount getByUsernameAndPassword(String username, String password) throws NoResultException {
-		return entityManager.createQuery(
-			"select u from WebUser u where u.username = :username and u.password = :password", UserAccount.class)
-				.setParameter("username", username)
-				.setParameter("password", password)
-				.getSingleResult();
-	}
 
 	@Override
 	public void create(UserAccount userAccount) {
@@ -39,6 +31,14 @@ public class UserAccountDAO implements CRUD<UserAccount> {
 				"select a from UserAccount a", UserAccount.class).getResultList();
 	}
 
+	public UserAccount getByUsernameAndPassword(String username, String password) throws NoResultException {
+		return entityManager.createQuery(
+				"select u from UserAccount u where u.username = :username and u.password = :password", UserAccount.class)
+				.setParameter("username", username)
+				.setParameter("password", password)
+				.getSingleResult();
+	}
+
 	@Override
 	public void update(long id, UserAccount userAccount) {
 		entityManager.merge(userAccount);
@@ -49,6 +49,5 @@ public class UserAccountDAO implements CRUD<UserAccount> {
 		UserAccount userAccount = entityManager.find(UserAccount.class, id);
 		entityManager.remove(userAccount);
 	}
-
-
+	
 }

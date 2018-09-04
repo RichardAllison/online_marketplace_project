@@ -16,7 +16,7 @@
 			<input type="text" name="username" required="required">
 		</div>
 		<div>
-			<label path="password">User name</label>
+			<label path="password">Password</label>
 			<input type="password" name="password" required="required">
 		</div>
 		<input type="submit" value="login" formmethod="post">	

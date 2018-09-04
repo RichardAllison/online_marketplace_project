@@ -9,7 +9,8 @@
 <body>
 	<h2>Marketplace</h2>
 	<h3>Login</h3>
-	<a href="Login">Log in to the shop</a>
+	<a href="Login">Log in</a>
+	<a href="NewAccount">Create Account</a>
 	<h3>Browse</h3>
 </body>
 </html>
