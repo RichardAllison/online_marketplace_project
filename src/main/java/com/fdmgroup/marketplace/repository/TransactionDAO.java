@@ -27,7 +27,7 @@ public class TransactionDAO implements CRUD<Transaction> {
 	@Override
 	public List<Transaction> retrieveAll() {
 		return entityManager.createQuery(
-				"select a from Order a", Transaction.class).getResultList();
+				"select a from Transaction a", Transaction.class).getResultList();
 	}
 
 	@Override
