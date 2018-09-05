@@ -104,12 +104,12 @@ public class CreateTestData {
 	}
 	
 	public static void insertTransactionItems(EntityManager entityManager) {
-		orderItem1 = new TransactionItem();
+		orderItem1 = new TransactionItem(item1, 2);
 		entityManager.getTransaction().begin();
 		transactionItemDao.create(orderItem1);
 		entityManager.getTransaction().commit();
 		
-		orderItem2 = new TransactionItem();
+		orderItem2 = new TransactionItem(item2, 1);
 		entityManager.getTransaction().begin();
 		transactionItemDao.create(orderItem2);
 		entityManager.getTransaction().commit();
