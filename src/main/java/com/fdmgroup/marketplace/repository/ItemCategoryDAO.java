@@ -27,7 +27,7 @@ public class ItemCategoryDAO implements CRUD<ItemCategory> {
 	@Override
 	public List<ItemCategory> retrieveAll() {
 		return entityManager.createQuery(
-				"select a from Category a", ItemCategory.class).getResultList();
+				"select a from ItemCategory a", ItemCategory.class).getResultList();
 	}
 
 	@Override

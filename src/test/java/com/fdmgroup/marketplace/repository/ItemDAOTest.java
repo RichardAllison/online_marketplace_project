@@ -22,7 +22,7 @@ public class ItemDAOTest {
 	private static EntityManager entityManager; 
 	private static ItemDAO itemDao;
 
-	Item item;
+	private static Item item;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -38,19 +38,19 @@ public class ItemDAOTest {
 	}
 	
 	@Test
-	public void test_getUserAccount() {
+	public void test_getItem() {
 		item = itemDao.retrieveOne(1L);
 		assertEquals("book", item.getName());
 	}
 	
 	@Test
-	public void test_getAllUserAccounts() {
+	public void test_getAllItems() {
 		List<Item> items = itemDao.retrieveAll();
 		assertEquals(2, items.size());
 	}
 	
 	@Test
-	public void test_update() {
+	public void test_updateItem() {
 		Item item = itemDao.retrieveOne(1L);
 		item.setName("REPLACED");
 		itemDao.update(item.getId(), item);
@@ -59,7 +59,7 @@ public class ItemDAOTest {
 	}
 	
 	@Test
-	public void test_delete() {
+	public void test_deleteItem() {
 		itemDao.delete(1L);
 		item = itemDao.retrieveOne(1L); 
 		assertNull(item);

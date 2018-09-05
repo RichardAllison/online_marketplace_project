@@ -20,9 +20,8 @@ public class UserAccountDAOTest {
 	
 	private static EntityManagerFactory entityManagerFactory;
 	private static EntityManager entityManager; 
-	private static CRUD<UserAccount> userAccountDao;
-
-	UserAccount user;
+	private static UserAccountDAO userAccountDao;
+	private static UserAccount user;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -50,7 +49,7 @@ public class UserAccountDAOTest {
 	}
 	
 	@Test
-	public void test_update() {
+	public void test_updateUserAccount() {
 		UserAccount user = userAccountDao.retrieveOne(1L);
 		user.setUsername("REPLACED");
 		userAccountDao.update(user.getId(), user);
@@ -59,7 +58,7 @@ public class UserAccountDAOTest {
 	}
 	
 	@Test
-	public void test_delete() {
+	public void test_deleteUserAccount() {
 		userAccountDao.delete(1L);
 		user = userAccountDao.retrieveOne(1L); 
 		assertNull(user);
