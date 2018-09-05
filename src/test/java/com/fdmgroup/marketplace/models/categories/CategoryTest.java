@@ -7,11 +7,11 @@ import org.junit.Test;
 
 public class CategoryTest {
 	
-	Category category;
+	ItemCategory category;
 	
 	@Before
 	public void before() {
-		category = new Category();
+		category = new ItemCategory();
 	}
 	
 	@Test

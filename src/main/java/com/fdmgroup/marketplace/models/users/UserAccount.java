@@ -20,7 +20,7 @@ import org.hibernate.annotations.Fetch;
 import com.fdmgroup.marketplace.models.items.Product;
 import com.fdmgroup.marketplace.models.transactions.Transaction;
 
-@Entity
+@Entity(name = "UserAccount")
 public class UserAccount {
 	
 	@Id

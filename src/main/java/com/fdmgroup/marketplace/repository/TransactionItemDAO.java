@@ -6,11 +6,11 @@ import javax.persistence.EntityManager;
 
 import com.fdmgroup.marketplace.models.transactions.TransactionItem;
 
-public class OrderItemDAO implements CRUD<TransactionItem> {
+public class TransactionItemDAO implements CRUD<TransactionItem> {
 
 	private EntityManager entityManager;
 
-	public OrderItemDAO(EntityManager entityManager){
+	public TransactionItemDAO(EntityManager entityManager){
 		this.entityManager = entityManager;
 	}
 	

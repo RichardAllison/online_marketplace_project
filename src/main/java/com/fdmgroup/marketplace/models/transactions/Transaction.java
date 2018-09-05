@@ -35,6 +35,12 @@ public class Transaction {
 		this.orderItems = new ArrayList<>();
 	}
 
+	public Transaction(UserAccount buyer, Date time) {
+		this();
+		this.buyer = buyer;
+		this.time = time;
+	}
+
 	public long getId() {
 		return id;
 	}

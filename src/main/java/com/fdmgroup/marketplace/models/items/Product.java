@@ -22,6 +22,13 @@ public class Product {
 	@OneToOne
 	private Item item;
 
+	public Product() {}
+
+	public Product(Item item, int quantity) {
+		this.item = item;
+		this.quantity = quantity;
+	}
+	
 	public long getId() {
 		return id;
 	}

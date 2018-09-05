@@ -26,6 +26,13 @@ public class TransactionItem {
 //	private AccountUser seller;
 //	private BigDecimal price;
 
+	public TransactionItem() {}
+	
+	public TransactionItem(Item item, int quantity) {
+		this.item = item;
+		this.quantity = quantity;
+	}
+
 	public long getId() {
 		return id;
 	}

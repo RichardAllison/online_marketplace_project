@@ -28,6 +28,15 @@ public class Item {
 	@ManyToOne
 	private UserAccount seller;
 	
+	public Item() {}
+
+	public Item(String name, String description, BigDecimal price, UserAccount seller) {
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.seller = seller;
+	}
+	
 	public long getId() {
 		return id;
 	}
