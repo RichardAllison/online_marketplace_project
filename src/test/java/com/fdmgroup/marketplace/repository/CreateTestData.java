@@ -1,6 +1,9 @@
 package com.fdmgroup.marketplace.repository;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 import javax.persistence.EntityManager;
 
@@ -113,12 +116,15 @@ public class CreateTestData {
 	}
 	
 	public static void insertTransactions(EntityManager entityManager) {
-		order1 = new Transaction();
+		Date time = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault())
+			      .toInstant());
+		
+		order1 = new Transaction(user1, time);
 		entityManager.getTransaction().begin();
 		transactionDao.create(order1);
 		entityManager.getTransaction().commit();
 		
-		order2 = new Transaction();
+		order2 = new Transaction(user2, time);
 		entityManager.getTransaction().begin();
 		transactionDao.create(order2);
 		entityManager.getTransaction().commit();
