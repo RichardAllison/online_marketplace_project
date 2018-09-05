@@ -63,4 +63,10 @@ public class ProductDAOTest {
 		product = productDao.retrieveOne(1L); 
 		assertNull(product);
 	}
+	
+	@Test
+	public void test_productHasOwner() {
+		product = productDao.retrieveOne(1L);
+		assertEquals("book", product.getItem().getName());
+	}
 }

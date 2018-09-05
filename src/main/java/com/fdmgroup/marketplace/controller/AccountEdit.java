@@ -8,15 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Login")
-public class LoginController extends HttpServlet {
+@WebServlet("/User/Edit")
+public class AccountEdit extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		String username = request.getPathInfo().substring(1);
+		
 		if (request.getSession().getAttribute("user") != null) {
-			response.sendRedirect("/OnlineMarketplaceProject/User/AccountHome");
+			request.getRequestDispatcher("/WEB-INF/AccountEdit.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			response.sendRedirect("/OnlineMarketplaceProject/Login");
 		}
 	}
 }

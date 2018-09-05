@@ -27,11 +27,11 @@ public class SessionCheckInterceptor implements Filter {
 			throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		UserAccount user = (UserAccount) session.getAttribute("user");
-		
+			
 		if(user == null) {
-			((HttpServletResponse) response).sendRedirect("login.jsp");
+			((HttpServletResponse) response).sendRedirect("/OnlineMarketplaceProject/Login");
 		}
-		chain.doFilter(request, response); 
+		chain.doFilter(request, response);
 	}
 
 	@Override

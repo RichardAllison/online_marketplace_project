@@ -7,14 +7,15 @@
 <title>Dashboard</title>
 </head>
 <body>
+	<nav></nav>
 	<h2>Dashboard</h2>
-	Hello ${username}
-	<div>Your Products</div>
+	<div><a href="/OnlineMarketplaceProject/User/Products">Your Products</a></div>
 	<div>Your Sales</div>
 	<div>Your Purchases</div>
 
 
-	<a href="Logout">Logout</a>
-	<a href="DeleteAccount">Close account</a>
+	<a href="/OnlineMarketplaceProject/Logout">Logout</a>
+	<a href="/OnlineMarketplaceProject/User/DeleteAccount">Close account</a>
+	<a href="/OnlineMarketplaceProject/User/Edit">Edit account</a>
 </body>
 </html>

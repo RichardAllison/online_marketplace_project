@@ -29,6 +29,13 @@ public class ItemDAO implements CRUD<Item> {
 		return entityManager.createQuery(
 				"select a from Item a", Item.class).getResultList();
 	}
+	
+	public List<Item> searchForItemsByName(String name) {
+	    return entityManager.createQuery(
+	        "SELECT a FROM Item a WHERE a.name LIKE :name")
+	        .setParameter("name", name)
+	        .getResultList();
+	}
 
 	@Override
 	public void update(long id, Item item) {

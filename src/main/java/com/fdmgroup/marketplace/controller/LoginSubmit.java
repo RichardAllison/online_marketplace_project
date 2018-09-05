@@ -36,7 +36,7 @@ public class LoginSubmit extends HttpServlet {
 			request.getSession().setMaxInactiveInterval(60 * 15);
 			request.setAttribute("username", user.getUsername());
 //			response.sendRedirect("User/"+user.getUsername());
-			response.sendRedirect("AccountHome");
+			response.sendRedirect("User/AccountHome");
 		}
 	}
 

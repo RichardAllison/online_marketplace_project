@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -39,12 +40,12 @@ public class UserAccount {
 	@JoinColumn(name = "id")
 	private List<Product> products;
 
-	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "id")
 	private List<Transaction> sales;
 
-	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "id")
 	private List<Transaction> purchases;

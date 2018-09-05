@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+
+import com.fdmgroup.marketplace.models.users.UserAccount;
 
 @Entity
 public class Product {
@@ -19,6 +22,8 @@ public class Product {
 	private int quantity;
 	@Column
 	private int quantityReserved;
+	@ManyToOne
+	private UserAccount owner;
 	@OneToOne
 	private Item item;
 

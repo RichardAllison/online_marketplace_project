@@ -15,7 +15,7 @@
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/XE"/>
 			<property name="javax.persistence.jdbc.user" value="trainee1"/>
 			<property name="javax.persistence.jdbc.password" value="!QAZSE4"/>
-			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+			<property name="javax.persistence.schema-generation.database.action" value="none"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="true"/>
 		</properties>

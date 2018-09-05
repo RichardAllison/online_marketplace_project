@@ -29,6 +29,17 @@ public class ProductDAO implements CRUD<Product> {
 		return entityManager.createQuery(
 				"select a from Product a", Product.class).getResultList();
 	}
+	
+	public List<Product> retrieveAllByUserId(long id) {
+		return entityManager.createQuery(
+//				"SELECT p FROM Product p JOIN UserAccount u WHERE u.id = :id", Product.class)
+				"SELECT p FROM UserAccount u JOIN u.products p WHERE u.id = :id", Product.class)	
+//				"SELECT p from Product p join p.owner o where o.id = :id", Product.class)	
+				.setParameter("id", id)
+				.getResultList();
+	}
+	
+
 
 	@Override
 	public void update(long id, Product product) {
