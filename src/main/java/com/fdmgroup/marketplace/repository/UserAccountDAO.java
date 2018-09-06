@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
+import com.fdmgroup.marketplace.models.items.Product;
 import com.fdmgroup.marketplace.models.users.UserAccount;
 
 public class UserAccountDAO implements CRUD<UserAccount> {
@@ -38,7 +39,7 @@ public class UserAccountDAO implements CRUD<UserAccount> {
 				.setParameter("password", password)
 				.getSingleResult();
 	}
-
+	
 	@Override
 	public void update(long id, UserAccount userAccount) {
 		entityManager.merge(userAccount);

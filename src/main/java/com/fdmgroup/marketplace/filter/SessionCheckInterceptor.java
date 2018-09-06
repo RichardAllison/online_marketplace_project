@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fdmgroup.marketplace.models.users.UserAccount;
 
-@WebFilter("/User/*")
+//@WebFilter("/User/*")
 public class SessionCheckInterceptor implements Filter {
 
 	@Override

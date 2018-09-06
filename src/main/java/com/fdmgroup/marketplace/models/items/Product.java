@@ -22,8 +22,8 @@ public class Product {
 	private int quantity;
 	@Column
 	private int quantityReserved;
-	@ManyToOne
-	private UserAccount owner;
+//	@ManyToOne
+//	private UserAccount owner;
 	@OneToOne
 	private Item item;
 

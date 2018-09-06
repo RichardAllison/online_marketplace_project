@@ -18,15 +18,14 @@ public class AccountUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserAccount user = (UserAccount) request.getSession().getAttribute("user");
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String email = request.getParameter("email");
+		long id = user.getId();
+		user.setUsername(request.getParameter("username"));
+		user.setPassword(request.getParameter("password"));
+		user.setEmailAddress(request.getParameter("email"));
 		UserAccountDAO userAccountDAO = new UserAccountDAO(EntityManagerHelper.getEntityManager());
-		UserAccount updatedUser = new UserAccount(username, password, email);
 
-		updatedUser.setId(user.getId());
 		EntityManagerHelper.beginTransaction();
-		userAccountDAO.update(user.getId(), updatedUser);
+		userAccountDAO.update(user.getId(), user);
 		EntityManagerHelper.commit();
 
 		response.sendRedirect("AccountHome");
