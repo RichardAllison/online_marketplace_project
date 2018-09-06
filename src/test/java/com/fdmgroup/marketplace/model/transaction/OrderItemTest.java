@@ -1,20 +1,21 @@
-package com.fdmgroup.marketplace.models.transactions;
+package com.fdmgroup.marketplace.model.transaction;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.marketplace.models.items.Item;
+import com.fdmgroup.marketplace.model.item.Item;
+import com.fdmgroup.marketplace.model.transaction.SaleItem;
 
 public class OrderItemTest {
 
-	private TransactionItem orderItem;
+	private SaleItem orderItem;
 	private Item item;
 	
 	@Before
 	public void before() {
-		orderItem = new TransactionItem();
+		orderItem = new SaleItem();
 		item = new Item();
 	}
 	

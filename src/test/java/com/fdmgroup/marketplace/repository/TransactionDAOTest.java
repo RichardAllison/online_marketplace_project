@@ -17,14 +17,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.marketplace.models.transactions.Transaction;
+import com.fdmgroup.marketplace.model.transaction.Sale;
 
 public class TransactionDAOTest {
 	
 	private static EntityManagerFactory entityManagerFactory;
 	private static EntityManager entityManager; 
 	private static TransactionDAO transactionDao;
-	private Transaction transaction;
+	private Sale transaction;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -47,13 +47,13 @@ public class TransactionDAOTest {
 	
 	@Test
 	public void test_getAllTransactions() {
-		List<Transaction> transactions = transactionDao.retrieveAll();
+		List<Sale> transactions = transactionDao.retrieveAll();
 		assertEquals(2, transactions.size());
 	}
 	
 	@Test
 	public void test_updateTransaction() {
-		Transaction transaction = transactionDao.retrieveOne(1L);
+		Sale transaction = transactionDao.retrieveOne(1L);
 		Date time = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault())
 			      .toInstant());
 		transaction.setTime(time);

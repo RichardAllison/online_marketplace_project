@@ -14,13 +14,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.marketplace.models.transactions.TransactionItem;
+import com.fdmgroup.marketplace.model.transaction.SaleItem;
 
 public class TransactionItemDAOTest {
 	private static EntityManagerFactory entityManagerFactory;
 	private static EntityManager entityManager; 
 	private static TransactionItemDAO transactionItemDao;
-	private TransactionItem transactionItem;
+	private SaleItem transactionItem;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -43,13 +43,13 @@ public class TransactionItemDAOTest {
 	
 	@Test
 	public void test_getAllTransactionItems() {
-		List<TransactionItem> transactionItems = transactionItemDao.retrieveAll();
+		List<SaleItem> transactionItems = transactionItemDao.retrieveAll();
 		assertEquals(2, transactionItems.size());
 	}
 	
 	@Test
 	public void test_updateTransactionItem() {
-		TransactionItem transactionItem = transactionItemDao.retrieveOne(1L);
+		SaleItem transactionItem = transactionItemDao.retrieveOne(1L);
 		transactionItem.setQuantity(2);
 		transactionItemDao.update(transactionItem.getId(), transactionItem);
 		transactionItem = transactionItemDao.retrieveOne(1l);

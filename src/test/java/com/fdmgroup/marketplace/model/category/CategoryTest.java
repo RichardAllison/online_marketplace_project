@@ -1,9 +1,11 @@
-package com.fdmgroup.marketplace.models.categories;
+package com.fdmgroup.marketplace.model.category;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.fdmgroup.marketplace.model.category.ItemCategory;
 
 public class CategoryTest {
 	

@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.models.transactions;
+package com.fdmgroup.marketplace.model.transaction;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,33 +10,36 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.fdmgroup.marketplace.models.items.Item;
-import com.fdmgroup.marketplace.models.users.UserAccount;
+import com.fdmgroup.marketplace.model.item.Item;
+import com.fdmgroup.marketplace.model.transaction.Checkout;
+import com.fdmgroup.marketplace.model.transaction.Sale;
+import com.fdmgroup.marketplace.model.transaction.SaleItem;
+import com.fdmgroup.marketplace.model.user.UserAccount;
 
 public class CheckoutTest {
 	
-	Transaction order;
+	Sale order;
 	UserAccount userAccount;
 	
 	@Before
 	public void before() {
-		order = new Transaction();
+		order = new Sale();
 		userAccount = new UserAccount();
-		List<TransactionItem> orderItems = new ArrayList<>();
+		List<SaleItem> orderItems = new ArrayList<>();
 		
 		Item item1 = new Item();
 		Item item2 = new Item();		
 		item1.setPrice(BigDecimal.valueOf(5));
 		item2.setPrice(BigDecimal.valueOf(2.75));
 		
-		TransactionItem orderItem1 = new TransactionItem();
-		TransactionItem orderItem2 = new TransactionItem();
+		SaleItem orderItem1 = new SaleItem();
+		SaleItem orderItem2 = new SaleItem();
 		orderItem1.setItem(item1);
 		orderItem2.setItem(item2);
 		orderItems.add(orderItem1);
 		orderItems.add(orderItem2);
 		
-		order.setOrderItems(orderItems);
+		order.setSaleItems(orderItems);
 		order.setBuyer(userAccount);
 	}
 

@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fdmgroup.marketplace.listener.LocalEntityManagerFactory;
-import com.fdmgroup.marketplace.models.items.Product;
-import com.fdmgroup.marketplace.models.users.UserAccount;
-import com.fdmgroup.marketplace.repository.ProductDAO;
-
+import com.fdmgroup.marketplace.model.item.Item;
+import com.fdmgroup.marketplace.model.user.UserAccount;
+import com.fdmgroup.marketplace.repository.ItemDAO;
 
 
 @WebServlet("/User/Products")
@@ -25,9 +24,9 @@ public class AccountProducts extends HttpServlet {
 		UserAccount user = (UserAccount) request.getSession().getAttribute("user");
 		
 		request.getRequestDispatcher("/WEB-INF/AccountProducts.jsp").forward(request, response);
-		ProductDAO productDao  = new ProductDAO(LocalEntityManagerFactory.getEntityManager());
-		List<Product> allProducts = productDao.retrieveAllByUserId(user.getId());
-		request.setAttribute("productList", allProducts);
+		ItemDAO itemDao  = new ItemDAO(LocalEntityManagerFactory.getEntityManager());
+		List<Item> allItems = itemDao.retrieveAllByUserId(user.getId());
+		request.setAttribute("itemList", allItems);
 		
 	}
 

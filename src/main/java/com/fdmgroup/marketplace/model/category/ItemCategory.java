@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.models.categories;
+package com.fdmgroup.marketplace.model.category;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

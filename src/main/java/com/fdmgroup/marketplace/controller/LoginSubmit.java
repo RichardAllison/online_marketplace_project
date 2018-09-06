@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fdmgroup.marketplace.listener.LocalEntityManagerFactory;
-import com.fdmgroup.marketplace.models.users.UserAccount;
+import com.fdmgroup.marketplace.model.user.UserAccount;
 import com.fdmgroup.marketplace.repository.UserAccountDAO;
 
 @WebServlet("/LoginSubmit")
@@ -36,7 +36,9 @@ public class LoginSubmit extends HttpServlet {
 			request.getSession().setMaxInactiveInterval(60 * 15);
 			request.setAttribute("username", user.getUsername());
 //			response.sendRedirect("User/"+user.getUsername());
-			response.sendRedirect("User/AccountHome");
+			
+//			response.sendRedirect("User/AccountHome");
+			request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 		}
 	}
 

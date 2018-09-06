@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.models.transactions;
+package com.fdmgroup.marketplace.model.transaction;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,14 +14,14 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
-import com.fdmgroup.marketplace.models.users.UserAccount;
+import com.fdmgroup.marketplace.model.user.UserAccount;
 
 @Entity
-public class Transaction {
+public class Purchase {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="order_generator" ) 
-	@SequenceGenerator(name="order_generator", sequenceName="ORDER_ID_SEQ", initialValue=1, allocationSize=1) 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="purchase_id_generator" ) 
+	@SequenceGenerator(name="purchase_id_generator", sequenceName="PURCHASE_ID_SEQ", initialValue=1, allocationSize=1) 
 	private long id;
 	@ManyToOne
 	private UserAccount buyer;
@@ -29,13 +29,13 @@ public class Transaction {
 	private Date time;
 	@ManyToMany
 	@JoinColumn(name = "id")
-	private List<TransactionItem> orderItems;
+	private List<PurchaseItem> purchaseItems;
 	
-	public Transaction() {
-		this.orderItems = new ArrayList<>();
+	public Purchase() {
+		this.purchaseItems = new ArrayList<>();
 	}
 
-	public Transaction(UserAccount buyer, Date time) {
+	public Purchase(UserAccount buyer, Date time) {
 		this();
 		this.buyer = buyer;
 		this.time = time;
@@ -65,18 +65,17 @@ public class Transaction {
 		this.buyer = buyer;
 	}
 
-	public List<TransactionItem> getOrderItems() {
-		return orderItems;
+	public List<PurchaseItem> getPurchaseItems() {
+		return purchaseItems;
 	}
 
-	public void setOrderItems(List<TransactionItem> orderItems) {
-		this.orderItems = orderItems;
+	public void setOrderItems(List<PurchaseItem> orderItems) {
+		this.purchaseItems = orderItems;
 	}
 	
-	public void addToOrder(TransactionItem orderItem) {
+	public void addToOrder(PurchaseItem orderItem) {
 		if (orderItem.getItem() != null && orderItem.getQuantity() > 0) {
-			this.orderItems.add(orderItem);
-			// increment quantity reserved in product
+			this.purchaseItems.add(orderItem);
 		}
 	}
 

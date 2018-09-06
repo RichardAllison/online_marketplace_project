@@ -5,7 +5,7 @@ import javax.persistence.EntityManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.fdmgroup.marketplace.models.users.UserAccount;
+import com.fdmgroup.marketplace.model.user.UserAccount;
 import com.fdmgroup.marketplace.repository.EntityManagerHelper;
 import com.fdmgroup.marketplace.repository.UserAccountDAO;
 //import com.fdmgroup.marketplace.models.categories.Category;

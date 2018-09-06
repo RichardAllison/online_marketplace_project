@@ -7,18 +7,26 @@
 <title>Your Products</title>
 </head>
 <body>
-	<h3>All Products</h3>
-	<table>
+	<h3 style="text-align: center;">All Products</h3>
+	<a href=#>Add Product</a>
+	<table style="width: 90%; margin-left:auto;margin-right:auto;">
+		<tr>
+			<th>Item</th>
+			<th>Quantity</th>
+			<th>Available</th>
+			<th>Price</th>
+		</tr>
+
 		<c:forEach products="${productList}" var="product">
 			<tr>
-				<td>Item:</td>
 				<td><c:out value="${product.item.name}" /></td>
-			</tr>
-			<tr>
-				<td>Quantity:</td>
 				<td><c:out value="${product.quantity}" /></td>
+				<td><c:out value="${product.quantityavailable}" /></td>
+				<td>£</td>
+				<td><a href="#">Edit</a></td>
 			</tr>
 		</c:forEach>
+		
 	</table>
 </body>
 </html>

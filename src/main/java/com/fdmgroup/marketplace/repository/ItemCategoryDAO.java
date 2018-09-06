@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.fdmgroup.marketplace.models.categories.ItemCategory;
+import com.fdmgroup.marketplace.model.category.ItemCategory;
 
 public class ItemCategoryDAO implements CRUD<ItemCategory> {
 	

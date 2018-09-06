@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.fdmgroup.marketplace.models.transactions.Transaction;
+import com.fdmgroup.marketplace.model.transaction.Sale;
 
-public class TransactionDAO implements CRUD<Transaction> {
+public class TransactionDAO implements CRUD<Sale> {
 	
 	private EntityManager entityManager;
 
@@ -15,29 +15,29 @@ public class TransactionDAO implements CRUD<Transaction> {
 	}
 
 	@Override
-	public void create(Transaction order) {
+	public void create(Sale order) {
 		entityManager.persist(order);
 	}
 
 	@Override
-	public Transaction retrieveOne(long id) {
-		return entityManager.find(Transaction.class, id);
+	public Sale retrieveOne(long id) {
+		return entityManager.find(Sale.class, id);
 	}
 
 	@Override
-	public List<Transaction> retrieveAll() {
+	public List<Sale> retrieveAll() {
 		return entityManager.createQuery(
-				"select a from Transaction a", Transaction.class).getResultList();
+				"select a from Transaction a", Sale.class).getResultList();
 	}
 
 	@Override
-	public void update(long id, Transaction order) {
+	public void update(long id, Sale order) {
 		entityManager.merge(order);
 	}
 
 	@Override
 	public void delete(long id) {
-		Transaction order = entityManager.find(Transaction.class, id);
+		Sale order = entityManager.find(Sale.class, id);
 		entityManager.remove(order);
 	}
 

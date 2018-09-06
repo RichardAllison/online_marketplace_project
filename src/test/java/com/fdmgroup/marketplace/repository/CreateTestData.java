@@ -7,12 +7,11 @@ import java.util.Date;
 
 import javax.persistence.EntityManager;
 
-import com.fdmgroup.marketplace.models.categories.ItemCategory;
-import com.fdmgroup.marketplace.models.items.Item;
-import com.fdmgroup.marketplace.models.items.Product;
-import com.fdmgroup.marketplace.models.transactions.Transaction;
-import com.fdmgroup.marketplace.models.transactions.TransactionItem;
-import com.fdmgroup.marketplace.models.users.UserAccount;
+import com.fdmgroup.marketplace.model.category.ItemCategory;
+import com.fdmgroup.marketplace.model.item.Item;
+import com.fdmgroup.marketplace.model.transaction.Sale;
+import com.fdmgroup.marketplace.model.transaction.SaleItem;
+import com.fdmgroup.marketplace.model.user.UserAccount;
 
 /**
  * NOTE: drop-and-create in persisence.xml must be set.
@@ -22,7 +21,6 @@ public class CreateTestData {
 	private static UserAccountDAO userAccountDao;
 	private static ItemCategoryDAO categoryDao;
 	private static ItemDAO itemDao;
-	private static ProductDAO productDao;
 	private static TransactionDAO transactionDao;
 	private static TransactionItemDAO transactionItemDao;
 	
@@ -32,25 +30,22 @@ public class CreateTestData {
 	private static ItemCategory category2;
 	private static Item item1;
 	private static Item item2;
-	private static Product product1;
-	private static Product product2;
-	private static TransactionItem orderItem1;
-	private static TransactionItem orderItem2;
-	private static Transaction order1;
-	private static Transaction order2;
+	private static SaleItem orderItem1;
+	private static SaleItem orderItem2;
+	private static Sale order1;
+	private static Sale order2;
 	
 	public static void insertData(EntityManager entityManager) {
 		userAccountDao = new UserAccountDAO(entityManager);
 		categoryDao = new ItemCategoryDAO(entityManager);
 		itemDao = new ItemDAO(entityManager);
-		productDao = new ProductDAO(entityManager);
 		transactionDao = new TransactionDAO(entityManager);
 		transactionItemDao = new TransactionItemDAO(entityManager);
 		
 		insertUserAccounts(entityManager);
 		insertCategories(entityManager);
 		insertItems(entityManager);
-		insertProducts(entityManager);
+//		insertProducts(entityManager);
 		insertTransactionItems(entityManager);
 		insertTransactions(entityManager);
 	}
@@ -91,25 +86,25 @@ public class CreateTestData {
 		entityManager.getTransaction().commit();
 	}
 	
-	public static void insertProducts(EntityManager entityManager) {
-		product1 = new Product(item1, 5);
-		entityManager.getTransaction().begin();
-		productDao.create(product1);
-		entityManager.getTransaction().commit();
-		
-		product2 = new Product(item2, 1);
-		entityManager.getTransaction().begin();
-		productDao.create(product2);
-		entityManager.getTransaction().commit();
-	}
+//	public static void insertProducts(EntityManager entityManager) {
+//		product1 = new Product(item1, 5);
+//		entityManager.getTransaction().begin();
+//		productDao.create(product1);
+//		entityManager.getTransaction().commit();
+//		
+//		product2 = new Product(item2, 1);
+//		entityManager.getTransaction().begin();
+//		productDao.create(product2);
+//		entityManager.getTransaction().commit();
+//	}
 	
 	public static void insertTransactionItems(EntityManager entityManager) {
-		orderItem1 = new TransactionItem(item1, 2);
+		orderItem1 = new SaleItem(item1, 2);
 		entityManager.getTransaction().begin();
 		transactionItemDao.create(orderItem1);
 		entityManager.getTransaction().commit();
 		
-		orderItem2 = new TransactionItem(item2, 1);
+		orderItem2 = new SaleItem(item2, 1);
 		entityManager.getTransaction().begin();
 		transactionItemDao.create(orderItem2);
 		entityManager.getTransaction().commit();
@@ -119,12 +114,12 @@ public class CreateTestData {
 		Date time = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault())
 			      .toInstant());
 		
-		order1 = new Transaction(user1, time);
+		order1 = new Sale(user1, time);
 		entityManager.getTransaction().begin();
 		transactionDao.create(order1);
 		entityManager.getTransaction().commit();
 		
-		order2 = new Transaction(user2, time);
+		order2 = new Sale(user2, time);
 		entityManager.getTransaction().begin();
 		transactionDao.create(order2);
 		entityManager.getTransaction().commit();

@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.models.users;
+package com.fdmgroup.marketplace.model.user;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +18,16 @@ import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Fetch;
 
-import com.fdmgroup.marketplace.models.items.Product;
-import com.fdmgroup.marketplace.models.transactions.Transaction;
+import com.fdmgroup.marketplace.model.item.Item;
+import com.fdmgroup.marketplace.model.transaction.Purchase;
+import com.fdmgroup.marketplace.model.transaction.Sale;
 
 @Entity(name = "UserAccount")
 public class UserAccount {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_account_generator" ) 
-	@SequenceGenerator(name="user_account_generator", sequenceName="USER_ACCOUNT_SEQ", initialValue=1, allocationSize=1) 
+	@SequenceGenerator(name="user_account_generator", sequenceName="USER_ACCOUNT_ID_SEQ", initialValue=1, allocationSize=1) 
 	private long id;
 	@Column(nullable=false, length=80, unique=true)
 	private String username;
@@ -38,22 +39,22 @@ public class UserAccount {
 	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "id")
-	private List<Product> products;
+	private List<Item> products;
 
 	@ManyToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "id")
-	private List<Transaction> sales;
+	private List<Sale> sales;
 
 	@ManyToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name = "id")
-	private List<Transaction> purchases;
+	private List<Purchase> purchases;
 	
 	public UserAccount() {
-		this.products = new ArrayList<Product>();
-		this.sales = new ArrayList<Transaction>();
-		this.purchases = new ArrayList<Transaction>();
+		this.products = new ArrayList<Item>();
+		this.sales = new ArrayList<Sale>();
+		this.purchases = new ArrayList<Purchase>();
 	}
 	
 	public UserAccount(String username, String password) {
@@ -100,43 +101,43 @@ public class UserAccount {
 		this.password = password;
 	}
 
-	public List<Product> getProducts() {
+	public List<Item> getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<Product> products) {
+	public void setProducts(List<Item> products) {
 		this.products = products;
 	}
 	
-	public List<Transaction> getSales() {
+	public List<Sale> getSales() {
 		return sales;
 	}
 
-	public void setSales(List<Transaction> sales) {
+	public void setSales(List<Sale> sales) {
 		this.sales = sales;
 	}
 
-	public List<Transaction> getPurchases() {
+	public List<Purchase> getPurchases() {
 		return purchases;
 	}
 
-	public void setPurchases(List<Transaction> purchases) {
+	public void setPurchases(List<Purchase> purchases) {
 		this.purchases = purchases;
 	}
 	
-	public void addProduct(Product product) {
-		this.products.add(product);
+	public void addItem(Item item) {
+		this.products.add(item);
 	}
 	
-	public void removeProduct(Product product) {
-		this.products.remove(product);
+	public void removeItem(Item item) {
+		this.products.remove(item);
 	}
 	
-	public void addToSales(Transaction sale) {
+	public void addToSales(Sale sale) {
 		this.sales.add(sale);
 	}
 	
-	public void addToPurchases(Transaction purchase) {
+	public void addToPurchases(Purchase purchase) {
 		this.purchases.add(purchase);
 	}
 

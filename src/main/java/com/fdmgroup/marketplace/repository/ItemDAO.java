@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.fdmgroup.marketplace.models.items.Item;
+import com.fdmgroup.marketplace.model.item.Item;
 
 public class ItemDAO implements CRUD<Item> {
 
@@ -35,6 +35,22 @@ public class ItemDAO implements CRUD<Item> {
 	        "SELECT a FROM Item a WHERE a.name LIKE :name")
 	        .setParameter("name", name)
 	        .getResultList();
+	}
+	
+	public List<Item> retrieveAllByUserId(long id) {
+		return entityManager.createQuery(
+				"SELECT p FROM Product p JOIN UserAccount u WHERE u.id = :id", Item.class)
+//				"SELECT p FROM UserAccount u JOIN u.products p WHERE u.id = :id", Product.class)	
+//				"SELECT p from Product p join p.owner o where o.UserAccount.id = :id", Product.class)	
+				//"SELECT u from UserAccount u join u.products p where u.id = :id", Product.class)
+				.setParameter("id", id)
+				.getResultList();		
+		
+//		Query query = entityManager.createNativeQuery(
+//				"SELECT p.id, p.quantity, p.quantityreserved, p.item_id FROM product p WHERE owner_id = ?", Product.class);
+//		query.setParameter(1, id);
+//		List<Product> products = query.getResultList(); 
+//		return products;
 	}
 
 	@Override

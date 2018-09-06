@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.models.transactions;
+package com.fdmgroup.marketplace.model.transaction;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,16 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
-//import java.math.BigDecimal;
-
-import com.fdmgroup.marketplace.models.items.Item;
+import com.fdmgroup.marketplace.model.item.Item;
 
 @Entity
-public class TransactionItem {
+public class SaleItem {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="order_item_generator" ) 
-	@SequenceGenerator(name="order_item_generator", sequenceName="ITEM_SEQ", initialValue=1, allocationSize=1) 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="sale_item_generator" ) 
+	@SequenceGenerator(name="sale_item_generator", sequenceName="SALE_ITEM_ID_SEQ", initialValue=1, allocationSize=1) 
 	private long id;
 	@ManyToOne
 	private Item item;
@@ -26,9 +24,9 @@ public class TransactionItem {
 //	private AccountUser seller;
 //	private BigDecimal price;
 
-	public TransactionItem() {}
+	public SaleItem() {}
 	
-	public TransactionItem(Item item, int quantity) {
+	public SaleItem(Item item, int quantity) {
 		this.item = item;
 		this.quantity = quantity;
 	}

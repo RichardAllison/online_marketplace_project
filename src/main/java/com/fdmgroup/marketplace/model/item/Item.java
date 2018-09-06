@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.models.items;
+package com.fdmgroup.marketplace.model.item;
 
 import java.math.BigDecimal;
 
@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
-import com.fdmgroup.marketplace.models.users.UserAccount;
+import com.fdmgroup.marketplace.model.user.UserAccount;
 
 @Entity
 public class Item {
@@ -25,6 +25,10 @@ public class Item {
 	private String description;
 	@Column
 	private BigDecimal price;
+	@Column
+	private int quantity;
+	@Column
+	private int quantityReserved;
 	@ManyToOne
 	private UserAccount seller;
 	

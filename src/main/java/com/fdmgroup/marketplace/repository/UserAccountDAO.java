@@ -5,8 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
-import com.fdmgroup.marketplace.models.items.Product;
-import com.fdmgroup.marketplace.models.users.UserAccount;
+import com.fdmgroup.marketplace.model.user.UserAccount;
 
 public class UserAccountDAO implements CRUD<UserAccount> {
 	

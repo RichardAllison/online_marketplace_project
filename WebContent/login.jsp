@@ -8,10 +8,13 @@
 <title>Marketplace Login</title>
 </head>
 <body>
-	<h2>Marketplace Login</h2>
+	<nav>
+		<a href="Home" style="text-align: center">Home</a>
+	</nav>
+	<h2 style="text-align: center;">Marketplace Login</h2>
 	<form action="LoginSubmit">
 		${message}
-		<table>
+		<table style="margin-left:auto; margin-right:auto;">
 			<tr>
 				<td><label path="username">User name</label></td>
 				<td><input type="text" name="username" required="required"></td>
@@ -20,9 +23,12 @@
 				<td><label path="password">Password</label></td>
 				<td><input type="password" name="password" required="required"></td>
 			</tr>
+			<tr>
+			<td><input type="submit" value="Login" formmethod="post"></td>
+			<td></td>
+			</tr>
 		</table>
-		<input type="submit" value="login" formmethod="post">
+		
 	</form>
-	<a href="Home">Home</a>
 </body>
 </html>

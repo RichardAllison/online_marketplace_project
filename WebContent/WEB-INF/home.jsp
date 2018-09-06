@@ -7,15 +7,17 @@
 <title>Dashboard</title>
 </head>
 <body>
-	<nav></nav>
+<header>
+	<a href="/OnlineMarketplaceProject/Home">Home</a>
+	<a href="/OnlineMarketplaceProject/Logout">Logout</a>
+	<a href="/OnlineMarketplaceProject/User/Edit">Edit account</a>
+</header>
 	<h2>Dashboard</h2>
 	<div><a href="/OnlineMarketplaceProject/User/Products">Your Products</a></div>
 	<div>Your Sales</div>
 	<div>Your Purchases</div>
-
-
-	<a href="/OnlineMarketplaceProject/Logout">Logout</a>
-	<a href="/OnlineMarketplaceProject/User/DeleteAccount">Close account</a>
-	<a href="/OnlineMarketplaceProject/User/Edit">Edit account</a>
+	<div>Your Wishlist</div>
+	<div><h4>Recent purchases</h4></div>
+	<div><h4>Recent sales</h4></div>
 </body>
 </html>

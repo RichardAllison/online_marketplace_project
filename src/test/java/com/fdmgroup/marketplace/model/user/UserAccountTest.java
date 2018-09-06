@@ -1,12 +1,14 @@
-package com.fdmgroup.marketplace.models.users;
+package com.fdmgroup.marketplace.model.user;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.marketplace.models.items.Product;
-import com.fdmgroup.marketplace.models.transactions.Transaction;
+import com.fdmgroup.marketplace.model.item.Item;
+import com.fdmgroup.marketplace.model.transaction.Purchase;
+import com.fdmgroup.marketplace.model.transaction.Sale;
+import com.fdmgroup.marketplace.model.user.UserAccount;
 
 public class UserAccountTest {
 	
@@ -50,30 +52,30 @@ public class UserAccountTest {
 	
 	@Test
 	public void test_thatUserAccountCanAddProduct() {
-		Product product = new Product();
-		user.addProduct(product);
+		Item item = new Item();
+		user.addItem(item);
 //		assertEquals(product, user.getProducts().get(0));
 		assertEquals(1, user.getProducts().size());
 	}
 	
 	@Test
 	public void test_thatUserAccountCanRemoveProduct() {
-		Product product = new Product();
-		user.addProduct(product);
-		user.removeProduct(product);
+		Item item = new Item();
+		user.addItem(item);
+		user.removeItem(item);
 		assertEquals(0, user.getProducts().size());
 	}
 	
 	@Test
 	public void test_thatOrdersCanBeAddedToUserAccountPurchases() {
-		Transaction purchase = new Transaction();
+		Purchase purchase = new Purchase();
 		user.addToPurchases(purchase);
 		assertEquals(1, user.getPurchases().size());
 	}
 	
 	@Test
 	public void test_thatOrdersCanBeAddedToUserAccountSales() {
-		Transaction sale = new Transaction();
+		Sale sale = new Sale();
 		user.addToSales(sale);
 		assertEquals(1, user.getSales().size());
 	}

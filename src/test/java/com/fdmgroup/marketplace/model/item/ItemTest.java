@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.models.items;
+package com.fdmgroup.marketplace.model.item;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,7 +7,8 @@ import java.math.BigDecimal;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.marketplace.models.users.UserAccount;
+import com.fdmgroup.marketplace.model.item.Item;
+import com.fdmgroup.marketplace.model.user.UserAccount;
 
 public class ItemTest {
 	
