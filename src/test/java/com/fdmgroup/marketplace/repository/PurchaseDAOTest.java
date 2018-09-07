@@ -17,20 +17,20 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.marketplace.model.transaction.Sale;
+import com.fdmgroup.marketplace.model.transaction.Purchase;
 
-public class TransactionDAOTest {
+public class PurchaseDAOTest {
 	
 	private static EntityManagerFactory entityManagerFactory;
 	private static EntityManager entityManager; 
-	private static TransactionDAO transactionDao;
-	private Sale transaction;
+	private static PurchaseDAO purchaseDao;
+	private Purchase transaction;
 	
 	@Before
 	public void setUp() throws Exception {
 		entityManagerFactory = Persistence.createEntityManagerFactory("OnlineMarketplaceProject");
 		entityManager = entityManagerFactory.createEntityManager();
-		transactionDao = new TransactionDAO(entityManager);
+		purchaseDao = new PurchaseDAO(entityManager);
 		CreateTestData.insertData(entityManager);
 	}
 
@@ -41,31 +41,31 @@ public class TransactionDAOTest {
 	
 	@Test
 	public void test_getTransaction() {
-		transaction = transactionDao.retrieveOne(1L);
+		transaction = purchaseDao.retrieveOne(1L);
 		assertEquals("username1", transaction.getBuyer().getUsername());
 	}
 	
 	@Test
 	public void test_getAllTransactions() {
-		List<Sale> transactions = transactionDao.retrieveAll();
+		List<Purchase> transactions = purchaseDao.retrieveAll();
 		assertEquals(2, transactions.size());
 	}
 	
 	@Test
 	public void test_updateTransaction() {
-		Sale transaction = transactionDao.retrieveOne(1L);
+		Purchase transaction = purchaseDao.retrieveOne(1L);
 		Date time = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault())
 			      .toInstant());
 		transaction.setTime(time);
-		transactionDao.update(transaction.getId(), transaction);
-		transaction = transactionDao.retrieveOne(1l);
+		purchaseDao.update(transaction.getId(), transaction);
+		transaction = purchaseDao.retrieveOne(1l);
 		Assert.assertEquals(time, transaction.getTime());
 	}
 	
 	@Test
 	public void test_deleteTransaction() {
-		transactionDao.delete(1L);
-		transaction = transactionDao.retrieveOne(1L); 
+		purchaseDao.delete(1L);
+		transaction = purchaseDao.retrieveOne(1L); 
 		assertNull(transaction);
 	}
 	

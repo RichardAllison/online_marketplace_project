@@ -14,19 +14,19 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.marketplace.model.transaction.SaleItem;
+import com.fdmgroup.marketplace.model.transaction.PurchaseItem;
 
-public class TransactionItemDAOTest {
+public class PurchaseItemDAOTest {
 	private static EntityManagerFactory entityManagerFactory;
 	private static EntityManager entityManager; 
-	private static TransactionItemDAO transactionItemDao;
-	private SaleItem transactionItem;
+	private static PurchaseItemDAO purchaseItemDao;
+	private PurchaseItem purchaseItem;
 	
 	@Before
 	public void setUp() throws Exception {
 		entityManagerFactory = Persistence.createEntityManagerFactory("OnlineMarketplaceProject");
 		entityManager = entityManagerFactory.createEntityManager();
-		transactionItemDao = new TransactionItemDAO(entityManager);
+		purchaseItemDao = new PurchaseItemDAO(entityManager);
 		CreateTestData.insertData(entityManager);
 	}
 
@@ -37,29 +37,29 @@ public class TransactionItemDAOTest {
 	
 	@Test
 	public void test_getTransactionItem() {
-		transactionItem = transactionItemDao.retrieveOne(1L);
-		assertEquals(2, transactionItem.getQuantity());
+		purchaseItem = purchaseItemDao.retrieveOne(1L);
+		assertEquals(2, purchaseItem.getQuantity());
 	}
 	
 	@Test
 	public void test_getAllTransactionItems() {
-		List<SaleItem> transactionItems = transactionItemDao.retrieveAll();
-		assertEquals(2, transactionItems.size());
+		List<PurchaseItem> purchaseItems = purchaseItemDao.retrieveAll();
+		assertEquals(2, purchaseItems.size());
 	}
 	
 	@Test
 	public void test_updateTransactionItem() {
-		SaleItem transactionItem = transactionItemDao.retrieveOne(1L);
-		transactionItem.setQuantity(2);
-		transactionItemDao.update(transactionItem.getId(), transactionItem);
-		transactionItem = transactionItemDao.retrieveOne(1l);
-		Assert.assertEquals(2, transactionItem.getQuantity());
+		PurchaseItem purchaseItem = purchaseItemDao.retrieveOne(1L);
+		purchaseItem.setQuantity(2);
+		purchaseItemDao.update(purchaseItem.getId(), purchaseItem);
+		purchaseItem = purchaseItemDao.retrieveOne(1l);
+		Assert.assertEquals(2, purchaseItem.getQuantity());
 	}
 	
 	@Test
 	public void test_deleteTransactionItem() {
-		transactionItemDao.delete(1L);
-		transactionItem = transactionItemDao.retrieveOne(1L); 
-		assertNull(transactionItem);
+		purchaseItemDao.delete(1L);
+		purchaseItem = purchaseItemDao.retrieveOne(1L); 
+		assertNull(purchaseItem);
 	}
 }

@@ -6,11 +6,11 @@ import javax.persistence.EntityManager;
 
 import com.fdmgroup.marketplace.model.transaction.Sale;
 
-public class TransactionDAO implements CRUD<Sale> {
+public class SaleDAO implements CRUD<Sale> {
 	
 	private EntityManager entityManager;
 
-	public TransactionDAO(EntityManager entityManager){
+	public SaleDAO(EntityManager entityManager){
 		this.entityManager = entityManager;
 	}
 
@@ -27,7 +27,7 @@ public class TransactionDAO implements CRUD<Sale> {
 	@Override
 	public List<Sale> retrieveAll() {
 		return entityManager.createQuery(
-				"select a from Transaction a", Sale.class).getResultList();
+				"select a from Sale a", Sale.class).getResultList();
 	}
 
 	@Override

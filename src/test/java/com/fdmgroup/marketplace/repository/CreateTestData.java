@@ -21,8 +21,8 @@ public class CreateTestData {
 	private static UserAccountDAO userAccountDao;
 	private static ItemCategoryDAO categoryDao;
 	private static ItemDAO itemDao;
-	private static TransactionDAO transactionDao;
-	private static TransactionItemDAO transactionItemDao;
+	private static SaleDAO transactionDao;
+	private static SaleItemDAO transactionItemDao;
 	
 	private static UserAccount user1;
 	private static UserAccount user2;
@@ -39,8 +39,8 @@ public class CreateTestData {
 		userAccountDao = new UserAccountDAO(entityManager);
 		categoryDao = new ItemCategoryDAO(entityManager);
 		itemDao = new ItemDAO(entityManager);
-		transactionDao = new TransactionDAO(entityManager);
-		transactionItemDao = new TransactionItemDAO(entityManager);
+		transactionDao = new SaleDAO(entityManager);
+		transactionItemDao = new SaleItemDAO(entityManager);
 		
 		insertUserAccounts(entityManager);
 		insertCategories(entityManager);

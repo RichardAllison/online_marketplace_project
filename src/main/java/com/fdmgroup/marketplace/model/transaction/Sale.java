@@ -25,6 +25,8 @@ public class Sale {
 	private long id;
 	@ManyToOne
 	private UserAccount buyer;
+	@ManyToOne
+	private UserAccount seller;
 	@Column
 	private Date time;
 	@ManyToMany

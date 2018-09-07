@@ -6,17 +6,17 @@ import javax.persistence.EntityManager;
 
 import com.fdmgroup.marketplace.model.transaction.SaleItem;
 
-public class TransactionItemDAO implements CRUD<SaleItem> {
+public class SaleItemDAO implements CRUD<SaleItem> {
 
 	private EntityManager entityManager;
 
-	public TransactionItemDAO(EntityManager entityManager){
+	public SaleItemDAO(EntityManager entityManager){
 		this.entityManager = entityManager;
 	}
 	
 	@Override
-	public void create(SaleItem orderItem) {
-		entityManager.persist(orderItem);
+	public void create(SaleItem saleItem) {
+		entityManager.persist(saleItem);
 	}
 
 	@Override
@@ -27,18 +27,18 @@ public class TransactionItemDAO implements CRUD<SaleItem> {
 	@Override
 	public List<SaleItem> retrieveAll() {
 		return entityManager.createQuery(
-				"select a from TransactionItem a", SaleItem.class).getResultList();
+				"select a from SaleItem a", SaleItem.class).getResultList();
 	}
 
 	@Override
-	public void update(long id, SaleItem orderItem) {
-		entityManager.merge(orderItem);
+	public void update(long id, SaleItem saleItem) {
+		entityManager.merge(saleItem);
 	}
 
 	@Override
 	public void delete(long id) {
-		SaleItem orderItem = entityManager.find(SaleItem.class, id);
-		entityManager.remove(orderItem);
+		SaleItem saleItem = entityManager.find(SaleItem.class, id);
+		entityManager.remove(saleItem);
 	}
 
 
