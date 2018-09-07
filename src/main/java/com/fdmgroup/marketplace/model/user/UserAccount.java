@@ -40,14 +40,12 @@ public class UserAccount {
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Item> products;
 
-	@ManyToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "seller")
 	@Fetch(value = FetchMode.SUBSELECT)
-	@JoinColumn(name = "id")
 	private List<Sale> sales;
 
-	@ManyToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "buyer")
 	@Fetch(value = FetchMode.SUBSELECT)
-	@JoinColumn(name = "id")
 	private List<Purchase> purchases;
 	
 	public UserAccount() {

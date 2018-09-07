@@ -40,7 +40,7 @@ public class ItemDAO implements CRUD<Item> {
 	
 	public List<Item> retrieveAllByUserId(long id) {
 		TypedQuery q = entityManager.createQuery(
-				"SELECT i FROM Item i JOIN i.seller.id u WHERE u.id = :id", Item.class);
+				"SELECT i FROM Item i JOIN i.seller u WHERE u.id = :id", Item.class);
 		
 		q = q.setParameter("id", id);
 		List<Item> items = q.getResultList();
