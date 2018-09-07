@@ -36,9 +36,8 @@ public class UserAccount {
 	@Column(nullable=false, length=80)
 	private String password;
 
-	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "seller")
 	@Fetch(value = FetchMode.SUBSELECT)
-	@JoinColumn(name = "id")
 	private List<Item> products;
 
 	@ManyToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)

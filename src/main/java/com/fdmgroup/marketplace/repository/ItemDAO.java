@@ -3,6 +3,7 @@ package com.fdmgroup.marketplace.repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import com.fdmgroup.marketplace.model.item.Item;
 
@@ -38,21 +39,14 @@ public class ItemDAO implements CRUD<Item> {
 	}
 	
 	public List<Item> retrieveAllByUserId(long id) {
-		return entityManager.createQuery(
-				"SELECT i FROM Item i JOIN UserAccount u WHERE u.id = :id", Item.class)
-//				"SELECT p FROM UserAccount u JOIN u.products p WHERE u.id = :id", Product.class)	
-//				"SELECT p from Product p join p.owner o where o.UserAccount.id = :id", Product.class)	
-				//"SELECT u from UserAccount u join u.products p where u.id = :id", Product.class)
-				.setParameter("id", id)
-				.getResultList();		
+		TypedQuery q = entityManager.createQuery(
+				"SELECT i FROM Item i JOIN i.seller.id u WHERE u.id = :id", Item.class);
 		
-//		Query query = entityManager.createNativeQuery(
-//				"SELECT p.id, p.quantity, p.quantityreserved, p.item_id FROM product p WHERE owner_id = ?", Product.class);
-//		query.setParameter(1, id);
-//		List<Product> products = query.getResultList(); 
-//		return products;
+		q = q.setParameter("id", id);
+		List<Item> items = q.getResultList();
+		return items;
 	}
-
+	
 	@Override
 	public void update(long id, Item item) {
 		entityManager.merge(item);
