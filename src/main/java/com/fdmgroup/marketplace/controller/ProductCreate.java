@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 import javax.persistence.RollbackException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +15,12 @@ import com.fdmgroup.marketplace.listener.LocalEntityManagerFactory;
 import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 import com.fdmgroup.marketplace.repository.ItemDAO;
-import com.fdmgroup.marketplace.repository.UserAccountDAO;
 
+@WebServlet("/User/Products/ProductCreate")
 public class ProductCreate extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private static EntityManager entityManager = LocalEntityManagerFactory.getEntityManager();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,22 +30,13 @@ public class ProductCreate extends HttpServlet {
 		BigDecimal price = new BigDecimal(request.getParameter("price"));
 		ItemDAO itemDao = new ItemDAO(entityManager);
 		Item item = null;
-		try {
+		if (user != null) {
 			item = new Item(name, description, price, user);
 			entityManager.getTransaction().begin();
 			itemDao.create(item);
 			entityManager.getTransaction().commit();
-		} catch (RollbackException rbe){
-			user = null;
-			request.setAttribute("message", "User name already exists");
 		}
-
-		if (user == null) {
-			request.getRequestDispatcher("account_add.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("login.jsp").forward(request, response);
-		}
-
+		response.sendRedirect("User/Products");
 
 	}
 

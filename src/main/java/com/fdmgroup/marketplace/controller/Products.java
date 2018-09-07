@@ -26,7 +26,7 @@ public class Products extends HttpServlet {
 		ItemDAO itemDao  = new ItemDAO(LocalEntityManagerFactory.getEntityManager());
 		List<Item> allItems = itemDao.retrieveAllByUserId(user.getId());
 		request.setAttribute("itemList", allItems);
-		request.getRequestDispatcher("/WEB-INF/AccountProducts.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/products.jsp").forward(request, response);
 		
 	}
 
