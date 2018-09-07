@@ -23,10 +23,10 @@ public class AccountProducts extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserAccount user = (UserAccount) request.getSession().getAttribute("user");
 		
-		request.getRequestDispatcher("/WEB-INF/AccountProducts.jsp").forward(request, response);
 		ItemDAO itemDao  = new ItemDAO(LocalEntityManagerFactory.getEntityManager());
 		List<Item> allItems = itemDao.retrieveAllByUserId(user.getId());
 		request.setAttribute("itemList", allItems);
+		request.getRequestDispatcher("/WEB-INF/AccountProducts.jsp").forward(request, response);
 		
 	}
 

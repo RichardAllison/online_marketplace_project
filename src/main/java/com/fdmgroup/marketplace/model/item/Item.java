@@ -30,6 +30,22 @@ public class Item {
 	private int quantity;
 	@Column
 	private int quantityReserved;
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getQuantityReserved() {
+		return quantityReserved;
+	}
+
+	public void setQuantityReserved(int quantityReserved) {
+		this.quantityReserved = quantityReserved;
+	}
+
 	@ManyToOne
 	private UserAccount seller;
 	

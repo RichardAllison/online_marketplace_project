@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Your Products</title>
 </head>
 <body>
-	<h3 style="text-align: center;">All Products</h3>
+	<h3>All Products</h3>
 	<a href=#>Add Product</a>
-	<table style="width: 90%; margin-left:auto;margin-right:auto;">
+	<table>
 		<tr>
 			<th>Item</th>
 			<th>Quantity</th>
@@ -17,12 +18,11 @@
 			<th>Price</th>
 		</tr>
 
-		<c:forEach products="${productList}" var="product">
+		<c:forEach items="${itemList}" var="item">
 			<tr>
-				<td><c:out value="${product.item.name}" /></td>
-				<td><c:out value="${product.quantity}" /></td>
-				<td><c:out value="${product.quantityavailable}" /></td>
-				<td>£</td>
+				<td><c:out value="${item.name}" /></td>
+				<td><c:out value="${item.quantity}" /></td>
+				<td>£<c:out value="${item.price}" /></td>
 				<td><a href="#">Edit</a></td>
 			</tr>
 		</c:forEach>

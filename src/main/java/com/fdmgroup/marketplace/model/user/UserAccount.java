@@ -31,7 +31,7 @@ public class UserAccount {
 	private long id;
 	@Column(nullable=false, length=80, unique=true)
 	private String username;
-	@Column(length=80)
+	@Column(length=80, unique=true)
 	private String emailAddress;
 	@Column(nullable=false, length=80)
 	private String password;
