@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>Edit account</h2>
-	<form action="AccountUpdate">
+	<h2>Create new account</h2>
+	<form action="AccountCreate">
 		${message}
 		<table>
 			<tr>
@@ -25,9 +25,8 @@
 			</tr>
 		</table>
 
-		<input type="submit" value="Update" formmethod="post">
+		<input type="submit" value="Create" formmethod="post">
 	</form>
-	<a href="/OnlineMarketplaceProject/Home">Home</a>
-	<a href="User/AccountHome">Account</a>
+	<a href="Home">Home</a>
 </body>
 </html>

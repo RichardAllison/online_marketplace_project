@@ -30,6 +30,18 @@ public class Item {
 	private int quantity;
 	@Column
 	private int quantityReserved;
+	@ManyToOne
+	private UserAccount seller;
+	
+	public Item() {}
+
+	public Item(String name, String description, BigDecimal price, UserAccount seller) {
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.seller = seller;
+	}
+	
 	public int getQuantity() {
 		return quantity;
 	}
@@ -44,18 +56,6 @@ public class Item {
 
 	public void setQuantityReserved(int quantityReserved) {
 		this.quantityReserved = quantityReserved;
-	}
-
-	@ManyToOne
-	private UserAccount seller;
-	
-	public Item() {}
-
-	public Item(String name, String description, BigDecimal price, UserAccount seller) {
-		this.name = name;
-		this.description = description;
-		this.price = price;
-		this.seller = seller;
 	}
 	
 	public long getId() {

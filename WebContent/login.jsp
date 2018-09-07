@@ -16,7 +16,7 @@
 		${message}
 		<table style="margin-left:auto; margin-right:auto;">
 			<tr>
-				<td><label path="username">User name</label></td>
+				<td><label path="username">Username</label></td>
 				<td><input type="text" name="username" required="required"></td>
 			</tr>
 			<tr>

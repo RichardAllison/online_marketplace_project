@@ -13,7 +13,7 @@ import com.fdmgroup.marketplace.listener.LocalEntityManagerFactory;
 import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.repository.ItemDAO;
 
-@WebServlet("/Home")
+@WebServlet({"/Home", "", "/home"})
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -6,6 +6,8 @@ import java.time.ZoneId;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import com.fdmgroup.marketplace.model.category.ItemCategory;
 import com.fdmgroup.marketplace.model.item.Item;
@@ -17,6 +19,9 @@ import com.fdmgroup.marketplace.model.user.UserAccount;
  * NOTE: drop-and-create in persisence.xml must be set.
  */
 public class CreateTestData {
+	
+	private static EntityManagerFactory entityManagerFactory;
+	private static EntityManager entityManager;
 	
 	private static UserAccountDAO userAccountDao;
 	private static ItemCategoryDAO categoryDao;
@@ -34,6 +39,13 @@ public class CreateTestData {
 	private static SaleItem orderItem2;
 	private static Sale order1;
 	private static Sale order2;
+	
+	public static void main(String[] args) {
+		entityManagerFactory = Persistence.createEntityManagerFactory("OnlineMarketplaceProject");
+		entityManager = entityManagerFactory.createEntityManager();
+		insertData(entityManager);
+		entityManagerFactory.close();
+	}
 	
 	public static void insertData(EntityManager entityManager) {
 		userAccountDao = new UserAccountDAO(entityManager);

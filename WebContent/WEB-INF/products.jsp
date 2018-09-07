@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h3>All Products</h3>
-	<a href=#>Add Product</a>
+	<a href="${pageContext.request.contextPath}/User/Products/Add">Add Product</a>
 	<table>
 		<tr>
 			<th>Item</th>

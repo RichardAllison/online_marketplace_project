@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fdmgroup.marketplace.model.user.UserAccount;
+
 @WebServlet("/User/Edit")
 public class AccountEdit extends HttpServlet {
 	
@@ -17,7 +19,8 @@ public class AccountEdit extends HttpServlet {
 //		String username = request.getPathInfo().substring(1);
 		
 		if (request.getSession().getAttribute("user") != null) {
-			request.getRequestDispatcher("/WEB-INF/AccountEdit.jsp").forward(request, response);
+//			UserAccount user = (UserAccount) request.getSession().getAttribute("user");
+			request.getRequestDispatcher("/WEB-INF/account_edit.jsp").forward(request, response);
 		} else {
 			response.sendRedirect("/OnlineMarketplaceProject/Login");
 		}

@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>Create new account</h2>
-	<form action="CreateAccount">
+	<h2>Edit account</h2>
+	<form action="AccountUpdate">
 		${message}
 		<table>
 			<tr>
@@ -25,8 +25,9 @@
 			</tr>
 		</table>
 
-		<input type="submit" value="Create" formmethod="post">
+		<input type="submit" value="Update" formmethod="post">
 	</form>
-	<a href="Home">Home</a>
+	<a href="${pageContext.request.contextPath}/Home">Home</a>
+	<a href="${pageContext.request.contextPath}User/AccountHome">Account</a>
 </body>
 </html>

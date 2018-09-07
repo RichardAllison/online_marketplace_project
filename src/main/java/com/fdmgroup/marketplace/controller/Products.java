@@ -16,7 +16,7 @@ import com.fdmgroup.marketplace.repository.ItemDAO;
 
 
 @WebServlet("/User/Products")
-public class AccountProducts extends HttpServlet {
+public class Products extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
