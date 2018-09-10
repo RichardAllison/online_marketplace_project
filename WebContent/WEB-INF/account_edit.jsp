@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>Edit account</h2>
-	<form action="AccountUpdate">
+	<form action="Edit">
 		${message}
 		<table>
 			<tr>

@@ -20,13 +20,16 @@
 
 		<c:forEach items="${saleList}" var="sale">
 			<tr>
-				<td><c:out value="${sale.buyer.username}"/></td>
-				<c:forEach items="${sale.saleItems}" var="saleItem">
+			<td><c:out value="${sale.buyer.username}"/></td>
+			<c:forEach items="${sale.saleItems}" var="saleItem">
+				<tr>
+					<td></td>
 					<td><c:out value="${saleItem.item.name}" /></td>
 					<td><c:out value="${saleItem.quantity}" /></td>
-					<td>£<c:out value="${saleItem.price}" /></td>
-				</c:forEach>
-				<td><c:out value="${sale.price}"/>
+					<td><c:out value="£${saleItem.price}" /></td>
+				</tr>
+			</c:forEach>
+			<td><c:out value="£${sale.price}"/>
 			</tr>
 		</c:forEach>
 		

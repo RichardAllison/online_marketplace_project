@@ -74,9 +74,9 @@ public class Purchase {
 		this.purchaseItems = orderItems;
 	}
 	
-	public void addToOrder(PurchaseItem orderItem) {
-		if (orderItem.getItem() != null && orderItem.getQuantity() > 0) {
-			this.purchaseItems.add(orderItem);
+	public void addToPurchase(PurchaseItem purchaseItem) {
+		if (purchaseItem.getItem() != null && purchaseItem.getQuantity() > 0) {
+			this.purchaseItems.add(purchaseItem);
 		}
 	}
 	

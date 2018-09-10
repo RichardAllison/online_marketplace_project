@@ -15,7 +15,7 @@ import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 import com.fdmgroup.marketplace.repository.ItemDAO;
 
-@WebServlet("/User/Products/ProductCreate")
+//@WebServlet("/User/Products/ProductCreate")
 public class ProductCreate extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

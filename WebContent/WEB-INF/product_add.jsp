@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>Add Product</h2>
-	<form action="ProductCreate">
+	<form action="Add">
 		${message}
 		<table>
 			<tr>

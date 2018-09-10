@@ -23,7 +23,6 @@ public class SaleItem {
 	private Item item;
 	@Column
 	private int quantity;
-//	private AccountUser seller;
 //	private BigDecimal price;
 
 	public SaleItem() {}

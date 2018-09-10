@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>Create new account</h2>
-	<form action="AccountCreate">
+	<form action="NewAccount">
 		${message}
 		<table>
 			<tr>
