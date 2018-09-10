@@ -14,8 +14,8 @@
 </header>
 	<h2>Dashboard</h2>
 	<div><a href="/OnlineMarketplaceProject/User/Products">Your Products</a></div>
-	<div>Your Sales</div>
-	<div>Your Purchases</div>
+	<div><a href="/OnlineMarketplaceProject/User/Sales">Your Sales</a></div>
+	<div><a href="/OnlineMarketplaceProject/User/Purchases">Your Purchases</a></div>
 	<div>Your Wishlist</div>
 	<div><h4>Recent purchases</h4></div>
 	<div><h4>Recent sales</h4></div>

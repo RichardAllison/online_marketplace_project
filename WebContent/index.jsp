@@ -15,7 +15,7 @@
 	<h3>Browse</h3>
 			<c:forEach items="${itemList}" var="item">
 			<div>
-				<p><c:out value="${item.name}" /></p>
+				<p><a href=""><c:out value="${item.name}" /></a></p>
 				<p>£<c:out value="${item.price}" /></p>
 			</div>
 		</c:forEach>

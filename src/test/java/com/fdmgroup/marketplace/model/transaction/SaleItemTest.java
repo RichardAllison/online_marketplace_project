@@ -8,32 +8,32 @@ import org.junit.Test;
 import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.model.transaction.SaleItem;
 
-public class OrderItemTest {
+public class SaleItemTest {
 
-	private SaleItem orderItem;
+	private SaleItem saleItem;
 	private Item item;
 	
 	@Before
 	public void before() {
-		orderItem = new SaleItem();
+		saleItem = new SaleItem();
 		item = new Item();
 	}
 	
 	@Test
 	public void test_thatOrderItemHasId() {
-		orderItem.setId(1l);
-		assertEquals(1l, orderItem.getId());
+		saleItem.setId(1l);
+		assertEquals(1l, saleItem.getId());
 	}
 	
 	@Test
 	public void test_thatOrderItemHasProduct() {
-		orderItem.setItem(item);
-		assertEquals(item, orderItem.getItem());
+		saleItem.setItem(item);
+		assertEquals(item, saleItem.getItem());
 	}
 	
 	@Test
 	public void test_thatOrderItemHasQuantity() {
-		orderItem.setQuantity(2);
-		assertEquals(2, orderItem.getQuantity());
+		saleItem.setQuantity(2);
+		assertEquals(2, saleItem.getQuantity());
 	}
 }

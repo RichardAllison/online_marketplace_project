@@ -1,5 +1,6 @@
 package com.fdmgroup.marketplace.model.transaction;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,8 +38,9 @@ public class Sale {
 		this.saleItems = new ArrayList<>();
 	}
 
-	public Sale(UserAccount buyer, Date time) {
+	public Sale(UserAccount seller, UserAccount buyer, Date time) {
 		this();
+		this.seller = seller;
 		this.buyer = buyer;
 		this.time = time;
 	}
@@ -75,11 +77,23 @@ public class Sale {
 		this.saleItems = saleItems;
 	}
 	
-	public void addToOrder(SaleItem orderItem) {
-		if (orderItem.getItem() != null && orderItem.getQuantity() > 0) {
-			this.saleItems.add(orderItem);
+	public void addToSale(SaleItem saleItem) {
+		if (saleItem.getItem() != null && saleItem.getQuantity() > 0) {
+			this.saleItems.add(saleItem);
 			// increment quantity reserved in product
 		}
+	}
+	
+	public UserAccount getSeller() {
+		return seller;
+	}
+
+	public void setSeller(UserAccount seller) {
+		this.seller = seller;
+	}
+
+	public BigDecimal getPrice() {
+		return Checkout.calculateTotalCost(this);
 	}
 
 }

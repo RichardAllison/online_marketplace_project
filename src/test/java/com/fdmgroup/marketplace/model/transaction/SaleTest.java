@@ -12,61 +12,61 @@ import com.fdmgroup.marketplace.model.transaction.Sale;
 import com.fdmgroup.marketplace.model.transaction.SaleItem;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 
-public class OrderTest {
+public class SaleTest {
 	
-	private Sale order;
+	private Sale sale;
 	private UserAccount buyer;
 	
 	@Before
 	public void before() {
-		order = new Sale();
+		sale = new Sale();
 		buyer = new UserAccount();
 	}
 	
 	@Test
 	public void test_thatOrderHasOrderId() {
-		order.setId(1l);
-		assertEquals(1l, order.getId());
+		sale.setId(1l);
+		assertEquals(1l, sale.getId());
 	}
 	
 	@Test
 	public void test_thatOrderHasOrderTime() {
 		Date expected = new Date();
-		order.setTime(expected);
-		assertEquals(expected, order.getTime());
+		sale.setTime(expected);
+		assertEquals(expected, sale.getTime());
 	}
 	
 	@Test
 	public void test_thatOrderHasBuyer() {
-		order.setBuyer(buyer);
-		UserAccount actual = order.getBuyer();
+		sale.setBuyer(buyer);
+		UserAccount actual = sale.getBuyer();
 		assertEquals(buyer, actual);
 	}
 	
 	@Test
 	public void test_thatAddToOrderAddsItemToOrderBasket() {
 		Item item = new Item();
-		SaleItem orderItem = new SaleItem();
-		orderItem.setItem(item);
-		orderItem.setQuantity(1);
-		order.addToOrder(orderItem);
-		assertEquals(orderItem, order.getSaleItems().get(0));
+		SaleItem saleItem = new SaleItem();
+		saleItem.setItem(item);
+		saleItem.setQuantity(1);
+		sale.addToSale(saleItem);
+		assertEquals(saleItem, sale.getSaleItems().get(0));
 	}
 	
 	@Test
 	public void test_thatAddToOrderDoesNotAddOrderItemToOrderIfOrderItemDoesNotContainAnItem() {
-		SaleItem orderItem = new SaleItem();
-		order.addToOrder(orderItem);
-		assertEquals(0, order.getSaleItems().size());
+		SaleItem saleItem = new SaleItem();
+		sale.addToSale(saleItem);
+		assertEquals(0, sale.getSaleItems().size());
 	}
 	
 	@Test
 	public void test_thatAddToOrderDoesNotAddOrderItemToOrderIfOrderItemQuantityIsZero() {
 		Item item = new Item();
-		SaleItem orderItem = new SaleItem();
-		orderItem.setItem(item);
-		order.addToOrder(orderItem);
-		assertEquals(0, order.getSaleItems().size());
+		SaleItem saleItem = new SaleItem();
+		saleItem.setItem(item);
+		sale.addToSale(saleItem);
+		assertEquals(0, sale.getSaleItems().size());
 	}
 
 }

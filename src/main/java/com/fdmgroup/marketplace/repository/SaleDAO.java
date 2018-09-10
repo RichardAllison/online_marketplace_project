@@ -3,7 +3,9 @@ package com.fdmgroup.marketplace.repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
+import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.model.transaction.Sale;
 
 public class SaleDAO implements CRUD<Sale> {
@@ -39,6 +41,13 @@ public class SaleDAO implements CRUD<Sale> {
 	public void delete(long id) {
 		Sale order = entityManager.find(Sale.class, id);
 		entityManager.remove(order);
+	}
+
+	public List<Sale> retrieveAllByUserId(long id) {
+			return entityManager.createQuery(
+					"SELECT i FROM Sale i JOIN i.seller u WHERE u.id = :id", Sale.class)
+			.setParameter("id", id)
+			.getResultList();
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.fdmgroup.marketplace.model.transaction;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -77,6 +78,10 @@ public class Purchase {
 		if (orderItem.getItem() != null && orderItem.getQuantity() > 0) {
 			this.purchaseItems.add(orderItem);
 		}
+	}
+	
+	public BigDecimal getPrice() {
+		return Checkout.calculateTotalCost(this);
 	}
 
 }
