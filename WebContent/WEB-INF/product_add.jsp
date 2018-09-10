@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>Add Product</h2>
-	<form action="Add">
+	<form action="${pageContext.request.contextPath}/User/Products/Add">
 		${message}
 		<table>
 			<tr>
@@ -25,13 +25,13 @@
 			</tr>
 			<tr>
 				<td><label path="quantity">quantity</label></td>
-				<td><input type="number" name="price" min="0"/></td>
+				<td><input type="number" name="quantity" min="0"/></td>
 			</tr>
 		</table>
 
 		<input type="submit" value="Add" formmethod="post">
 	</form>
 	<a href="${pageContext.request.contextPath}/Home">Home</a>
-	<a href="${pageContext.request.contextPath}/User/AccountHome">Account</a>
+	<a href="${pageContext.request.contextPath}/User">Account</a>
 </body>
 </html>

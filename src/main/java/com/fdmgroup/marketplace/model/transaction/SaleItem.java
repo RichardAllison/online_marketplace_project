@@ -21,6 +21,8 @@ public class SaleItem {
 	private long id;
 	@ManyToOne
 	private Item item;
+	@ManyToOne
+	private Sale sale;
 	@Column
 	private int quantity;
 //	private BigDecimal price;
@@ -43,7 +45,13 @@ public class SaleItem {
 	public Item getItem() {
 		return item;
 	}
+	public Sale getSale() {
+		return sale;
+	}
 
+	public void setSale(Sale sale) {
+		this.sale = sale;
+	}
 	public void setItem(Item item) {
 		this.item = item;
 //		this.price = item.getPrice();

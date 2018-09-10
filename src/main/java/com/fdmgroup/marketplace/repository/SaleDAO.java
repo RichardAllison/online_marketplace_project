@@ -3,9 +3,7 @@ package com.fdmgroup.marketplace.repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 
-import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.model.transaction.Sale;
 
 public class SaleDAO implements CRUD<Sale> {

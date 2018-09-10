@@ -33,13 +33,13 @@ public class ItemDAO implements CRUD<Item> {
 	
 	public List<Item> searchForItemsByName(String name) {
 	    return entityManager.createQuery(
-	        "SELECT a FROM Item a WHERE a.name LIKE :name")
+	        "SELECT a FROM Item a WHERE a.name LIKE :name", Item.class)
 	        .setParameter("name", name)
 	        .getResultList();
 	}
 	
 	public List<Item> retrieveAllByUserId(long id) {
-		TypedQuery q = entityManager.createQuery(
+		TypedQuery<Item> q = entityManager.createQuery(
 				"SELECT i FROM Item i JOIN i.seller u WHERE u.id = :id", Item.class);
 		
 		q = q.setParameter("id", id);

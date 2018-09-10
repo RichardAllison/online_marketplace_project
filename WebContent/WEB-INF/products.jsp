@@ -16,14 +16,16 @@
 			<th>Quantity</th>
 			<th>Available</th>
 			<th>Price</th>
+			<th>Actions</th>
 		</tr>
 
 		<c:forEach items="${itemList}" var="item">
 			<tr>
-				<td><c:out value="${item.name}" /></td>
+				<td><a href=#><c:out value="${item.name}" /></a></td>
 				<td><c:out value="${item.quantity}" /></td>
+				<td><c:out value="${item.quantityAvailable}"/></td>
 				<td>£<c:out value="${item.price}" /></td>
-				<td><a href="#">Edit</a></td>
+				<td><a href="#">Edit</a> <a href=#>Delete</a></td>
 			</tr>
 		</c:forEach>
 		

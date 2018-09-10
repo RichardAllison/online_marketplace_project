@@ -19,15 +19,19 @@ import com.fdmgroup.marketplace.repository.ItemDAO;
 public class Products extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserAccount user = (UserAccount) request.getSession().getAttribute("user");
-		
-		ItemDAO itemDao  = new ItemDAO(LocalEntityManagerFactory.getEntityManager());
-		List<Item> allItems = itemDao.retrieveAllByUserId(user.getId());
-		request.setAttribute("itemList", allItems);
-		request.getRequestDispatcher("/WEB-INF/products.jsp").forward(request, response);
-		
+		if (request.getSession().getAttribute("user") != null) {
+			UserAccount user = (UserAccount) request.getSession().getAttribute("user");
+
+			ItemDAO itemDao  = new ItemDAO(LocalEntityManagerFactory.getEntityManager());
+			List<Item> allItems = itemDao.retrieveAllByUserId(user.getId());
+			request.setAttribute("itemList", allItems);
+			request.getRequestDispatcher("/WEB-INF/products.jsp").forward(request, response);
+		}
+		else {
+			response.sendRedirect("../Login");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

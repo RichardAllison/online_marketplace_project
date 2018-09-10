@@ -46,7 +46,7 @@ public class AccountEdit extends HttpServlet {
 				entityManager.getTransaction().begin();
 				userAccountDAO.update(user.getId(), user);
 				entityManager.getTransaction().commit();
-				response.sendRedirect("AccountHome");
+				response.sendRedirect("User");
 			} catch (RollbackException rbe){
 				user = null;
 				request.setAttribute("message", "User name already exists");

@@ -28,6 +28,6 @@
 		<input type="submit" value="Update" formmethod="post">
 	</form>
 	<a href="${pageContext.request.contextPath}/Home">Home</a>
-	<a href="${pageContext.request.contextPath}User/AccountHome">Account</a>
+	<a href="${pageContext.request.contextPath}/User">Account</a>
 </body>
 </html>

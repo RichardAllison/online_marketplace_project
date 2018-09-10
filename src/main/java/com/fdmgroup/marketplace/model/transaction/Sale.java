@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.fdmgroup.marketplace.model.user.UserAccount;
@@ -20,6 +21,7 @@ import com.fdmgroup.marketplace.model.user.UserAccount;
 @Entity
 public class Sale {
 	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="sale_generator" ) 
 	@SequenceGenerator(name="sale_generator", sequenceName="SALE_ID_SEQ", initialValue=1, allocationSize=1) 
@@ -30,8 +32,7 @@ public class Sale {
 	private UserAccount seller;
 	@Column
 	private Date time;
-	@ManyToMany
-	@JoinColumn(name = "id")
+	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "sale")
 	private List<SaleItem> saleItems;
 	
 	public Sale() {
@@ -45,38 +46,6 @@ public class Sale {
 		this.time = time;
 	}
 
-	public long getId() {
-		return id;
-	}
-	
-	public void setId(long id) {
-		this.id = id;
-	}
-	
-	public Date getTime() {
-		return time;
-	}
-
-	public void setTime(Date time) {
-		this.time = time;
-	}
-	
-	public UserAccount getBuyer() {
-		return buyer;
-	}
-
-	public void setBuyer(UserAccount buyer) {
-		this.buyer = buyer;
-	}
-
-	public List<SaleItem> getSaleItems() {
-		return saleItems;
-	}
-
-	public void setSaleItems(List<SaleItem> saleItems) {
-		this.saleItems = saleItems;
-	}
-	
 	public void addToSale(SaleItem saleItem) {
 		if (saleItem.getItem() != null && saleItem.getQuantity() > 0) {
 			this.saleItems.add(saleItem);
@@ -84,16 +53,65 @@ public class Sale {
 		}
 	}
 	
+	public UserAccount getBuyer() {
+		return buyer;
+	}
+	
+	public long getId() {
+		return id;
+	}
+
+	public BigDecimal getPrice() {
+		return Checkout.calculateTotalCost(this);
+	}
+	
+	public List<SaleItem> getSaleItems() {
+		return saleItems;
+	}
+
 	public UserAccount getSeller() {
 		return seller;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setBuyer(UserAccount buyer) {
+		this.buyer = buyer;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+	public void setSaleItems(List<SaleItem> saleItems) {
+		this.saleItems = saleItems;
 	}
 
 	public void setSeller(UserAccount seller) {
 		this.seller = seller;
 	}
 
-	public BigDecimal getPrice() {
-		return Checkout.calculateTotalCost(this);
+	public void setTime(Date time) {
+		this.time = time;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Sale [id=");
+		builder.append(id);
+		builder.append(", buyer=");
+		builder.append(buyer);
+		builder.append(", seller=");
+		builder.append(seller);
+		builder.append(", time=");
+		builder.append(time);
+		builder.append(", saleItems=");
+		builder.append(saleItems);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

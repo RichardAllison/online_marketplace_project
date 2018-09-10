@@ -16,7 +16,7 @@ public class Logout extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/home.jsp").include(request, response);  
-
+		
 		HttpSession session = request.getSession();  
 		session.invalidate();
 		response.sendRedirect("/OnlineMarketplaceProject/Home");

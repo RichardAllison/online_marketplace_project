@@ -29,6 +29,11 @@ public class SaleItemDAO implements CRUD<SaleItem> {
 		return entityManager.createQuery(
 				"select a from SaleItem a", SaleItem.class).getResultList();
 	}
+	
+	public List<SaleItem> retrieveAllBySaleId() {
+		return entityManager.createQuery(
+				"SELECT si FROM SaleItem si JOIN si.sale sa WHERE sa.id = :id", SaleItem.class).getResultList();
+	}
 
 	@Override
 	public void update(long id, SaleItem saleItem) {

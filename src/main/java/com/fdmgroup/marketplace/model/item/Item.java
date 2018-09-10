@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -56,6 +55,14 @@ public class Item {
 
 	public void setQuantityReserved(int quantityReserved) {
 		this.quantityReserved = quantityReserved;
+	}
+	
+	public int getQuantityAvailable() {
+		int available = 0;
+		if (this.quantity - this.quantityReserved > 0) {
+			available = this.quantity - this.quantityReserved;
+		}
+		return available;
 	}
 	
 	public long getId() {

@@ -14,7 +14,7 @@ public class Login extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getSession().getAttribute("user") != null) {
-			response.sendRedirect("/OnlineMarketplaceProject/User/AccountHome");
+			response.sendRedirect("/OnlineMarketplaceProject/User");
 		} else {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}

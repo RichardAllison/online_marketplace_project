@@ -27,18 +27,26 @@ public class ProductAdd extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserAccount user = (UserAccount) request.getSession().getAttribute("user");
-		String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		BigDecimal price = new BigDecimal(request.getParameter("price"));
-		ItemDAO itemDao = new ItemDAO(entityManager);
-		Item item = null;
-		if (user != null) {
-			item = new Item(name, description, price, user);
-			entityManager.getTransaction().begin();
-			itemDao.create(item);
-			entityManager.getTransaction().commit();
+		if (request.getSession().getAttribute("user") != null) {
+			UserAccount user = (UserAccount) request.getSession().getAttribute("user");
+			String name = request.getParameter("name");
+			String description = request.getParameter("description");
+			int quantity = Integer.valueOf(request.getParameter("quantity"));
+			BigDecimal price = new BigDecimal(request.getParameter("price"));
+			ItemDAO itemDao = new ItemDAO(entityManager);
+			Item item = null;
+			if (user != null) {
+				item = new Item(name, description, price, user);
+				item.setQuantity(quantity);
+				entityManager.getTransaction().begin();
+				itemDao.create(item);
+				entityManager.getTransaction().commit();
+			}
+			response.sendRedirect("/OnlineMarketplaceProject/User/Products");
 		}
-		response.sendRedirect("User/Products");
+		
+		else {
+			response.sendRedirect("Home");
+		}
 	}
 }
