@@ -15,7 +15,7 @@ import com.fdmgroup.marketplace.listener.LocalEntityManagerFactory;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 import com.fdmgroup.marketplace.repository.UserAccountDAO;
 
-@WebServlet("/CreateAccount")
+@WebServlet("/AccountCreate")
 public class AccountCreate extends HttpServlet {
 	
 	private static EntityManager entityManager = LocalEntityManagerFactory.getEntityManager();
@@ -26,7 +26,7 @@ public class AccountCreate extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
-		UserAccountDAO userAccountDAO = new UserAccountDAO(LocalEntityManagerFactory.getEntityManager());
+		UserAccountDAO userAccountDAO = new UserAccountDAO(entityManager);
 		UserAccount user = null; 
 		try {
 			user = new UserAccount(username, password, email);
