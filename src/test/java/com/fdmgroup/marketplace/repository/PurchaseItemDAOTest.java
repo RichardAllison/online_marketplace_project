@@ -51,7 +51,7 @@ public class PurchaseItemDAOTest {
 	public void test_updateTransactionItem() {
 		PurchaseItem purchaseItem = purchaseItemDao.retrieveOne(1L);
 		purchaseItem.setQuantity(2);
-		purchaseItemDao.update(purchaseItem.getId(), purchaseItem);
+		purchaseItemDao.update(purchaseItem);
 		purchaseItem = purchaseItemDao.retrieveOne(1l);
 		Assert.assertEquals(2, purchaseItem.getQuantity());
 	}

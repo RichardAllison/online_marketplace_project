@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.controller;
+package com.fdmgroup.marketplace.controller.user;
 
 import java.io.IOException;
 
@@ -44,7 +44,7 @@ public class AccountEdit extends HttpServlet {
 				user.setPassword(request.getParameter("password"));
 				user.setEmailAddress(request.getParameter("email"));
 				entityManager.getTransaction().begin();
-				userAccountDAO.update(user.getId(), user);
+				userAccountDAO.update(user);
 				entityManager.getTransaction().commit();
 				response.sendRedirect("User");
 			} catch (RollbackException rbe){

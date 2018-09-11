@@ -40,7 +40,7 @@ public class UserAccountDAO implements CRUD<UserAccount> {
 	}
 	
 	@Override
-	public void update(long id, UserAccount userAccount) {
+	public void update(UserAccount userAccount) {
 		entityManager.merge(userAccount);
 	}
 

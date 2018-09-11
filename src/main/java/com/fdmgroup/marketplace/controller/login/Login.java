@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.controller;
+package com.fdmgroup.marketplace.controller.login;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ public class Login extends HttpServlet {
 		if (request.getSession().getAttribute("user") != null) {
 			response.sendRedirect("/OnlineMarketplaceProject/User");
 		} else {
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 		}
 	}
 }

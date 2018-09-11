@@ -31,7 +31,7 @@ public class PurchaseDAO implements CRUD<Purchase> {
 	}
 
 	@Override
-	public void update(long id, Purchase purchase) {
+	public void update(Purchase purchase) {
 		entityManager.merge(purchase);
 	}
 

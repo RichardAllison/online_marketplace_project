@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.controller;
+package com.fdmgroup.marketplace.controller.user;
 
 import java.io.IOException;
 

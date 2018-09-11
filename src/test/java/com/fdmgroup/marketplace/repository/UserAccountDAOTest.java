@@ -52,7 +52,7 @@ public class UserAccountDAOTest {
 	public void test_updateUserAccount() {
 		UserAccount user = userAccountDao.retrieveOne(1L);
 		user.setUsername("REPLACED");
-		userAccountDao.update(user.getId(), user);
+		userAccountDao.update(user);
 		user = userAccountDao.retrieveOne(1l);
 		Assert.assertEquals("REPLACED", user.getUsername());
 	}

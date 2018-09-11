@@ -48,7 +48,7 @@ public class ItemDAO implements CRUD<Item> {
 	}
 	
 	@Override
-	public void update(long id, Item item) {
+	public void update(Item item) {
 		entityManager.merge(item);
 	}
 

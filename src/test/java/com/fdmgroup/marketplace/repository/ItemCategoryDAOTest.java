@@ -53,7 +53,7 @@ public class ItemCategoryDAOTest {
 	public void test_updateItemCategory() {
 		ItemCategory itemCategory = itemCategoryDAO.retrieveOne(1L);
 		itemCategory.setName("REPLACED");
-		itemCategoryDAO.update(itemCategory.getId(), itemCategory);
+		itemCategoryDAO.update(itemCategory);
 		itemCategory = itemCategoryDAO.retrieveOne(1l);
 		Assert.assertEquals("REPLACED", itemCategory.getName());
 	}

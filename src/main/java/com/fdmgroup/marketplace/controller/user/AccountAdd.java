@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.controller;
+package com.fdmgroup.marketplace.controller.user;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ public class AccountAdd extends HttpServlet {
 	private static EntityManager entityManager = LocalEntityManagerFactory.getEntityManager();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("account_add.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/account_add.jsp").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,9 +42,9 @@ public class AccountAdd extends HttpServlet {
 		}
 
 		if (user == null) {
-			request.getRequestDispatcher("account_add.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/account_add.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 		}
 
 

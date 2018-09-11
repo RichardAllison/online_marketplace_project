@@ -31,7 +31,7 @@ public class ItemCategoryDAO implements CRUD<ItemCategory> {
 	}
 
 	@Override
-	public void update(long id, ItemCategory category) {
+	public void update(ItemCategory category) {
 		entityManager.merge(category);
 	}
 

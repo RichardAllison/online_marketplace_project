@@ -57,7 +57,7 @@ public class PurchaseDAOTest {
 		Date time = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault())
 			      .toInstant());
 		transaction.setTime(time);
-		purchaseDao.update(transaction.getId(), transaction);
+		purchaseDao.update(transaction);
 		transaction = purchaseDao.retrieveOne(1l);
 		Assert.assertEquals(time, transaction.getTime());
 	}

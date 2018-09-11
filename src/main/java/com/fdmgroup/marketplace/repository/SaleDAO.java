@@ -31,7 +31,7 @@ public class SaleDAO implements CRUD<Sale> {
 	}
 
 	@Override
-	public void update(long id, Sale order) {
+	public void update(Sale order) {
 		entityManager.merge(order);
 	}
 

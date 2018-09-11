@@ -7,6 +7,6 @@ public interface CRUD<E> {
 	void create(E e);
 	E retrieveOne(long id);
 	List<E> retrieveAll();
-	void update(long id, E e);
+	void update(E e);
 	void delete(long id);
 }

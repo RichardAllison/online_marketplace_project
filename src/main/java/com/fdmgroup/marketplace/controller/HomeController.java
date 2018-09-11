@@ -21,7 +21,7 @@ public class HomeController extends HttpServlet {
 		ItemDAO itemDao  = new ItemDAO(LocalEntityManagerFactory.getEntityManager());
 		List<Item> allItems = itemDao.retrieveAll();
 		request.setAttribute("itemList", allItems);
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

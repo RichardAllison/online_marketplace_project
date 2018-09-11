@@ -53,7 +53,7 @@ public class ItemDAOTest {
 	public void test_updateItem() {
 		Item item = itemDao.retrieveOne(1L);
 		item.setName("REPLACED");
-		itemDao.update(item.getId(), item);
+		itemDao.update(item);
 		item = itemDao.retrieveOne(1l);
 		Assert.assertEquals("REPLACED", item.getName());
 	}
