@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fdmgroup.marketplace.listener.LocalEntityManagerFactory;
 import com.fdmgroup.marketplace.model.item.Item;
-import com.fdmgroup.marketplace.repository.ItemDAO;
+import com.fdmgroup.marketplace.repository.item.ItemDAO;
 
 @WebServlet({"/Home", "", "/home"})
 public class HomeController extends HttpServlet {

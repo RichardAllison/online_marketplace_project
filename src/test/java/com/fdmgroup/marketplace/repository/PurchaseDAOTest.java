@@ -18,6 +18,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.fdmgroup.marketplace.model.transaction.Purchase;
+import com.fdmgroup.marketplace.repository.transaction.PurchaseDAO;
 
 public class PurchaseDAOTest {
 	

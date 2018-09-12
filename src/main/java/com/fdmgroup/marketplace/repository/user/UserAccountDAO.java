@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.repository;
+package com.fdmgroup.marketplace.repository.user;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
 import com.fdmgroup.marketplace.model.user.UserAccount;
+import com.fdmgroup.marketplace.repository.CRUD;
 
 public class UserAccountDAO implements CRUD<UserAccount> {
 	

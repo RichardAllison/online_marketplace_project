@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fdmgroup.marketplace.listener.LocalEntityManagerFactory;
 import com.fdmgroup.marketplace.model.user.UserAccount;
-import com.fdmgroup.marketplace.repository.UserAccountDAO;
+import com.fdmgroup.marketplace.repository.user.UserAccountDAO;
 
 @WebServlet("/User/Edit")
 public class AccountEdit extends HttpServlet {

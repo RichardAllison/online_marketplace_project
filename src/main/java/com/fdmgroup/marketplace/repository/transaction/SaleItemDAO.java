@@ -1,10 +1,11 @@
-package com.fdmgroup.marketplace.repository;
+package com.fdmgroup.marketplace.repository.transaction;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import com.fdmgroup.marketplace.model.transaction.SaleItem;
+import com.fdmgroup.marketplace.repository.CRUD;
 
 public class SaleItemDAO implements CRUD<SaleItem> {
 

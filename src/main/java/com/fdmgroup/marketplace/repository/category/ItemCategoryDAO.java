@@ -1,10 +1,11 @@
-package com.fdmgroup.marketplace.repository;
+package com.fdmgroup.marketplace.repository.category;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import com.fdmgroup.marketplace.model.category.ItemCategory;
+import com.fdmgroup.marketplace.repository.CRUD;
 
 public class ItemCategoryDAO implements CRUD<ItemCategory> {
 	

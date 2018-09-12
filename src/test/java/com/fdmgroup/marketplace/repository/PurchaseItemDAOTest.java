@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.fdmgroup.marketplace.model.transaction.PurchaseItem;
+import com.fdmgroup.marketplace.repository.transaction.PurchaseItemDAO;
 
 public class PurchaseItemDAOTest {
 	private static EntityManagerFactory entityManagerFactory;

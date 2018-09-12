@@ -14,6 +14,11 @@ import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.model.transaction.Sale;
 import com.fdmgroup.marketplace.model.transaction.SaleItem;
 import com.fdmgroup.marketplace.model.user.UserAccount;
+import com.fdmgroup.marketplace.repository.category.ItemCategoryDAO;
+import com.fdmgroup.marketplace.repository.item.ItemDAO;
+import com.fdmgroup.marketplace.repository.transaction.SaleDAO;
+import com.fdmgroup.marketplace.repository.transaction.SaleItemDAO;
+import com.fdmgroup.marketplace.repository.user.UserAccountDAO;
 
 /**
  * NOTE: drop-and-create in persisence.xml must be set.

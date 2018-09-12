@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.fdmgroup.marketplace.model.category.ItemCategory;
+import com.fdmgroup.marketplace.repository.category.ItemCategoryDAO;
 
 public class ItemCategoryDAOTest {
 
