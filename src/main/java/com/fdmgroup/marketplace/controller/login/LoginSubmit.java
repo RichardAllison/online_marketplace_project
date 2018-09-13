@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fdmgroup.marketplace.listener.LocalEntityManagerFactory;
 import com.fdmgroup.marketplace.model.user.UserAccount;
-import com.fdmgroup.marketplace.repository.user.UserAccountDAO;
+import com.fdmgroup.marketplace.service.user.DefaultUserAccountService;
+import com.fdmgroup.marketplace.service.user.UserAccountService;
+import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
 
 @WebServlet("/LoginSubmit")
 public class LoginSubmit extends HttpServlet {
@@ -21,10 +22,10 @@ public class LoginSubmit extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		UserAccountDAO userAccountDAO = new UserAccountDAO(LocalEntityManagerFactory.getEntityManager());
+		UserAccountService userService = new DefaultUserAccountService(LocalEntityManagerFactory.getEntityManager());
 		UserAccount user = null;
 		try {
-			user = userAccountDAO.getByUsernameAndPassword(username, password);
+			user = userService.getByUsernameAndPassword(username, password);
 		} catch (NoResultException nre){
 			request.setAttribute("message", "username or password incorrect");
 		}

@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fdmgroup.marketplace.listener.LocalEntityManagerFactory;
 import com.fdmgroup.marketplace.model.user.UserAccount;
-import com.fdmgroup.marketplace.repository.user.UserAccountDAO;
+import com.fdmgroup.marketplace.service.user.DefaultUserAccountService;
+import com.fdmgroup.marketplace.service.user.UserAccountService;
+import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
 
 @WebServlet("/NewAccount")
 public class AccountAdd extends HttpServlet {
@@ -29,12 +30,12 @@ public class AccountAdd extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
-		UserAccountDAO userAccountDAO = new UserAccountDAO(entityManager);
+		UserAccountService userService = new DefaultUserAccountService(entityManager);
 		UserAccount user = null; 
 		try {
 			user = new UserAccount(username, password, email);
 			entityManager.getTransaction().begin();
-			userAccountDAO.create(user);
+			userService.create(user);
 			entityManager.getTransaction().commit();
 		} catch (RollbackException rbe){
 			user = null;

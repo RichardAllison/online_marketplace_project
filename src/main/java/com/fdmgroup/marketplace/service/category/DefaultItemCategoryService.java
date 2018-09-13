@@ -10,34 +10,34 @@ import com.fdmgroup.marketplace.repository.category.ItemCategoryDAO;
 
 public class DefaultItemCategoryService implements ItemCategoryService {
 
-	CRUD<ItemCategory> itemCategoryDAO;
+	private CRUD<ItemCategory> itemCategoryDAO;
 	
-	DefaultItemCategoryService(EntityManager entityManager) {
+	public DefaultItemCategoryService(EntityManager entityManager) {
 		itemCategoryDAO = new ItemCategoryDAO(entityManager);
 	}
 
 	@Override
-	public void create(ItemCategory itemCategory) {
+	public void createItemCategory(ItemCategory itemCategory) {
 		itemCategoryDAO.create(itemCategory);
 	}
 
 	@Override
-	public ItemCategory retrieveOne(long id) {
+	public ItemCategory retrieveItemCategory(long id) {
 		return itemCategoryDAO.retrieveOne(id);
 	}
 
 	@Override
-	public List<ItemCategory> retrieveAll() {
+	public List<ItemCategory> retrieveAllItemCategories() {
 		return itemCategoryDAO.retrieveAll();
 	}
 
 	@Override
-	public void update(ItemCategory itemCategory) {
+	public void updateItemCategory(ItemCategory itemCategory) {
 		itemCategoryDAO.update(itemCategory);
 	}
 
 	@Override
-	public void delete(long id) {
+	public void deleteItemCategory(long id) {
 		itemCategoryDAO.delete(id);
 	}
 	

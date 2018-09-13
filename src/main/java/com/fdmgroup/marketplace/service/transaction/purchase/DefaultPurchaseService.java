@@ -5,39 +5,73 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import com.fdmgroup.marketplace.model.transaction.Purchase;
+import com.fdmgroup.marketplace.model.transaction.PurchaseItem;
 import com.fdmgroup.marketplace.repository.CRUD;
 import com.fdmgroup.marketplace.repository.transaction.purchase.PurchaseDAO;
 
-public class DefaultPurchaseService implements PurchaseService {
-	CRUD<Purchase> purchaseDAO;
+public class DefaultPurchaseService implements PurchaseService, PurchaseItemService {
+
+	private CRUD<Purchase> purchaseDAO;
 	
-	DefaultPurchaseService(EntityManager entityManager) {
+	public DefaultPurchaseService(EntityManager entityManager) {
 		purchaseDAO = new PurchaseDAO(entityManager);
-	}
+	} 
 
 	@Override
-	public void create(Purchase purchase) {
+	public void newPurchase(Purchase purchase) {
 		purchaseDAO.create(purchase);
 	}
 
 	@Override
-	public Purchase retrieveOne(long id) {
+	public Purchase retrievePurchase(long id) {
 		return purchaseDAO.retrieveOne(id);
 	}
 
 	@Override
-	public List<Purchase> retrieveAll() {
+	public List<Purchase> retrieveAllPurchases() {
 		return purchaseDAO.retrieveAll();
 	}
 
 	@Override
-	public void update(Purchase purchase) {
+	public void updatePurchase(Purchase purchase) {
 		purchaseDAO.update(purchase);
 	}
 
 	@Override
-	public void delete(long id) {
+	public void deletePurchase(long id) {
 		purchaseDAO.delete(id);
 	}
+
+	@Override
+	public void addItemToPurchase(Purchase purchase, PurchaseItem purchaseItem) {
+		List<PurchaseItem> purchaseItems = purchase.getPurchaseItems();
+		if (purchaseItem.getQuantity() > 0) {
+			purchaseItems.add(purchaseItem);
+			purchaseDAO.update(purchase);
+		} 
+	}
+	
+	@Override
+	public List<PurchaseItem> getAllItemsInPurchase(Purchase purchase) {
+		return purchase.getPurchaseItems();
+	}
+
+	@Override
+	public void updateItemInPurchase(Purchase purchase, PurchaseItem purchaseItem) {
+		List<PurchaseItem> purchaseItems = purchase.getPurchaseItems();
+		int itemIndex = purchaseItems.indexOf(purchaseItem);
+		PurchaseItem itemToUpdate = purchaseItems.get(itemIndex);
+		itemToUpdate.setQuantity(purchaseItem.getQuantity());
+		purchaseDAO.update(purchase);
+	}
+
+	@Override
+	public void removeItemFromPurchase(Purchase purchase, PurchaseItem purchaseItem) {
+		List<PurchaseItem> purchaseItems = purchase.getPurchaseItems();
+		int itemIndex = purchaseItems.indexOf(purchaseItem);
+		purchaseItems.remove(itemIndex);
+		purchaseDAO.update(purchase);
+	}
+
 
 }

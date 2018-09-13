@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fdmgroup.marketplace.model.category.ItemCategory;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 
 @Entity
@@ -23,6 +24,8 @@ public class Item {
 	private String name;
 	@Column
 	private String description;
+	@ManyToOne
+	private ItemCategory category;
 	@Column
 	private BigDecimal price;
 	@Column
@@ -41,20 +44,28 @@ public class Item {
 		this.seller = seller;
 	}
 	
+	public ItemCategory getCategory() {
+		return category;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
 	public int getQuantity() {
 		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public int getQuantityReserved() {
-		return quantityReserved;
-	}
-
-	public void setQuantityReserved(int quantityReserved) {
-		this.quantityReserved = quantityReserved;
 	}
 	
 	public int getQuantityAvailable() {
@@ -64,41 +75,41 @@ public class Item {
 		}
 		return available;
 	}
-	
-	public long getId() {
-		return id;
+
+	public int getQuantityReserved() {
+		return quantityReserved;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public UserAccount getSeller() {
+		return seller;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
+	public void setCategory(ItemCategory category) {
+		this.category = category;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public BigDecimal getPrice() {
-		return price;
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
-	public UserAccount getSeller() {
-		return seller;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
+	public void setQuantityReserved(int quantityReserved) {
+		this.quantityReserved = quantityReserved;
 	}
 
 	public void setSeller(UserAccount seller) {

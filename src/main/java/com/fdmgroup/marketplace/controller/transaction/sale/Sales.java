@@ -9,10 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fdmgroup.marketplace.listener.LocalEntityManagerFactory;
 import com.fdmgroup.marketplace.model.transaction.Sale;
 import com.fdmgroup.marketplace.model.user.UserAccount;
-import com.fdmgroup.marketplace.repository.transaction.sale.SaleDAO;
+import com.fdmgroup.marketplace.service.user.DefaultUserAccountTransactionService;
+import com.fdmgroup.marketplace.service.user.UserAccountSaleService;
+import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
 
 @WebServlet("/User/Sales")
 public class Sales extends HttpServlet {
@@ -23,8 +24,8 @@ public class Sales extends HttpServlet {
 		if (request.getSession().getAttribute("user") != null) {
 			UserAccount user = (UserAccount) request.getSession().getAttribute("user");
 
-			SaleDAO saleDao  = new SaleDAO(LocalEntityManagerFactory.getEntityManager());
-			List<Sale> allSales = saleDao.retrieveAllByUserId(user.getId());
+			UserAccountSaleService userSaleService = new DefaultUserAccountTransactionService(LocalEntityManagerFactory.getEntityManager());
+			List<Sale> allSales = userSaleService.getAllUserSales(user);
 			request.setAttribute("saleList", allSales);
 			request.getRequestDispatcher("/WEB-INF/sales.jsp").forward(request, response);
 		} else {

@@ -6,10 +6,10 @@ import com.fdmgroup.marketplace.model.transaction.Sale;
 
 public interface SaleService {
 
-	public void create(Sale order);
-	public Sale retrieveOne(long id);
-	public List<Sale> retrieveAll();
-	public void update(Sale order);
-	public void delete(long id);
+	public void newSale(Sale order);
+	public Sale retrieveSale(long id);
+	public List<Sale> retrieveAllSales();
+	public void updateSale(Sale order);
+	public void deleteSale(long id);
 	
 }

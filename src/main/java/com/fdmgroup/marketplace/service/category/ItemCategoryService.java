@@ -6,10 +6,10 @@ import com.fdmgroup.marketplace.model.category.ItemCategory;
 
 public interface ItemCategoryService {
 
-	public void create(ItemCategory category);
-	public ItemCategory retrieveOne(long id);
-	public List<ItemCategory> retrieveAll();
-	public void update(ItemCategory category);
-	public void delete(long id);
+	public void createItemCategory(ItemCategory category);
+	public ItemCategory retrieveItemCategory(long id);
+	public List<ItemCategory> retrieveAllItemCategories();
+	public void updateItemCategory(ItemCategory category);
+	public void deleteItemCategory(long id);
 	
 }

@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.filter;
+package com.fdmgroup.marketplace.web.filter;
 
 import java.io.IOException;
 

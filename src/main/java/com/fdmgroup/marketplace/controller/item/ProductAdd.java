@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fdmgroup.marketplace.listener.LocalEntityManagerFactory;
 import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 import com.fdmgroup.marketplace.repository.item.ItemDAO;
+import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
 
 @WebServlet("/User/Products/Add")
 public class ProductAdd extends HttpServlet {

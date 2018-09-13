@@ -42,9 +42,4 @@ public class PurchaseDAO implements CRUD<Purchase> {
 		entityManager.remove(purchase);
 	}
 
-	public List<Purchase> retrieveAllByUserId(long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

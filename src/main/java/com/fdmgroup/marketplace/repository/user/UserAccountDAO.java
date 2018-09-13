@@ -10,7 +10,7 @@ import com.fdmgroup.marketplace.repository.CRUD;
 
 public class UserAccountDAO implements CRUD<UserAccount> {
 	
-	EntityManager entityManager;
+	private EntityManager entityManager;
 	
 	public UserAccountDAO(EntityManager entityManager){
 		this.entityManager = entityManager;

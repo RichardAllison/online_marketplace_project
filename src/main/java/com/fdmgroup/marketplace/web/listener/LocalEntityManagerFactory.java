@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.listener;
+package com.fdmgroup.marketplace.web.listener;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

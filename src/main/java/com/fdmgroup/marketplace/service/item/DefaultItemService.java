@@ -11,32 +11,32 @@ import com.fdmgroup.marketplace.repository.item.ItemDAO;
 public class DefaultItemService implements ItemService {
 	CRUD<Item> itemDAO;
 	
-	DefaultItemService(EntityManager entityManager) {
+	public DefaultItemService(EntityManager entityManager) {
 		itemDAO = new ItemDAO(entityManager);
 	}
 
 	@Override
-	public void create(Item item) {
+	public void createItem(Item item) {
 		itemDAO.create(item);
 	}
 
 	@Override
-	public Item retrieveOne(long id) {
+	public Item retrieveItem(long id) {
 		return itemDAO.retrieveOne(id);
 	}
 
 	@Override
-	public List<Item> retrieveAll() {
+	public List<Item> retrieveAllItems() {
 		return itemDAO.retrieveAll();
 	}
 
 	@Override
-	public void update(Item item) {
+	public void updateItem(Item item) {
 		itemDAO.update(item);
 	}
 
 	@Override
-	public void delete(long id) {
+	public void deleteItem(long id) {
 		itemDAO.delete(id);
 	}
 	

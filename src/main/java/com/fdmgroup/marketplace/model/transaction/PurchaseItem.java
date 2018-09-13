@@ -45,7 +45,6 @@ public class PurchaseItem {
 
 	public void setItem(Item item) {
 		this.item = item;
-//		this.price = item.getPrice();
 	}
 
 	public int getQuantity() {
