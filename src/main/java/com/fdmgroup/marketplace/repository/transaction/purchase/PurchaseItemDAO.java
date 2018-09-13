@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.repository.transaction;
+package com.fdmgroup.marketplace.repository.transaction.purchase;
 
 import java.util.List;
 

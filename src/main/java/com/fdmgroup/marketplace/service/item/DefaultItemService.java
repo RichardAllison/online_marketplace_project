@@ -1,5 +1,7 @@
 package com.fdmgroup.marketplace.service.item;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import com.fdmgroup.marketplace.model.item.Item;
@@ -11,6 +13,31 @@ public class DefaultItemService implements ItemService {
 	
 	DefaultItemService(EntityManager entityManager) {
 		itemDAO = new ItemDAO(entityManager);
+	}
+
+	@Override
+	public void create(Item item) {
+		itemDAO.create(item);
+	}
+
+	@Override
+	public Item retrieveOne(long id) {
+		return itemDAO.retrieveOne(id);
+	}
+
+	@Override
+	public List<Item> retrieveAll() {
+		return itemDAO.retrieveAll();
+	}
+
+	@Override
+	public void update(Item item) {
+		itemDAO.update(item);
+	}
+
+	@Override
+	public void delete(long id) {
+		itemDAO.delete(id);
 	}
 	
 }

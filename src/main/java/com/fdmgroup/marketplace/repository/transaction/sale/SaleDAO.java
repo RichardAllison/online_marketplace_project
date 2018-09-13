@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.repository.transaction;
+package com.fdmgroup.marketplace.repository.transaction.sale;
 
 import java.util.List;
 
@@ -16,8 +16,8 @@ public class SaleDAO implements CRUD<Sale> {
 	}
 
 	@Override
-	public void create(Sale order) {
-		entityManager.persist(order);
+	public void create(Sale sale) {
+		entityManager.persist(sale);
 	}
 
 	@Override

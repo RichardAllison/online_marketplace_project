@@ -16,8 +16,8 @@ import com.fdmgroup.marketplace.model.transaction.SaleItem;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 import com.fdmgroup.marketplace.repository.category.ItemCategoryDAO;
 import com.fdmgroup.marketplace.repository.item.ItemDAO;
-import com.fdmgroup.marketplace.repository.transaction.SaleDAO;
-import com.fdmgroup.marketplace.repository.transaction.SaleItemDAO;
+import com.fdmgroup.marketplace.repository.transaction.sale.SaleDAO;
+import com.fdmgroup.marketplace.repository.transaction.sale.SaleItemDAO;
 import com.fdmgroup.marketplace.repository.user.UserAccountDAO;
 
 /**

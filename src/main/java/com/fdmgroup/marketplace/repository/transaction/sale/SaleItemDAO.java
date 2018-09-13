@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.repository.transaction;
+package com.fdmgroup.marketplace.repository.transaction.sale;
 
 import java.util.List;
 
@@ -46,6 +46,5 @@ public class SaleItemDAO implements CRUD<SaleItem> {
 		SaleItem saleItem = entityManager.find(SaleItem.class, id);
 		entityManager.remove(saleItem);
 	}
-
 
 }
