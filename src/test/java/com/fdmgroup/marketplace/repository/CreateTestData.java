@@ -11,8 +11,8 @@ import javax.persistence.Persistence;
 
 import com.fdmgroup.marketplace.model.category.ItemCategory;
 import com.fdmgroup.marketplace.model.item.Item;
-import com.fdmgroup.marketplace.model.transaction.Sale;
-import com.fdmgroup.marketplace.model.transaction.SaleItem;
+import com.fdmgroup.marketplace.model.transaction.sale.Sale;
+import com.fdmgroup.marketplace.model.transaction.sale.SaleItem;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 import com.fdmgroup.marketplace.repository.category.ItemCategoryDAO;
 import com.fdmgroup.marketplace.repository.item.ItemDAO;

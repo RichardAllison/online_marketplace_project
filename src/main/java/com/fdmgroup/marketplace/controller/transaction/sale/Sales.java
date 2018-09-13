@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fdmgroup.marketplace.model.transaction.Sale;
+import com.fdmgroup.marketplace.model.transaction.sale.Sale;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 import com.fdmgroup.marketplace.service.user.DefaultUserAccountTransactionService;
 import com.fdmgroup.marketplace.service.user.UserAccountSaleService;

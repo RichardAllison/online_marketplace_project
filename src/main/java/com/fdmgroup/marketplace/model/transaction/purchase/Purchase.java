@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.model.transaction;
+package com.fdmgroup.marketplace.model.transaction.purchase;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -13,11 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+import com.fdmgroup.marketplace.model.transaction.Checkout;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 
 @Entity
+@NamedQuery(name="Purchase.getAllByUserId", query="SELECT p FROM Purchase p JOIN p.buyer b WHERE b.id = :id")
 public class Purchase {
 	
 	@Id

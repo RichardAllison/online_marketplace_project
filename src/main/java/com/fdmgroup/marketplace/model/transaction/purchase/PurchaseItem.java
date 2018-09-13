@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.model.transaction;
+package com.fdmgroup.marketplace.model.transaction.purchase;
 
 import java.math.BigDecimal;
 
@@ -11,25 +11,27 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import com.fdmgroup.marketplace.model.item.Item;
+import com.fdmgroup.marketplace.model.user.UserAccount;
 
 @Entity
-public class SaleItem {
+public class PurchaseItem {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="sale_item_generator" ) 
-	@SequenceGenerator(name="sale_item_generator", sequenceName="SALE_ITEM_ID_SEQ", initialValue=1, allocationSize=1) 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="purchase_item_generator" ) 
+	@SequenceGenerator(name="purchase_item_generator", sequenceName="PURCHASE_ITEM_ID_SEQ", initialValue=1, allocationSize=1) 
 	private long id;
 	@ManyToOne
 	private Item item;
-	@ManyToOne
-	private Sale sale;
 	@Column
 	private int quantity;
-//	private BigDecimal price;
+//	@ManyToOne
+//	private UserAccount seller;
+	@Column
+	private BigDecimal price;
 
-	public SaleItem() {}
+	public PurchaseItem() {}
 	
-	public SaleItem(Item item, int quantity) {
+	public PurchaseItem(Item item, int quantity) {
 		this.item = item;
 		this.quantity = quantity;
 	}
@@ -45,16 +47,9 @@ public class SaleItem {
 	public Item getItem() {
 		return item;
 	}
-	public Sale getSale() {
-		return sale;
-	}
 
-	public void setSale(Sale sale) {
-		this.sale = sale;
-	}
 	public void setItem(Item item) {
 		this.item = item;
-//		this.price = item.getPrice();
 	}
 
 	public int getQuantity() {
@@ -63,10 +58,6 @@ public class SaleItem {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}
-	
-	public BigDecimal getPrice() {
-		return this.item.getPrice().multiply(BigDecimal.valueOf(this.quantity));
 	}
 	
 }

@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.fdmgroup.marketplace.model.item.Item;
-import com.fdmgroup.marketplace.model.transaction.SaleItem;
+import com.fdmgroup.marketplace.model.transaction.sale.SaleItem;
 
 public class SaleItemTest {
 

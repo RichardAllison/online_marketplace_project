@@ -1,6 +1,7 @@
 package com.fdmgroup.marketplace.model.item;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,12 +9,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.TypedQuery;
 
 import com.fdmgroup.marketplace.model.category.ItemCategory;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="Item.searchItemsByName", query="SELECT a FROM Item a WHERE a.name LIKE :name"),
+	@NamedQuery(name="Item.getItemsByUserId", query="SELECT i FROM Item i JOIN i.seller u WHERE u.id = :id")
+})
 public class Item {
 
 	@Id
@@ -36,6 +44,17 @@ public class Item {
 	private UserAccount seller;
 	
 	public Item() {}
+
+	public Item(String name, String description, ItemCategory category, BigDecimal price, int quantity,
+			int quantityReserved, UserAccount seller) {
+		this.name = name;
+		this.description = description;
+		this.category = category;
+		this.price = price;
+		this.quantity = quantity;
+		this.quantityReserved = quantityReserved;
+		this.seller = seller;
+	}
 
 	public Item(String name, String description, BigDecimal price, UserAccount seller) {
 		this.name = name;

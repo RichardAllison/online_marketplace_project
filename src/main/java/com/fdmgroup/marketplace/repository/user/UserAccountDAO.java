@@ -33,8 +33,8 @@ public class UserAccountDAO implements CRUD<UserAccount> {
 	}
 
 	public UserAccount getByUsernameAndPassword(String username, String password) throws NoResultException {
-		return entityManager.createQuery(
-				"select u from UserAccount u where u.username = :username and u.password = :password", UserAccount.class)
+		return entityManager.createNamedQuery(
+				"UserAccount.getByUsernameAndPassword", UserAccount.class)
 				.setParameter("username", username)
 				.setParameter("password", password)
 				.getSingleResult();

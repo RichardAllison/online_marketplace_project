@@ -17,7 +17,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.marketplace.model.transaction.Purchase;
+import com.fdmgroup.marketplace.model.transaction.purchase.Purchase;
 import com.fdmgroup.marketplace.repository.transaction.purchase.PurchaseDAO;
 
 public class PurchaseDAOTest {

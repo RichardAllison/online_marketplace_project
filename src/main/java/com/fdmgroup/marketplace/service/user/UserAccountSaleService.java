@@ -2,7 +2,7 @@ package com.fdmgroup.marketplace.service.user;
 
 import java.util.List;
 
-import com.fdmgroup.marketplace.model.transaction.Sale;
+import com.fdmgroup.marketplace.model.transaction.sale.Sale;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 
 public interface UserAccountSaleService {

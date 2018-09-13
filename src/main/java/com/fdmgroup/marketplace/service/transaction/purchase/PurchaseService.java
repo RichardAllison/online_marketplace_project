@@ -2,7 +2,7 @@ package com.fdmgroup.marketplace.service.transaction.purchase;
 
 import java.util.List;
 
-import com.fdmgroup.marketplace.model.transaction.Purchase;
+import com.fdmgroup.marketplace.model.transaction.purchase.Purchase;
 
 public interface PurchaseService {
 

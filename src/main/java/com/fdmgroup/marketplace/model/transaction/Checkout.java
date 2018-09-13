@@ -2,6 +2,9 @@ package com.fdmgroup.marketplace.model.transaction;
 
 import java.math.BigDecimal;
 
+import com.fdmgroup.marketplace.model.transaction.purchase.Purchase;
+import com.fdmgroup.marketplace.model.transaction.sale.Sale;
+
 public class Checkout {
 
 	private Checkout() {}

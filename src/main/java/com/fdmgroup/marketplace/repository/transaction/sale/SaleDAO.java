@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.fdmgroup.marketplace.model.transaction.Sale;
+import com.fdmgroup.marketplace.model.transaction.sale.Sale;
 import com.fdmgroup.marketplace.repository.CRUD;
 
 public class SaleDAO implements CRUD<Sale> {
-	
+
 	private EntityManager entityManager;
 
 	public SaleDAO(EntityManager entityManager){
@@ -43,10 +43,10 @@ public class SaleDAO implements CRUD<Sale> {
 	}
 
 	public List<Sale> retrieveAllByUserId(long id) {
-			return entityManager.createQuery(
-					"SELECT i FROM Sale i JOIN i.seller u WHERE u.id = :id", Sale.class)
-			.setParameter("id", id)
-			.getResultList();
+		return entityManager.createNamedQuery(
+				"Sale.getAllByUserId", Sale.class)
+				.setParameter("id", id)
+				.getResultList();
 	}
 
 }

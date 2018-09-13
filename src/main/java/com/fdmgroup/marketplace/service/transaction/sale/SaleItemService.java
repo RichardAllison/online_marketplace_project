@@ -2,8 +2,8 @@ package com.fdmgroup.marketplace.service.transaction.sale;
 
 import java.util.List;
 
-import com.fdmgroup.marketplace.model.transaction.Sale;
-import com.fdmgroup.marketplace.model.transaction.SaleItem;
+import com.fdmgroup.marketplace.model.transaction.sale.Sale;
+import com.fdmgroup.marketplace.model.transaction.sale.SaleItem;
 
 public interface SaleItemService {
 

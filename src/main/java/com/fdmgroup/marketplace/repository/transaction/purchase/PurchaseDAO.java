@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.fdmgroup.marketplace.model.transaction.Purchase;
+import com.fdmgroup.marketplace.model.transaction.purchase.Purchase;
 import com.fdmgroup.marketplace.repository.CRUD;
 
 public class PurchaseDAO implements CRUD<Purchase> {

@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.fdmgroup.marketplace.model.transaction.Sale;
-import com.fdmgroup.marketplace.model.transaction.SaleItem;
+import com.fdmgroup.marketplace.model.transaction.sale.Sale;
+import com.fdmgroup.marketplace.model.transaction.sale.SaleItem;
 import com.fdmgroup.marketplace.repository.CRUD;
 import com.fdmgroup.marketplace.repository.transaction.sale.SaleDAO;
 

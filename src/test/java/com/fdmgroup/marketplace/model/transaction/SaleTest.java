@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.fdmgroup.marketplace.model.item.Item;
-import com.fdmgroup.marketplace.model.transaction.Sale;
-import com.fdmgroup.marketplace.model.transaction.SaleItem;
+import com.fdmgroup.marketplace.model.transaction.sale.Sale;
+import com.fdmgroup.marketplace.model.transaction.sale.SaleItem;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 
 public class SaleTest {

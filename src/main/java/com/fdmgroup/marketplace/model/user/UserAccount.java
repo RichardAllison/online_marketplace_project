@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -17,12 +18,12 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import com.fdmgroup.marketplace.model.item.Item;
-import com.fdmgroup.marketplace.model.transaction.Purchase;
-import com.fdmgroup.marketplace.model.transaction.Sale;
+import com.fdmgroup.marketplace.model.transaction.purchase.Purchase;
+import com.fdmgroup.marketplace.model.transaction.sale.Sale;
 
 @Entity(name = "UserAccount")
-//@NamedQuery(name="UserAccount.getByUsernameAndPassword",
-//                query="select u from UserAccount u where u.username = :username and u.password = :password")
+@NamedQuery(name="UserAccount.getByUsernameAndPassword",
+                query="select u from UserAccount u where u.username = :username and u.password = :password")
 public class UserAccount {
 	
 	@Id

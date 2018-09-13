@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.fdmgroup.marketplace.model.item.Item;
-import com.fdmgroup.marketplace.model.transaction.Purchase;
-import com.fdmgroup.marketplace.model.transaction.Sale;
+import com.fdmgroup.marketplace.model.transaction.purchase.Purchase;
+import com.fdmgroup.marketplace.model.transaction.sale.Sale;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 
 public class UserAccountTest {
