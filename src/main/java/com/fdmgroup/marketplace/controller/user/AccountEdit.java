@@ -19,8 +19,13 @@ import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
 public class AccountEdit extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-
-	private static EntityManager entityManager = LocalEntityManagerFactory.getEntityManager();
+	private UserAccountService userService;
+	private EntityManager entityManager;
+	
+	public void init() {
+		entityManager = LocalEntityManagerFactory.getEntityManager();
+		userService = new DefaultUserAccountService(entityManager);
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -38,16 +43,12 @@ public class AccountEdit extends HttpServlet {
 		if (request.getSession().getAttribute("user") == null) {
 			response.sendRedirect("/OnlineMarketplaceProject/Login");
 		} else {
-			UserAccountService userService = new DefaultUserAccountService(entityManager);
-
 			UserAccount user = (UserAccount) request.getSession().getAttribute("user");
 			try {
 				user.setUsername(request.getParameter("username"));
 				user.setPassword(request.getParameter("password"));
 				user.setEmailAddress(request.getParameter("email"));
-				entityManager.getTransaction().begin();
 				userService.update(user);
-				entityManager.getTransaction().commit();
 				response.sendRedirect("../User");
 			} catch (RollbackException rbe){
 				user = null;

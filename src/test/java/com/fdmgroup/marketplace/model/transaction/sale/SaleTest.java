@@ -1,8 +1,8 @@
-package com.fdmgroup.marketplace.model.transaction;
+package com.fdmgroup.marketplace.model.transaction.sale;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +31,7 @@ public class SaleTest {
 	
 	@Test
 	public void test_thatOrderHasOrderTime() {
-		Date expected = new Date();
+		LocalDateTime expected = LocalDateTime.now();
 		sale.setTime(expected);
 		assertEquals(expected, sale.getTime());
 	}

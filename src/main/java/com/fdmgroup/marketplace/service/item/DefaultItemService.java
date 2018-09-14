@@ -9,7 +9,8 @@ import com.fdmgroup.marketplace.repository.CRUD;
 import com.fdmgroup.marketplace.repository.item.ItemDAO;
 
 public class DefaultItemService implements ItemService {
-	CRUD<Item> itemDAO;
+	
+	private CRUD<Item> itemDAO;
 	
 	public DefaultItemService(EntityManager entityManager) {
 		itemDAO = new ItemDAO(entityManager);

@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -41,22 +39,21 @@ public class PurchaseDAOTest {
 	}
 	
 	@Test
-	public void test_getTransaction() {
+	public void test_getPurchase() {
 		transaction = purchaseDao.retrieveOne(1L);
 		assertEquals("username1", transaction.getBuyer().getUsername());
 	}
 	
 	@Test
-	public void test_getAllTransactions() {
+	public void test_getAllPurchases() {
 		List<Purchase> transactions = purchaseDao.retrieveAll();
 		assertEquals(2, transactions.size());
 	}
 	
 	@Test
-	public void test_updateTransaction() {
+	public void test_updatePurchase() {
 		Purchase transaction = purchaseDao.retrieveOne(1L);
-		Date time = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault())
-			      .toInstant());
+		LocalDateTime time = LocalDateTime.now();
 		transaction.setTime(time);
 		purchaseDao.update(transaction);
 		transaction = purchaseDao.retrieveOne(1l);
@@ -64,7 +61,7 @@ public class PurchaseDAOTest {
 	}
 	
 	@Test
-	public void test_deleteTransaction() {
+	public void test_deletePurchase() {
 		purchaseDao.delete(1L);
 		transaction = purchaseDao.retrieveOne(1L); 
 		assertNull(transaction);

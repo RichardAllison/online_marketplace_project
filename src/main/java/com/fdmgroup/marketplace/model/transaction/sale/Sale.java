@@ -1,6 +1,7 @@
 package com.fdmgroup.marketplace.model.transaction.sale;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +35,7 @@ public class Sale {
 	@ManyToOne
 	private UserAccount seller;
 	@Column
-	private Date time;
+	private LocalDateTime time;
 	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "sale")
 	private List<SaleItem> saleItems;
 	
@@ -42,7 +43,7 @@ public class Sale {
 		this.saleItems = new ArrayList<>();
 	}
 
-	public Sale(UserAccount seller, UserAccount buyer, Date time) {
+	public Sale(UserAccount seller, UserAccount buyer, LocalDateTime time) {
 		this();
 		this.seller = seller;
 		this.buyer = buyer;
@@ -76,7 +77,7 @@ public class Sale {
 		return seller;
 	}
 
-	public Date getTime() {
+	public LocalDateTime getTime() {
 		return time;
 	}
 
@@ -96,7 +97,7 @@ public class Sale {
 		this.seller = seller;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(LocalDateTime time) {
 		this.time = time;
 	}
 	

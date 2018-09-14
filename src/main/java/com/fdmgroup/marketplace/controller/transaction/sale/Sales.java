@@ -3,6 +3,7 @@ package com.fdmgroup.marketplace.controller.transaction.sale;
 import java.io.IOException;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,12 +20,18 @@ import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
 public class Sales extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	private UserAccountSaleService userSaleService;
+	private EntityManager entityManager;
+	
+	public void init() {
+		entityManager = LocalEntityManagerFactory.getEntityManager();
+		userSaleService = new DefaultUserAccountTransactionService(entityManager);
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getSession().getAttribute("user") != null) {
 			UserAccount user = (UserAccount) request.getSession().getAttribute("user");
 
-			UserAccountSaleService userSaleService = new DefaultUserAccountTransactionService(LocalEntityManagerFactory.getEntityManager());
 			List<Sale> allSales = userSaleService.getAllUserSales(user);
 			request.setAttribute("saleList", allSales);
 			request.getRequestDispatcher("/WEB-INF/sales.jsp").forward(request, response);

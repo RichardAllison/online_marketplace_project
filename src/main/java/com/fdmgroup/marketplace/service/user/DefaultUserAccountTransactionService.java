@@ -7,11 +7,12 @@ import javax.persistence.EntityManager;
 import com.fdmgroup.marketplace.model.transaction.purchase.Purchase;
 import com.fdmgroup.marketplace.model.transaction.sale.Sale;
 import com.fdmgroup.marketplace.model.user.UserAccount;
+import com.fdmgroup.marketplace.repository.CRUD;
 import com.fdmgroup.marketplace.repository.user.UserAccountDAO;
 
 public class DefaultUserAccountTransactionService implements UserAccountPurchaseService, UserAccountSaleService {
 
-	private UserAccountDAO userAccountDAO;
+	private CRUD<UserAccount> userAccountDAO;
 	
 	public DefaultUserAccountTransactionService(EntityManager entityManager) {
 		userAccountDAO = new UserAccountDAO(entityManager);

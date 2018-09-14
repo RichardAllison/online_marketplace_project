@@ -8,17 +8,18 @@ import org.mockito.MockitoAnnotations;
 
 import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.repository.CRUD;
+import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
 
 public class ItemServiceTest {
 	
 	private ItemService itemService;
+	private EntityManager entityManager;
 	@Mock
 	private CRUD<Item> itemDAO;
-	@Mock
-	private EntityManager entityManager;
 	
 	@Before
 	public void before() {
+		entityManager = LocalEntityManagerFactory.getEntityManager();
 		itemService = new DefaultItemService(entityManager);
 		MockitoAnnotations.initMocks(this);
 	}

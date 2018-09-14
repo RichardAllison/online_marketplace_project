@@ -3,7 +3,6 @@ package com.fdmgroup.marketplace.repository.item;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 
 import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.repository.CRUD;

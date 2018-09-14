@@ -23,9 +23,10 @@ public class Products extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private static UserAccountProductService userProductService;
+	private EntityManager entityManager;
 	
 	public void init(ServletConfig config) throws ServletException {
-		EntityManager entityManager = LocalEntityManagerFactory.getEntityManager();
+		entityManager = LocalEntityManagerFactory.getEntityManager();
 		userProductService = new DefaultUserAccountProductService(entityManager);
 	}
 

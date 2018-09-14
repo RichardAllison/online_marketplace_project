@@ -1,8 +1,8 @@
 package com.fdmgroup.marketplace.model.transaction.purchase;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -30,7 +30,7 @@ public class Purchase {
 	@ManyToOne
 	private UserAccount buyer;
 	@Column
-	private Date time;
+	private LocalDateTime time;
 	@ManyToMany
 	@JoinColumn(name = "id")
 	private List<PurchaseItem> purchaseItems;
@@ -39,8 +39,7 @@ public class Purchase {
 		this.purchaseItems = new ArrayList<>();
 	}
 
-	public Purchase(UserAccount buyer, Date time) {
-		this();
+	public Purchase(UserAccount buyer, LocalDateTime time) {
 		this.buyer = buyer;
 		this.time = time;
 	}
@@ -53,11 +52,11 @@ public class Purchase {
 		this.id = id;
 	}
 	
-	public Date getTime() {
+	public LocalDateTime getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(LocalDateTime time) {
 		this.time = time;
 	}
 	
@@ -73,8 +72,8 @@ public class Purchase {
 		return purchaseItems;
 	}
 
-	public void setOrderItems(List<PurchaseItem> orderItems) {
-		this.purchaseItems = orderItems;
+	public void setPurchaseItems(List<PurchaseItem> purchaseItems) {
+		this.purchaseItems = purchaseItems;
 	}
 	
 	public void addToPurchase(PurchaseItem purchaseItem) {

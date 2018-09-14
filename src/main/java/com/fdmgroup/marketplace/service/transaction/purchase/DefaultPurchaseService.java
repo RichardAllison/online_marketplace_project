@@ -16,7 +16,7 @@ public class DefaultPurchaseService implements PurchaseService, PurchaseItemServ
 	public DefaultPurchaseService(EntityManager entityManager) {
 		purchaseDAO = new PurchaseDAO(entityManager);
 	} 
-
+	
 	@Override
 	public void newPurchase(Purchase purchase) {
 		purchaseDAO.create(purchase);

@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.model.transaction;
+package com.fdmgroup.marketplace.model.transaction.sale;
 
 import static org.junit.Assert.assertEquals;
 

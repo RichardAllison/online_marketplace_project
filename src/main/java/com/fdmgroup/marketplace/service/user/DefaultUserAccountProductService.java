@@ -6,11 +6,12 @@ import javax.persistence.EntityManager;
 
 import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.model.user.UserAccount;
+import com.fdmgroup.marketplace.repository.CRUD;
 import com.fdmgroup.marketplace.repository.user.UserAccountDAO;
 
 public class DefaultUserAccountProductService implements UserAccountProductService {
 
-	private UserAccountDAO userAccountDAO;
+	private CRUD<UserAccount> userAccountDAO;
 	
 	public DefaultUserAccountProductService(EntityManager entityManager) {
 		userAccountDAO = new UserAccountDAO(entityManager);

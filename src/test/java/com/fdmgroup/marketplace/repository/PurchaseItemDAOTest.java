@@ -37,19 +37,19 @@ public class PurchaseItemDAOTest {
 	}
 	
 	@Test
-	public void test_getTransactionItem() {
+	public void test_getPurchaseItem() {
 		purchaseItem = purchaseItemDao.retrieveOne(1L);
 		assertEquals(2, purchaseItem.getQuantity());
 	}
 	
 	@Test
-	public void test_getAllTransactionItems() {
+	public void test_getAllPurchaseItems() {
 		List<PurchaseItem> purchaseItems = purchaseItemDao.retrieveAll();
 		assertEquals(2, purchaseItems.size());
 	}
 	
 	@Test
-	public void test_updateTransactionItem() {
+	public void test_updatePurchaseItem() {
 		PurchaseItem purchaseItem = purchaseItemDao.retrieveOne(1L);
 		purchaseItem.setQuantity(2);
 		purchaseItemDao.update(purchaseItem);
@@ -58,7 +58,7 @@ public class PurchaseItemDAOTest {
 	}
 	
 	@Test
-	public void test_deleteTransactionItem() {
+	public void test_deletePurchaseItem() {
 		purchaseItemDao.delete(1L);
 		purchaseItem = purchaseItemDao.retrieveOne(1L); 
 		assertNull(purchaseItem);

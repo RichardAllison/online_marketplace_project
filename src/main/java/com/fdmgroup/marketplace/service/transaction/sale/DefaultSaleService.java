@@ -16,7 +16,7 @@ public class DefaultSaleService implements SaleService, SaleItemService {
 	public DefaultSaleService(EntityManager entityManager) {
 		saleDAO = new SaleDAO(entityManager);
 	}
-
+	
 	@Override
 	public void newSale(Sale sale) {
 		saleDAO.create(sale);

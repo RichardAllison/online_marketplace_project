@@ -2,6 +2,7 @@ package com.fdmgroup.marketplace.controller.login;
 
 import java.io.IOException;
 
+import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,8 +17,16 @@ import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
 
 @WebServlet("/Login")
 public class Login extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-
+	private UserAccountService userService;
+	private EntityManager entityManager;
+	
+	public void init() {
+		entityManager = LocalEntityManagerFactory.getEntityManager();
+		userService = new DefaultUserAccountService(entityManager);
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getSession().getAttribute("user") != null) {
 			response.sendRedirect("/OnlineMarketplaceProject/User");
@@ -29,7 +38,6 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		UserAccountService userService = new DefaultUserAccountService(LocalEntityManagerFactory.getEntityManager());
 		UserAccount user = null;
 		try {
 			user = userService.getByUsernameAndPassword(username, password);

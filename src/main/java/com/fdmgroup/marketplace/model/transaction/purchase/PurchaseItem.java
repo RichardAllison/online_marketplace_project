@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import com.fdmgroup.marketplace.model.item.Item;
-import com.fdmgroup.marketplace.model.user.UserAccount;
 
 @Entity
 public class PurchaseItem {

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -13,6 +13,7 @@
 	<table>
 		<tr>
 			<th>Item</th>
+			<th>Category</th>
 			<th>Quantity</th>
 			<th>Available</th>
 			<th>Price</th>
@@ -21,11 +22,12 @@
 
 		<c:forEach items="${itemList}" var="item">
 			<tr>
-				<td><a href=#><c:out value="${item.name}" /></a></td>
+				<td><c:out value="${item.name}" /></td>
+				<td><c:out value="${item.category.name}"/></td>
 				<td><c:out value="${item.quantity}" /></td>
 				<td><c:out value="${item.quantityAvailable}"/></td>
 				<td>£<c:out value="${item.price}" /></td>
-				<td><a href="#">Edit</a> <a href=#>Delete</a></td>
+				<td><a href="${pageContext.request.contextPath}/User/Product/Edit/${item.id}">Edit</a> <a href="${pageContext.request.contextPath}/User/Product/*/Delete">Delete</a></td>
 			</tr>
 		</c:forEach>
 		

@@ -19,8 +19,13 @@ import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
 public class AccountAdd extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	private UserAccountService userService;
+	private EntityManager entityManager;
 	
-	private static EntityManager entityManager = LocalEntityManagerFactory.getEntityManager();
+	public void init(){
+		entityManager = LocalEntityManagerFactory.getEntityManager();
+		userService = new DefaultUserAccountService(entityManager);
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/account_add.jsp").forward(request, response);
@@ -30,13 +35,11 @@ public class AccountAdd extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
-		UserAccountService userService = new DefaultUserAccountService(entityManager);
+		
 		UserAccount user = null; 
 		try {
 			user = new UserAccount(username, password, email);
-			entityManager.getTransaction().begin();
 			userService.create(user);
-			entityManager.getTransaction().commit();
 		} catch (RollbackException rbe){
 			user = null;
 			request.setAttribute("message", "User name already exists");

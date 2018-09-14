@@ -20,10 +20,11 @@ public class ItemShow extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private static ItemService itemService;
+	private EntityManager entityManager;
 	private long itemId;
 
 	public void init(ServletConfig config) throws ServletException {
-		EntityManager entityManager = LocalEntityManagerFactory.getEntityManager();
+		entityManager = LocalEntityManagerFactory.getEntityManager();
 		itemService = new DefaultItemService(entityManager);
 	}
 

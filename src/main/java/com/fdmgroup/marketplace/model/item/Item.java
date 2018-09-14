@@ -1,7 +1,6 @@
 package com.fdmgroup.marketplace.model.item;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.TypedQuery;
 
 import com.fdmgroup.marketplace.model.category.ItemCategory;
 import com.fdmgroup.marketplace.model.user.UserAccount;
@@ -46,23 +44,15 @@ public class Item {
 	public Item() {}
 
 	public Item(String name, String description, ItemCategory category, BigDecimal price, int quantity,
-			int quantityReserved, UserAccount seller) {
+			UserAccount seller) {
 		this.name = name;
 		this.description = description;
 		this.category = category;
 		this.price = price;
 		this.quantity = quantity;
-		this.quantityReserved = quantityReserved;
 		this.seller = seller;
 	}
 
-	public Item(String name, String description, BigDecimal price, UserAccount seller) {
-		this.name = name;
-		this.description = description;
-		this.price = price;
-		this.seller = seller;
-	}
-	
 	public ItemCategory getCategory() {
 		return category;
 	}
