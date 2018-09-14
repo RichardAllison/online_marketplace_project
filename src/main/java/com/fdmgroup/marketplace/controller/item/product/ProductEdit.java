@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fdmgroup.marketplace.model.item.Item;
+import com.fdmgroup.marketplace.repository.item.ItemDAO;
 import com.fdmgroup.marketplace.service.item.DefaultItemService;
 import com.fdmgroup.marketplace.service.item.ItemService;
 import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
@@ -26,7 +27,7 @@ public class ProductEdit extends HttpServlet {
 
 	public void init(ServletConfig config) throws ServletException {
 		entityManager = LocalEntityManagerFactory.getEntityManager();
-		itemService = new DefaultItemService(entityManager);
+		itemService = new DefaultItemService(new ItemDAO(entityManager));
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

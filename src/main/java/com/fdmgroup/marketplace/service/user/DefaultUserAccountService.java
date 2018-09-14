@@ -2,20 +2,15 @@ package com.fdmgroup.marketplace.service.user;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import com.fdmgroup.marketplace.model.user.UserAccount;
-import com.fdmgroup.marketplace.repository.CRUD;
-import com.fdmgroup.marketplace.repository.user.UserAccountDAO;
+import com.fdmgroup.marketplace.repository.user.UserAccountCRUD;
 
 public class DefaultUserAccountService implements UserAccountService {
 	
-	private CRUD<UserAccount> userAccountCRUD;
-	private EntityManager entityManager;
+	private UserAccountCRUD userAccountCRUD;
 	
-	public DefaultUserAccountService(EntityManager entityManager) {
-		this.entityManager = entityManager;
-		userAccountCRUD = new UserAccountDAO(entityManager);
+	public DefaultUserAccountService(UserAccountCRUD userAccountCRUD) {
+		this.userAccountCRUD = userAccountCRUD;
 	}
 
 	@Override
@@ -45,8 +40,7 @@ public class DefaultUserAccountService implements UserAccountService {
 
 	@Override
 	public UserAccount getByUsernameAndPassword(String username, String password) {
-		UserAccountDAO userAccountDAO = new UserAccountDAO(entityManager);
-		return userAccountDAO.getByUsernameAndPassword(username, password);
+		return userAccountCRUD.getByUsernameAndPassword(username, password);
 	}
 
 }

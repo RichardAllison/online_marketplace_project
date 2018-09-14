@@ -20,7 +20,7 @@ public class ItemServiceTest {
 	@Before
 	public void before() {
 		entityManager = LocalEntityManagerFactory.getEntityManager();
-		itemService = new DefaultItemService(entityManager);
+		itemService = new DefaultItemService(itemDAO);
 		MockitoAnnotations.initMocks(this);
 	}
 }

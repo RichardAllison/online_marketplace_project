@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.fdmgroup.marketplace.model.category.ItemCategory;
 import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.model.user.UserAccount;
+import com.fdmgroup.marketplace.repository.category.ItemCategoryDAO;
+import com.fdmgroup.marketplace.repository.item.ItemDAO;
 import com.fdmgroup.marketplace.service.category.DefaultItemCategoryService;
 import com.fdmgroup.marketplace.service.category.ItemCategoryService;
 import com.fdmgroup.marketplace.service.item.DefaultItemService;
@@ -30,8 +32,8 @@ public class ProductAdd extends HttpServlet {
 	
 	public void init(){
 		entityManager = LocalEntityManagerFactory.getEntityManager();
-		itemService = new DefaultItemService(entityManager);
-		categoryService = new DefaultItemCategoryService(entityManager);
+		itemService = new DefaultItemService(new ItemDAO(entityManager));
+		categoryService = new DefaultItemCategoryService(new ItemCategoryDAO(entityManager));
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

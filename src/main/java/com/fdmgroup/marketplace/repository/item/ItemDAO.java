@@ -17,7 +17,9 @@ public class ItemDAO implements CRUD<Item> {
 
 	@Override
 	public void create(Item item) {
+		entityManager.getTransaction().begin();
 		entityManager.persist(item);
+		entityManager.getTransaction().commit();
 	}
 
 	@Override
@@ -47,12 +49,16 @@ public class ItemDAO implements CRUD<Item> {
 
 	@Override
 	public void update(Item item) {
+		entityManager.getTransaction().begin();
 		entityManager.merge(item);
+		entityManager.getTransaction().commit();
 	}
 
 	@Override
 	public void delete(long id) {
 		Item item = entityManager.find(Item.class, id);
+		entityManager.getTransaction().begin();
 		entityManager.remove(item);
+		entityManager.getTransaction().commit();
 	}
 }

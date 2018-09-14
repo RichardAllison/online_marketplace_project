@@ -17,7 +17,9 @@ public class SaleItemDAO implements CRUD<SaleItem> {
 	
 	@Override
 	public void create(SaleItem saleItem) {
+		entityManager.getTransaction().begin();
 		entityManager.persist(saleItem);
+		entityManager.getTransaction().commit();
 	}
 
 	@Override
@@ -38,13 +40,17 @@ public class SaleItemDAO implements CRUD<SaleItem> {
 
 	@Override
 	public void update(SaleItem saleItem) {
+		entityManager.getTransaction().begin();
 		entityManager.merge(saleItem);
+		entityManager.getTransaction().commit();
 	}
 
 	@Override
 	public void delete(long id) {
 		SaleItem saleItem = entityManager.find(SaleItem.class, id);
+		entityManager.getTransaction().begin();
 		entityManager.remove(saleItem);
+		entityManager.getTransaction().commit();
 	}
 
 }

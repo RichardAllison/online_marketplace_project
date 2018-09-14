@@ -2,26 +2,23 @@ package com.fdmgroup.marketplace.service.user;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 import com.fdmgroup.marketplace.repository.CRUD;
-import com.fdmgroup.marketplace.repository.user.UserAccountDAO;
 
 public class DefaultUserAccountProductService implements UserAccountProductService {
 
-	private CRUD<UserAccount> userAccountDAO;
+	private CRUD<UserAccount> userAccountCRUD;
 	
-	public DefaultUserAccountProductService(EntityManager entityManager) {
-		userAccountDAO = new UserAccountDAO(entityManager);
+	public DefaultUserAccountProductService(CRUD<UserAccount> userAccountCRUD) {
+		this.userAccountCRUD = userAccountCRUD;
 	}
 	
 	@Override
 	public void addNewUserProduct(UserAccount userAccount, Item item) {
 		List<Item> products = userAccount.getProducts();
 		products.add(item);
-		userAccountDAO.update(userAccount);
+		userAccountCRUD.update(userAccount);
 	}
 
 	@Override
@@ -39,7 +36,7 @@ public class DefaultUserAccountProductService implements UserAccountProductServi
 		productToUpdate.setPrice(item.getPrice());
 		productToUpdate.setQuantity(item.getQuantity());
 		productToUpdate.setQuantityReserved(item.getQuantityReserved());
-		userAccountDAO.update(userAccount);
+		userAccountCRUD.update(userAccount);
 	}
 
 	@Override
@@ -47,7 +44,7 @@ public class DefaultUserAccountProductService implements UserAccountProductServi
 		List<Item> products = userAccount.getProducts();
 		int productIndex = products.indexOf(item);
 		products.remove(productIndex);
-		userAccountDAO.update(userAccount);	
+		userAccountCRUD.update(userAccount);	
 	}
 
 }

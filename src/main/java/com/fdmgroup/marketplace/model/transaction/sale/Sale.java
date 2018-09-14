@@ -3,7 +3,6 @@ package com.fdmgroup.marketplace.model.transaction.sale;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;

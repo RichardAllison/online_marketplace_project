@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fdmgroup.marketplace.model.transaction.sale.Sale;
 import com.fdmgroup.marketplace.model.user.UserAccount;
+import com.fdmgroup.marketplace.repository.user.UserAccountDAO;
 import com.fdmgroup.marketplace.service.user.DefaultUserAccountTransactionService;
 import com.fdmgroup.marketplace.service.user.UserAccountSaleService;
 import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
@@ -25,7 +26,7 @@ public class Sales extends HttpServlet {
 	
 	public void init() {
 		entityManager = LocalEntityManagerFactory.getEntityManager();
-		userSaleService = new DefaultUserAccountTransactionService(entityManager);
+		userSaleService = new DefaultUserAccountTransactionService(new UserAccountDAO(entityManager));
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

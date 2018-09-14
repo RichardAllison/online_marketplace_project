@@ -17,7 +17,9 @@ public class PurchaseItemDAO implements CRUD<PurchaseItem> {
 	
 	@Override
 	public void create(PurchaseItem purchaseItem) {
+		entityManager.getTransaction().begin();
 		entityManager.persist(purchaseItem);
+		entityManager.getTransaction().commit();
 	}
 
 	@Override

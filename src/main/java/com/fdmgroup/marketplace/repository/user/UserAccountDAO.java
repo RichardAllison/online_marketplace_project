@@ -8,7 +8,7 @@ import javax.persistence.NoResultException;
 import com.fdmgroup.marketplace.model.user.UserAccount;
 import com.fdmgroup.marketplace.repository.CRUD;
 
-public class UserAccountDAO implements CRUD<UserAccount> {
+public class UserAccountDAO implements CRUD<UserAccount>, UserAccountCRUD {
 	
 	private EntityManager entityManager;
 	
@@ -18,7 +18,9 @@ public class UserAccountDAO implements CRUD<UserAccount> {
 
 	@Override
 	public void create(UserAccount userAccount) {
+		entityManager.getTransaction().begin();
 		entityManager.persist(userAccount);
+		entityManager.getTransaction().commit();
 	}
 
 	@Override
@@ -42,13 +44,17 @@ public class UserAccountDAO implements CRUD<UserAccount> {
 	
 	@Override
 	public void update(UserAccount userAccount) {
+		entityManager.getTransaction().begin();
 		entityManager.merge(userAccount);
+		entityManager.getTransaction().commit();
 	}
 
 	@Override
 	public void delete(long id) {
 		UserAccount userAccount = entityManager.find(UserAccount.class, id);
+		entityManager.getTransaction().begin();
 		entityManager.remove(userAccount);
+		entityManager.getTransaction().commit();
 	}
 	
 }

@@ -30,9 +30,10 @@ public class PurchaseItem {
 
 	public PurchaseItem() {}
 	
-	public PurchaseItem(Item item, int quantity) {
+	public PurchaseItem(Item item, int quantity, BigDecimal price) {
 		this.item = item;
 		this.quantity = quantity;
+		this.price = price;
 	}
 
 	public long getId() {

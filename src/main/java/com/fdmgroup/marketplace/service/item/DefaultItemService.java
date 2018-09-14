@@ -2,43 +2,40 @@ package com.fdmgroup.marketplace.service.item;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.repository.CRUD;
-import com.fdmgroup.marketplace.repository.item.ItemDAO;
 
 public class DefaultItemService implements ItemService {
 	
-	private CRUD<Item> itemDAO;
+	private CRUD<Item> itemCRUD;
 	
-	public DefaultItemService(EntityManager entityManager) {
-		itemDAO = new ItemDAO(entityManager);
+	public DefaultItemService(CRUD<Item> itemCRUD) {
+		this.itemCRUD = itemCRUD;
 	}
 
 	@Override
 	public void createItem(Item item) {
-		itemDAO.create(item);
+		itemCRUD.create(item);
 	}
 
 	@Override
 	public Item retrieveItem(long id) {
-		return itemDAO.retrieveOne(id);
+		return itemCRUD.retrieveOne(id);
 	}
 
 	@Override
 	public List<Item> retrieveAllItems() {
-		return itemDAO.retrieveAll();
+		return itemCRUD.retrieveAll();
 	}
 
 	@Override
 	public void updateItem(Item item) {
-		itemDAO.update(item);
+		itemCRUD.update(item);
 	}
 
 	@Override
 	public void deleteItem(long id) {
-		itemDAO.delete(id);
+		itemCRUD.delete(id);
 	}
 	
 }

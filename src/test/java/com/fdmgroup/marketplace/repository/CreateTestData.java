@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import com.fdmgroup.marketplace.model.category.ItemCategory;
 import com.fdmgroup.marketplace.model.item.Item;
@@ -20,7 +21,6 @@ import com.fdmgroup.marketplace.repository.transaction.purchase.PurchaseItemDAO;
 import com.fdmgroup.marketplace.repository.transaction.sale.SaleDAO;
 import com.fdmgroup.marketplace.repository.transaction.sale.SaleItemDAO;
 import com.fdmgroup.marketplace.repository.user.UserAccountDAO;
-import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
 
 /**
  * NOTE: drop-and-create in persisence.xml must be set.
@@ -54,11 +54,13 @@ public class CreateTestData {
 	private static Purchase purchase2;
 	
 	public static void main(String[] args) {
-		entityManager = LocalEntityManagerFactory.getEntityManager();
+		entityManagerFactory = Persistence.createEntityManagerFactory("OnlineMarketplaceProject");
+		entityManager = entityManagerFactory.createEntityManager();
 		insertData(entityManager);
 		entityManagerFactory.close();
 	}
 	
+
 	public static void insertData(EntityManager entityManager) {
 		userAccountDao = new UserAccountDAO(entityManager);
 		categoryDao = new ItemCategoryDAO(entityManager);
@@ -78,90 +80,81 @@ public class CreateTestData {
 	}
 	
 	public static void insertUserAccounts(EntityManager entityManager) {
-		user1 = new UserAccount("username1", "password1", "email1@emailaddress.com");
-		entityManager.getTransaction().begin();
-		userAccountDao.create(user1);
-		entityManager.getTransaction().commit();
 		
+		user1 = new UserAccount("username1", "password1", "email1@emailaddress.com");
 		user2 = new UserAccount("username2", "password2", "email2@emailaddress.com");
+		
+		userAccountDao.create(user1);
 		userAccountDao.create(user2);
+		
 	}
 	
 	public static void insertCategories(EntityManager entityManager) {
-		category1 = new ItemCategory("Books");
-		entityManager.getTransaction().begin();
-		categoryDao.create(category1);
-		entityManager.getTransaction().commit();
 		
+		category1 = new ItemCategory("Books");
 		category2 = new ItemCategory("Technology");
+		
+		categoryDao.create(category1);
 		categoryDao.create(category2);
+		
 	}
 	
 	public static void insertItems(EntityManager entityManager) {
-		item1 = new Item("book", "a new book", category1,  BigDecimal.valueOf(5), 1, user1);
-		item1.setQuantity(1);
-		entityManager.getTransaction().begin();
-		itemDao.create(item1);
-		entityManager.getTransaction().commit();
 		
+		item1 = new Item("book", "a new book", category1,  BigDecimal.valueOf(5), 1, user1);
 		item2 = new Item("laptop", "mac book pro", category2, BigDecimal.valueOf(1500), 1, user1);
+		
+		itemDao.create(item1);
 		itemDao.create(item2);
+		
 	}
 	
 	public static void insertSaleItems(EntityManager entityManager) {
-		saleItem1 = new SaleItem(item1, 2);
-		entityManager.getTransaction().begin();
-		saleItemDao.create(saleItem1);
-		entityManager.getTransaction().commit();
 		
-		saleItem2 = new SaleItem(item2, 1);
-		entityManager.getTransaction().begin();
+		saleItem1 = new SaleItem(item1, 2, item1.getPrice());
+		saleItem2 = new SaleItem(item2, 1, item1.getPrice());
+		
+		saleItemDao.create(saleItem1);
 		saleItemDao.create(saleItem2);
-		entityManager.getTransaction().commit();
+		
 	}
 	
 	public static void insertSales(EntityManager entityManager) {
 		LocalDateTime time = LocalDateTime.now();
 		
 		sale1 = new Sale(user2, user1, time);
+		sale2 = new Sale(user1, user2, time);
+		
 		sale1.addToSale(saleItem1);
 		sale1.addToSale(saleItem2);
-		entityManager.getTransaction().begin();
-		saleDao.create(sale1);
-		entityManager.getTransaction().commit();
 		
-		sale2 = new Sale(user1, user2, time);
-		entityManager.getTransaction().begin();
+		saleDao.create(sale1);
 		saleDao.create(sale2);
-		entityManager.getTransaction().commit();
+		
 	}
 	
 	public static void insertPurchaseItems(EntityManager entityManager) {
-		purchaseItem1 = new PurchaseItem(item1, 2);
-		entityManager.getTransaction().begin();
-		purchaseItemDao.create(purchaseItem1);
-		entityManager.getTransaction().commit();
 		
-		purchaseItem2 = new PurchaseItem(item2, 1);
-		entityManager.getTransaction().begin();
+		purchaseItem1 = new PurchaseItem(item1, 2, item1.getPrice());
+		purchaseItem2 = new PurchaseItem(item2, 1, item2.getPrice());
+		
+		purchaseItemDao.create(purchaseItem1);
 		purchaseItemDao.create(purchaseItem2);
-		entityManager.getTransaction().commit();
+		
 	}
 	
 	public static void insertPurchases(EntityManager entityManager) {
 		LocalDateTime time = LocalDateTime.now();
 		
 		purchase1 = new Purchase(user1, time);
+		purchase2 = new Purchase(user2, time);
+		
 		purchase1.addToPurchase(purchaseItem1);
 		purchase1.addToPurchase(purchaseItem2);
-		entityManager.getTransaction().begin();
-		purchaseDao.create(purchase1);
-		entityManager.getTransaction().commit();
 		
-		purchase2 = new Purchase(user2, time);
-		entityManager.getTransaction().begin();
+		purchaseDao.create(purchase1);
 		purchaseDao.create(purchase2);
-		entityManager.getTransaction().commit();
+		
 	}
 
 }

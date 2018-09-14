@@ -2,51 +2,48 @@ package com.fdmgroup.marketplace.service.transaction.sale;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import com.fdmgroup.marketplace.model.transaction.sale.Sale;
 import com.fdmgroup.marketplace.model.transaction.sale.SaleItem;
 import com.fdmgroup.marketplace.repository.CRUD;
-import com.fdmgroup.marketplace.repository.transaction.sale.SaleDAO;
 
 public class DefaultSaleService implements SaleService, SaleItemService {
 	
-	private CRUD<Sale> saleDAO;
+	private CRUD<Sale> saleCRUD;
 	
-	public DefaultSaleService(EntityManager entityManager) {
-		saleDAO = new SaleDAO(entityManager);
+	public DefaultSaleService(CRUD<Sale> saleCRUD) {
+		this.saleCRUD = saleCRUD;
 	}
 	
 	@Override
 	public void newSale(Sale sale) {
-		saleDAO.create(sale);
+		saleCRUD.create(sale);
 	}
 
 	@Override
 	public Sale retrieveSale(long id) {
-		return saleDAO.retrieveOne(id);
+		return saleCRUD.retrieveOne(id);
 	}
 
 	@Override
 	public List<Sale> retrieveAllSales() {
-		return saleDAO.retrieveAll();
+		return saleCRUD.retrieveAll();
 	}
 
 	@Override
 	public void updateSale(Sale sale) {
-		saleDAO.update(sale);
+		saleCRUD.update(sale);
 	}
 
 	@Override
 	public void deleteSale(long id) {
-		saleDAO.delete(id);
+		saleCRUD.delete(id);
 	}
 
 	@Override
 	public void addItemToSale(Sale sale, SaleItem saleItem) {
 		List<SaleItem> saleItems = sale.getSaleItems();
 		saleItems.add(saleItem);
-		saleDAO.update(sale);		
+		saleCRUD.update(sale);		
 	}
 
 	@Override
@@ -60,7 +57,7 @@ public class DefaultSaleService implements SaleService, SaleItemService {
 		int itemIndex = saleItems.indexOf(saleItem);
 		SaleItem itemToUpdate = saleItems.get(itemIndex);
 		itemToUpdate.setQuantity(saleItem.getQuantity());
-		saleDAO.update(sale);
+		saleCRUD.update(sale);
 	}
 
 	@Override
@@ -68,7 +65,7 @@ public class DefaultSaleService implements SaleService, SaleItemService {
 		List<SaleItem> saleItems = sale.getSaleItems();
 		int itemIndex = saleItems.indexOf(saleItem);
 		saleItems.remove(itemIndex);
-		saleDAO.update(sale);
+		saleCRUD.update(sale);
 	}
 	
 }

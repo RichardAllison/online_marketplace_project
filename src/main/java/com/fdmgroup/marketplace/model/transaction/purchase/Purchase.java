@@ -40,6 +40,7 @@ public class Purchase {
 	}
 
 	public Purchase(UserAccount buyer, LocalDateTime time) {
+		this();
 		this.buyer = buyer;
 		this.time = time;
 	}

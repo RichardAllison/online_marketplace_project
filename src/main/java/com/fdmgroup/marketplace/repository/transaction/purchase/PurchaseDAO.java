@@ -17,7 +17,9 @@ public class PurchaseDAO implements CRUD<Purchase> {
 
 	@Override
 	public void create(Purchase purchase) {
+		entityManager.getTransaction().begin();
 		entityManager.persist(purchase);
+		entityManager.getTransaction().commit();
 	}
 
 	@Override
@@ -33,13 +35,17 @@ public class PurchaseDAO implements CRUD<Purchase> {
 
 	@Override
 	public void update(Purchase purchase) {
+		entityManager.getTransaction().begin();
 		entityManager.merge(purchase);
+		entityManager.getTransaction().commit();
 	}
 
 	@Override
 	public void delete(long id) {
 		Purchase purchase = entityManager.find(Purchase.class, id);
+		entityManager.getTransaction().begin();
 		entityManager.remove(purchase);
+		entityManager.getTransaction().commit();
 	}
 
 }

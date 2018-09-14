@@ -17,7 +17,9 @@ public class SaleDAO implements CRUD<Sale> {
 
 	@Override
 	public void create(Sale sale) {
+		entityManager.getTransaction().begin();
 		entityManager.persist(sale);
+		entityManager.getTransaction().commit();
 	}
 
 	@Override
@@ -33,13 +35,17 @@ public class SaleDAO implements CRUD<Sale> {
 
 	@Override
 	public void update(Sale order) {
+		entityManager.getTransaction().begin();
 		entityManager.merge(order);
+		entityManager.getTransaction().commit();
 	}
 
 	@Override
 	public void delete(long id) {
 		Sale order = entityManager.find(Sale.class, id);
+		entityManager.getTransaction().begin();
 		entityManager.remove(order);
+		entityManager.getTransaction().commit();
 	}
 
 	public List<Sale> retrieveAllByUserId(long id) {

@@ -17,7 +17,9 @@ public class ItemCategoryDAO implements CRUD<ItemCategory> {
 	
 	@Override
 	public void create(ItemCategory category) {
+		entityManager.getTransaction().begin();
 		entityManager.persist(category);
+		entityManager.getTransaction().commit();
 	}
 
 	@Override
@@ -33,7 +35,9 @@ public class ItemCategoryDAO implements CRUD<ItemCategory> {
 
 	@Override
 	public void update(ItemCategory category) {
+		entityManager.getTransaction().begin();
 		entityManager.merge(category);
+		entityManager.getTransaction().commit();
 	}
 
 	@Override

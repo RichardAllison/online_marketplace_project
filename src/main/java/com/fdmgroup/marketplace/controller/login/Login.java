@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fdmgroup.marketplace.model.user.UserAccount;
+import com.fdmgroup.marketplace.repository.user.UserAccountDAO;
 import com.fdmgroup.marketplace.service.user.DefaultUserAccountService;
 import com.fdmgroup.marketplace.service.user.UserAccountService;
 import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
@@ -24,7 +25,7 @@ public class Login extends HttpServlet {
 	
 	public void init() {
 		entityManager = LocalEntityManagerFactory.getEntityManager();
-		userService = new DefaultUserAccountService(entityManager);
+		userService = new DefaultUserAccountService(new UserAccountDAO(entityManager));
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
