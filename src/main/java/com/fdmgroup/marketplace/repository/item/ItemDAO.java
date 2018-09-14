@@ -5,9 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import com.fdmgroup.marketplace.model.item.Item;
-import com.fdmgroup.marketplace.repository.CRUD;
 
-public class ItemDAO implements CRUD<Item> {
+public class ItemDAO implements ItemCRUD {
 
 	private EntityManager entityManager;
 
