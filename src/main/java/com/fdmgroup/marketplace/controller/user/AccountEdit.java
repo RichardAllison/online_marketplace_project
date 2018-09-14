@@ -25,6 +25,8 @@ public class AccountEdit extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		if (request.getSession().getAttribute("user") != null) {
+			UserAccount user = (UserAccount) request.getSession().getAttribute("user");
+			request.setAttribute("user", user);
 			request.getRequestDispatcher("/WEB-INF/account_edit.jsp").forward(request, response);
 		} else {
 			response.sendRedirect("/OnlineMarketplaceProject/Login");
@@ -46,7 +48,7 @@ public class AccountEdit extends HttpServlet {
 				entityManager.getTransaction().begin();
 				userService.update(user);
 				entityManager.getTransaction().commit();
-				response.sendRedirect("User");
+				response.sendRedirect("../User");
 			} catch (RollbackException rbe){
 				user = null;
 				request.setAttribute("message", "User name already exists");

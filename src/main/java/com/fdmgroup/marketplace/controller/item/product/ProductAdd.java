@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.controller.item;
+package com.fdmgroup.marketplace.controller.item.product;
 
 import java.io.IOException;
 import java.math.BigDecimal;

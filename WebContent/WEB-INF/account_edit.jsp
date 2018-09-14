@@ -13,11 +13,11 @@
 		<table>
 			<tr>
 				<td><label path="email">Email Address</label></td>
-				<td><input type="email" name="email" required="required"></td>
+				<td><input type="email" name="email" required="required" value="${user.emailAddress}"></td>
 			</tr>
 			<tr>
 				<td><label path="username">User name</label></td>
-				<td><input type="text" name="username" required="required"></td>
+				<td><input type="text" name="username" required="required" value="${user.username}"></td>
 			</tr>
 			<tr>
 				<td><label path="password">Password</label></td>

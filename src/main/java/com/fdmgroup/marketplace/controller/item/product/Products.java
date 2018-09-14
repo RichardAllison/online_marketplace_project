@@ -1,4 +1,4 @@
-package com.fdmgroup.marketplace.controller.item;
+package com.fdmgroup.marketplace.controller.item.product;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,14 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.fdmgroup.marketplace.model.item.Item;
 import com.fdmgroup.marketplace.model.user.UserAccount;
-import com.fdmgroup.marketplace.repository.item.ItemDAO;
 import com.fdmgroup.marketplace.service.user.DefaultUserAccountProductService;
-import com.fdmgroup.marketplace.service.user.DefaultUserAccountService;
 import com.fdmgroup.marketplace.service.user.UserAccountProductService;
 import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
 
@@ -27,11 +22,9 @@ import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
 public class Products extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOG = LogManager.getRootLogger();
 	private static UserAccountProductService userProductService;
 	
 	public void init(ServletConfig config) throws ServletException {
-		LOG.info("Created DisplayAllShoppingListsServlet");
 		EntityManager entityManager = LocalEntityManagerFactory.getEntityManager();
 		userProductService = new DefaultUserAccountProductService(entityManager);
 	}
@@ -40,8 +33,7 @@ public class Products extends HttpServlet {
 		if (request.getSession().getAttribute("user") != null) {
 			UserAccount user = (UserAccount) request.getSession().getAttribute("user");
 
-			ItemDAO itemDao  = new ItemDAO(LocalEntityManagerFactory.getEntityManager());
-			List<Item> allItems = itemDao.retrieveAllByUserId(user.getId());
+			List<Item> allItems = userProductService.getAllUserProducts(user);
 			request.setAttribute("itemList", allItems);
 			request.getRequestDispatcher("/WEB-INF/products.jsp").forward(request, response);
 		}

@@ -14,7 +14,7 @@ import com.fdmgroup.marketplace.service.user.DefaultUserAccountService;
 import com.fdmgroup.marketplace.service.user.UserAccountService;
 import com.fdmgroup.marketplace.web.listener.LocalEntityManagerFactory;
 
-@WebServlet("/LoginSubmit")
+//@WebServlet("/LoginSubmit")
 public class LoginSubmit extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -29,14 +29,14 @@ public class LoginSubmit extends HttpServlet {
 		} catch (NoResultException nre){
 			request.setAttribute("message", "username or password incorrect");
 		}
-		
+
 		if (user == null){
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 		} else {
 			request.getSession().setAttribute("user", user);
 			request.getSession().setMaxInactiveInterval(60 * 15);
 			request.setAttribute("username", user.getUsername());
-			
+
 			request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 		}
 	}

@@ -12,7 +12,7 @@
 		<a href="Home" style="text-align: center">Home</a>
 	</nav>
 	<h2 style="text-align: center;">Marketplace Login</h2>
-	<form action="LoginSubmit">
+	<form action="Login">
 		${message}
 		<table style="margin-left:auto; margin-right:auto;">
 			<tr>

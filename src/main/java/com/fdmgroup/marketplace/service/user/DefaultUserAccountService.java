@@ -5,43 +5,47 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import com.fdmgroup.marketplace.model.user.UserAccount;
+import com.fdmgroup.marketplace.repository.CRUD;
 import com.fdmgroup.marketplace.repository.user.UserAccountDAO;
 
 public class DefaultUserAccountService implements UserAccountService {
 	
-	private UserAccountDAO userAccountDAO;
+	private CRUD<UserAccount> userAccountCRUD;
+	private EntityManager entityManager;
 	
 	public DefaultUserAccountService(EntityManager entityManager) {
-		userAccountDAO = new UserAccountDAO(entityManager);
+		this.entityManager = entityManager;
+		userAccountCRUD = new UserAccountDAO(entityManager);
 	}
 
 	@Override
 	public void create(UserAccount userAccount) {
-		userAccountDAO.create(userAccount);
+		userAccountCRUD.create(userAccount);
 	}
 
 	@Override
 	public UserAccount retrieveOne(long id) {
-		return userAccountDAO.retrieveOne(id);
+		return userAccountCRUD.retrieveOne(id);
 	}
 
 	@Override
 	public List<UserAccount> retrieveAll() {
-		return userAccountDAO.retrieveAll();
+		return userAccountCRUD.retrieveAll();
 	}
 
 	@Override
 	public void update(UserAccount userAccount) {
-		userAccountDAO.update(userAccount);
+		userAccountCRUD.update(userAccount);
 	}
 
 	@Override
 	public void delete(long id) {
-		userAccountDAO.delete(id);
+		userAccountCRUD.delete(id);
 	}
 
 	@Override
 	public UserAccount getByUsernameAndPassword(String username, String password) {
+		UserAccountDAO userAccountDAO = new UserAccountDAO(entityManager);
 		return userAccountDAO.getByUsernameAndPassword(username, password);
 	}
 
